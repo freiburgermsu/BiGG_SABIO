@@ -20,6 +20,7 @@ parts/
 sdist/
 var/
 wheels/
+scraping/
 pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
@@ -127,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# BiGG databases
+bigg_databases/

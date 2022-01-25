@@ -1,0 +1,4478 @@
+{
+   "Phosphofructokinase": {
+      "reaction": {
+         "original": "atp_c + f6p_c <-> adp_c + fdp_c + h_c",
+         "substituted": "ATP + D-Fructose_6-phosphate <-> ADP + D-Fructose_1,6-bisphosphate + H+"
+      },
+      "chemicals": [
+         "ATP",
+         "D-Fructose 6-phosphate",
+         "ADP",
+         "D-Fructose 1,6-bisphosphate",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PFK"
+         ],
+         "ec-code": [
+            "2.7.1.11"
+         ],
+         "metanetx.reaction": [
+            "MNXR102507"
+         ],
+         "rhea": [
+            "16111",
+            "16109",
+            "16110",
+            "16112"
+         ],
+         "sbo": "SBO:0000176"
+      }
+   },
+   "Pyruvate formate lyase": {
+      "reaction": {
+         "original": "coa_c + pyr_c <-> accoa_c + for_c",
+         "substituted": "Coenzyme_A + Pyruvate <-> Acetyl-CoA + Formate"
+      },
+      "chemicals": [
+         "Coenzyme A",
+         "Pyruvate",
+         "Acetyl-CoA",
+         "Formate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PFL"
+         ],
+         "biocyc": [
+            "META:PYRUVFORMLY-RXN"
+         ],
+         "ec-code": [
+            "2.3.1.54"
+         ],
+         "kegg.reaction": [
+            "R00212"
+         ],
+         "metanetx.reaction": [
+            "MNXR102514"
+         ],
+         "rhea": [
+            "11847",
+            "11845",
+            "11844",
+            "11846"
+         ],
+         "sabiork": [
+            "146"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00157"
+         ]
+      }
+   },
+   "Glucose-6-phosphate isomerase": {
+      "reaction": {
+         "original": "g6p_c <-> f6p_c",
+         "substituted": "D-Glucose_6-phosphate <-> D-Fructose_6-phosphate"
+      },
+      "chemicals": [
+         "D-Glucose 6-phosphate",
+         "D-Fructose 6-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PGI"
+         ],
+         "biocyc": [
+            "META:PGLUCISOM-RXN"
+         ],
+         "ec-code": [
+            "5.3.1.9"
+         ],
+         "metanetx.reaction": [
+            "MNXR102535"
+         ],
+         "sbo": "SBO:0000176"
+      }
+   },
+   "Phosphoglycerate kinase": {
+      "reaction": {
+         "original": "3pg_c + atp_c <-> 13dpg_c + adp_c",
+         "substituted": "3-Phospho-D-glycerate + ATP <-> 3-Phospho-D-glyceroyl_phosphate + ADP"
+      },
+      "chemicals": [
+         "3-Phospho-D-glycerate",
+         "ATP",
+         "3-Phospho-D-glyceroyl phosphate",
+         "ADP"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PGK"
+         ],
+         "biocyc": [
+            "META:PHOSGLYPHOS-RXN"
+         ],
+         "ec-code": [
+            "2.7.2.3"
+         ],
+         "kegg.reaction": [
+            "R01512"
+         ],
+         "metanetx.reaction": [
+            "MNXR102538"
+         ],
+         "reactome.reaction": [
+            "R-ATH-71850",
+            "R-DME-71850",
+            "R-GGA-71850",
+            "R-SPO-71850",
+            "R-OSA-71850",
+            "R-GGA-353039",
+            "R-GGA-353023",
+            "R-BTA-71850",
+            "R-CFA-70486",
+            "R-MMU-71850",
+            "R-DME-70486",
+            "R-PFA-71850",
+            "R-SPO-70486",
+            "R-SCE-70486",
+            "R-PFA-70486",
+            "R-SSC-70486",
+            "R-ATH-70486",
+            "R-DRE-70486",
+            "R-HSA-70486",
+            "R-OSA-70486",
+            "R-XTR-71850",
+            "R-MMU-70486",
+            "R-RNO-70486",
+            "R-TGU-70486",
+            "R-DRE-71850",
+            "R-SSC-71850",
+            "R-SCE-71850",
+            "R-CFA-71850",
+            "R-XTR-70486",
+            "R-DDI-70486",
+            "R-DDI-71850",
+            "R-RNO-71850",
+            "R-BTA-70486",
+            "R-CEL-70486",
+            "R-HSA-71850",
+            "R-CEL-71850",
+            "R-GGA-70486",
+            "R-TGU-71850"
+         ],
+         "rhea": [
+            "14801",
+            "14804",
+            "14802",
+            "14803"
+         ],
+         "sabiork": [
+            "7644"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn01100"
+         ]
+      }
+   },
+   "6-phosphogluconolactonase": {
+      "reaction": {
+         "original": "6pgl_c + h2o_c <-> 6pgc_c + h_c",
+         "substituted": "6-phospho-D-glucono-1,5-lactone + H2O <-> 6-Phospho-D-gluconate + H+"
+      },
+      "chemicals": [
+         "6-phospho-D-glucono-1,5-lactone",
+         "H2O",
+         "6-Phospho-D-gluconate",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PGL"
+         ],
+         "biocyc": [
+            "META:6PGLUCONOLACT-RXN"
+         ],
+         "ec-code": [
+            "3.1.1.31"
+         ],
+         "kegg.reaction": [
+            "R02035"
+         ],
+         "metanetx.reaction": [
+            "MNXR102539"
+         ],
+         "reactome.reaction": [
+            "R-OSA-71296",
+            "R-CFA-71296",
+            "R-CEL-71296",
+            "R-GGA-71296",
+            "R-MMU-71296",
+            "R-SSC-71296",
+            "R-BTA-71296",
+            "R-ATH-71296",
+            "R-DME-71296",
+            "R-DRE-71296",
+            "R-SCE-71296",
+            "R-HSA-71296",
+            "R-XTR-71296",
+            "R-RNO-71296",
+            "R-DDI-71296",
+            "R-SPO-71296"
+         ],
+         "rhea": [
+            "12559",
+            "12556",
+            "12557",
+            "12558"
+         ],
+         "sabiork": [
+            "109"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn01476"
+         ]
+      }
+   },
+   "Acetaldehyde dehydrogenase (acetylating)": {
+      "reaction": {
+         "original": "acald_c + coa_c + nad_c <-> accoa_c + h_c + nadh_c",
+         "substituted": "Acetaldehyde + Coenzyme_A + Nicotinamide_adenine_dinucleotide <-> Acetyl-CoA + H+ + Nicotinamide_adenine_dinucleotide-reduced"
+      },
+      "chemicals": [
+         "Acetaldehyde",
+         "Coenzyme A",
+         "Nicotinamide adenine dinucleotide",
+         "Acetyl-CoA",
+         "H+",
+         "Nicotinamide adenine dinucleotide-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ACALD"
+         ],
+         "biocyc": [
+            "META:ACETALD-DEHYDROG-RXN"
+         ],
+         "ec-code": [
+            "1.2.1.10"
+         ],
+         "kegg.reaction": [
+            "R00228"
+         ],
+         "metanetx.reaction": [
+            "MNXR95210"
+         ],
+         "rhea": [
+            "23290",
+            "23291",
+            "23289",
+            "23288"
+         ],
+         "sabiork": [
+            "163"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00171"
+         ]
+      }
+   },
+   "2 oxoglutarate reversible transport via symport": {
+      "reaction": {
+         "original": "akg_e + h_e <-> akg_c + h_c",
+         "substituted": "2-Oxoglutarate + H+ <-> 2-Oxoglutarate + H+"
+      },
+      "chemicals": [
+         "2-Oxoglutarate",
+         "H+",
+         "2-Oxoglutarate",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "AKGt2r"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-23"
+         ],
+         "metanetx.reaction": [
+            "MNXR95661"
+         ],
+         "rhea": [
+            "29011",
+            "29013",
+            "29012",
+            "29014"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn05493",
+            "rxn08095",
+            "rxn09827"
+         ]
+      }
+   },
+   "Phosphoglycerate mutase": {
+      "reaction": {
+         "original": "2pg_c <-> 3pg_c",
+         "substituted": "D-Glycerate_2-phosphate <-> 3-Phospho-D-glycerate"
+      },
+      "chemicals": [
+         "D-Glycerate 2-phosphate",
+         "3-Phospho-D-glycerate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PGM"
+         ],
+         "biocyc": [
+            "META:3PGAREARR-RXN",
+            "META:RXN-15513"
+         ],
+         "ec-code": [
+            "5.4.2.1",
+            "5.4.2.11",
+            "5.4.2.12"
+         ],
+         "kegg.reaction": [
+            "R01518"
+         ],
+         "metanetx.reaction": [
+            "MNXR102547"
+         ],
+         "reactome.reaction": [
+            "R-XTR-71654",
+            "R-SSC-71654",
+            "R-DME-71445",
+            "R-XTR-71445",
+            "R-RNO-71445",
+            "R-GGA-71654",
+            "R-SSC-71445",
+            "R-GGA-71445",
+            "R-DDI-71654",
+            "R-SPO-71654",
+            "R-MMU-71445",
+            "R-BTA-71445",
+            "R-CFA-71445",
+            "R-PFA-71445",
+            "R-GGA-352994",
+            "R-TGU-71654",
+            "R-SPO-71445",
+            "R-HSA-71445",
+            "R-ATH-71654",
+            "R-MMU-71654",
+            "R-BTA-71654",
+            "R-GGA-353014",
+            "R-DRE-71654",
+            "R-HSA-71654",
+            "R-CFA-71654",
+            "R-OSA-71654",
+            "R-DDI-71445",
+            "R-RNO-71654",
+            "R-DRE-71445",
+            "R-OSA-71445",
+            "R-PFA-71654",
+            "R-DME-71654",
+            "R-TGU-71445",
+            "R-SCE-71445",
+            "R-ATH-71445",
+            "R-SCE-71654"
+         ],
+         "rhea": [
+            "15902",
+            "15903",
+            "15901",
+            "15904"
+         ],
+         "sabiork": [
+            "7641"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn01106"
+         ]
+      }
+   },
+   "Phosphate reversible transport via symport": {
+      "reaction": {
+         "original": "h_e + pi_e <-> h_c + pi_c",
+         "substituted": "H+ + Phosphate <-> H+ + Phosphate"
+      },
+      "chemicals": [
+         "H+",
+         "Phosphate",
+         "H+",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PIt2r"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-114"
+         ],
+         "metanetx.reaction": [
+            "MNXR102872"
+         ],
+         "rhea": [
+            "29939",
+            "29941",
+            "29940",
+            "29942"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn05312",
+            "rxn09833",
+            "rxn09811",
+            "rxn09872",
+            "rxn09723",
+            "rxn09120"
+         ]
+      }
+   },
+   "Alcohol dehydrogenase (ethanol)": {
+      "reaction": {
+         "original": "etoh_c + nad_c <-> acald_c + h_c + nadh_c",
+         "substituted": "Ethanol + Nicotinamide_adenine_dinucleotide <-> Acetaldehyde + H+ + Nicotinamide_adenine_dinucleotide-reduced"
+      },
+      "chemicals": [
+         "Ethanol",
+         "Nicotinamide adenine dinucleotide",
+         "Acetaldehyde",
+         "H+",
+         "Nicotinamide adenine dinucleotide-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ALCD2x"
+         ],
+         "biocyc": [
+            "META:ALCOHOL-DEHYDROG-RXN"
+         ],
+         "ec-code": [
+            "1.1.1.71",
+            "1.1.1.1"
+         ],
+         "kegg.reaction": [
+            "R00754"
+         ],
+         "metanetx.reaction": [
+            "MNXR95725"
+         ],
+         "reactome.reaction": [
+            "R-MMU-71707",
+            "R-XTR-71707",
+            "R-CFA-71707",
+            "R-OSA-71707",
+            "R-RNO-71707",
+            "R-HSA-71707",
+            "R-SSC-71707",
+            "R-GGA-71707",
+            "R-SPO-71707",
+            "R-DME-71707",
+            "R-DRE-71707",
+            "R-BTA-71707",
+            "R-ATH-71707",
+            "R-SCE-71707",
+            "R-TGU-71707",
+            "R-CEL-71707",
+            "R-DDI-71707"
+         ],
+         "rhea": [
+            "25292",
+            "25290",
+            "25291",
+            "25293"
+         ],
+         "sabiork": [
+            "597"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00543"
+         ]
+      }
+   },
+   "Acetaldehyde reversible transport": {
+      "reaction": {
+         "original": "acald_e <-> acald_c",
+         "substituted": "Acetaldehyde <-> Acetaldehyde"
+      },
+      "chemicals": [
+         "Acetaldehyde",
+         "Acetaldehyde"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ACALDt"
+         ],
+         "metanetx.reaction": [
+            "MNXR95212"
+         ],
+         "reactome.reaction": [
+            "R-HSA-449872"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn09700",
+            "rxn08033",
+            "rxn13212",
+            "rxn08032"
+         ]
+      }
+   },
+   "Acetate kinase": {
+      "reaction": {
+         "original": "ac_c + atp_c <-> actp_c + adp_c",
+         "substituted": "Acetate + ATP <-> Acetyl_phosphate + ADP"
+      },
+      "chemicals": [
+         "Acetate",
+         "ATP",
+         "Acetyl phosphate",
+         "ADP"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ACKr"
+         ],
+         "biocyc": [
+            "META:ACETATEKIN-RXN"
+         ],
+         "ec-code": [
+            "2.7.2.15",
+            "2.7.2.1"
+         ],
+         "kegg.reaction": [
+            "R00315"
+         ],
+         "metanetx.reaction": [
+            "MNXR95269"
+         ],
+         "rhea": [
+            "11354",
+            "11355",
+            "11353",
+            "11352"
+         ],
+         "sabiork": [
+            "71"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00225"
+         ]
+      }
+   },
+   "Phosphoenolpyruvate carboxylase": {
+      "reaction": {
+         "original": "co2_c + h2o_c + pep_c <-> h_c + oaa_c + pi_c",
+         "substituted": "CO2 + H2O + Phosphoenolpyruvate <-> H+ + Oxaloacetate + Phosphate"
+      },
+      "chemicals": [
+         "CO2",
+         "H2O",
+         "Phosphoenolpyruvate",
+         "H+",
+         "Oxaloacetate",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PPC"
+         ],
+         "ec-code": [
+            "4.1.1.31"
+         ],
+         "kegg.reaction": [
+            "R00345"
+         ],
+         "metanetx.reaction": [
+            "MNXR103096"
+         ],
+         "rhea": [
+            "23073",
+            "23072",
+            "23075",
+            "23074"
+         ],
+         "sabiork": [
+            "150"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00251"
+         ]
+      }
+   },
+   "Aconitase (half-reaction A, Citrate hydro-lyase)": {
+      "reaction": {
+         "original": "cit_c <-> acon_C_c + h2o_c",
+         "substituted": "Citrate <-> Cis-Aconitate + H2O"
+      },
+      "chemicals": [
+         "Citrate",
+         "Cis-Aconitate",
+         "H2O"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ACONTa"
+         ],
+         "biocyc": [
+            "META:ACONITATEDEHYDR-RXN"
+         ],
+         "ec-code": [
+            "4.2.1.3"
+         ],
+         "kegg.reaction": [
+            "R01325"
+         ],
+         "metanetx.reaction": [
+            "MNXR95386"
+         ],
+         "rhea": [
+            "10230",
+            "10229",
+            "10231",
+            "10228"
+         ],
+         "sabiork": [
+            "268"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00974"
+         ]
+      }
+   },
+   "Aconitase (half-reaction B, Isocitrate hydro-lyase)": {
+      "reaction": {
+         "original": "acon_C_c + h2o_c <-> icit_c",
+         "substituted": "Cis-Aconitate + H2O <-> Isocitrate"
+      },
+      "chemicals": [
+         "Cis-Aconitate",
+         "H2O",
+         "Isocitrate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ACONTb"
+         ],
+         "ec-code": [
+            "4.2.1.3"
+         ],
+         "kegg.reaction": [
+            "R01900"
+         ],
+         "metanetx.reaction": [
+            "MNXR95387"
+         ],
+         "rhea": [
+            "22145",
+            "22144",
+            "22146",
+            "22147"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn01388"
+         ]
+      }
+   },
+   "ATP maintenance requirement": {
+      "reaction": {
+         "original": "atp_c + h2o_c <-> adp_c + h_c + pi_c",
+         "substituted": "ATP + H2O <-> ADP + H+ + Phosphate"
+      },
+      "chemicals": [
+         "ATP",
+         "H2O",
+         "ADP",
+         "H+",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ATPM"
+         ],
+         "biocyc": [
+            "META:ATPASE-RXN"
+         ],
+         "ec-code": [
+            "3.6.1.5",
+            "3.6.3.34",
+            "3.6.3.20",
+            "3.6.3.53",
+            "3.6.3.8",
+            "3.6.3.32",
+            "3.6.4.12",
+            "3.6.3.48",
+            "3.6.3.40",
+            "3.6.3.9",
+            "3.6.3.23",
+            "3.6.3.22",
+            "3.6.3.54",
+            "3.6.3.1",
+            "3.6.1.8",
+            "3.6.3.29",
+            "3.6.3.17",
+            "3.6.3.50",
+            "3.6.3.39",
+            "3.6.3.19",
+            "3.6.3.4",
+            "3.6.3.35",
+            "3.6.3.16",
+            "3.6.4.4",
+            "3.6.3.37",
+            "3.6.4.8",
+            "3.6.3.31",
+            "3.6.3.6",
+            "3.6.4.5",
+            "3.6.3.52",
+            "3.6.3.2",
+            "3.6.3.14",
+            "3.6.3.51",
+            "3.6.3.25",
+            "3.6.3.38",
+            "3.6.3.33",
+            "3.6.3.43",
+            "3.6.4.10",
+            "3.6.4.13",
+            "3.6.3.3",
+            "3.6.3.10",
+            "3.6.3.24",
+            "3.6.3.44",
+            "3.6.3.15",
+            "3.6.3.5",
+            "3.6.1.3",
+            "3.6.1.15",
+            "3.6.4.2",
+            "3.6.4.3",
+            "3.6.3.42",
+            "3.6.3.11",
+            "3.6.3.28",
+            "3.6.3.30",
+            "3.6.4.1",
+            "3.6.4.11",
+            "3.6.3.47",
+            "3.6.4.6",
+            "3.6.3.36",
+            "3.6.3.21",
+            "3.6.3.12",
+            "3.6.3.18",
+            "3.6.3.26",
+            "3.6.3.27",
+            "3.6.3.7",
+            "3.6.4.9",
+            "3.6.4.7",
+            "3.6.3.46",
+            "3.6.3.41",
+            "3.6.3.49"
+         ],
+         "kegg.reaction": [
+            "R00086"
+         ],
+         "metanetx.reaction": [
+            "MNXR96131"
+         ],
+         "rhea": [
+            "13066",
+            "13065",
+            "13068",
+            "13067"
+         ],
+         "sabiork": [
+            "75"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn11300",
+            "rxn09694",
+            "rxn00062"
+         ]
+      }
+   },
+   "Phosphoenolpyruvate carboxykinase": {
+      "reaction": {
+         "original": "atp_c + oaa_c <-> adp_c + co2_c + pep_c",
+         "substituted": "ATP + Oxaloacetate <-> ADP + CO2 + Phosphoenolpyruvate"
+      },
+      "chemicals": [
+         "ATP",
+         "Oxaloacetate",
+         "ADP",
+         "CO2",
+         "Phosphoenolpyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PPCK"
+         ],
+         "biocyc": [
+            "META:PEPCARBOXYKIN-RXN"
+         ],
+         "ec-code": [
+            "4.1.1.49"
+         ],
+         "kegg.reaction": [
+            "R00341"
+         ],
+         "metanetx.reaction": [
+            "MNXR103099"
+         ],
+         "rhea": [
+            "18620",
+            "18618",
+            "18617",
+            "18619"
+         ],
+         "sabiork": [
+            "151"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00247"
+         ]
+      }
+   },
+   "Acetate reversible transport via proton symport": {
+      "reaction": {
+         "original": "ac_e + h_e <-> ac_c + h_c",
+         "substituted": "Acetate + H+ <-> Acetate + H+"
+      },
+      "chemicals": [
+         "Acetate",
+         "H+",
+         "Acetate",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ACt2r"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-571"
+         ],
+         "metanetx.reaction": [
+            "MNXR95429"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08061",
+            "rxn05488"
+         ]
+      }
+   },
+   "Phosphoenolpyruvate synthase": {
+      "reaction": {
+         "original": "atp_c + h2o_c + pyr_c <-> amp_c + 2.0 h_c + pep_c + pi_c",
+         "substituted": "ATP + H2O + Pyruvate <-> AMP + 2.0 H+ + Phosphoenolpyruvate + Phosphate"
+      },
+      "chemicals": [
+         "ATP",
+         "H2O",
+         "Pyruvate",
+         "AMP",
+         "2.0 H+",
+         "Phosphoenolpyruvate",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PPS"
+         ],
+         "biocyc": [
+            "META:PEPSYNTH-RXN"
+         ],
+         "ec-code": [
+            "2.7.9.2"
+         ],
+         "kegg.reaction": [
+            "R00199"
+         ],
+         "metanetx.reaction": [
+            "MNXR103140"
+         ],
+         "rhea": [
+            "11364",
+            "11367",
+            "11366",
+            "11365"
+         ],
+         "sabiork": [
+            "148"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00147"
+         ]
+      }
+   },
+   "Adenylate kinase": {
+      "reaction": {
+         "original": "amp_c + atp_c <-> 2.0 adp_c",
+         "substituted": "AMP + ATP <-> 2.0 ADP"
+      },
+      "chemicals": [
+         "AMP",
+         "ATP",
+         "2.0 ADP"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ADK1"
+         ],
+         "biocyc": [
+            "META:ADENYL-KIN-RXN"
+         ],
+         "ec-code": [
+            "2.7.4.3"
+         ],
+         "kegg.reaction": [
+            "R00127"
+         ],
+         "metanetx.reaction": [
+            "MNXR95450"
+         ],
+         "reactome.reaction": [
+            "R-ATH-110145",
+            "R-SSC-110144",
+            "R-ATH-110144",
+            "R-SSC-110145",
+            "R-GGA-110145",
+            "R-PFA-110144",
+            "R-HSA-110145",
+            "R-RNO-110144",
+            "R-OSA-110145",
+            "R-SCE-110145",
+            "R-RNO-110145",
+            "R-XTR-110144",
+            "R-SCE-110144",
+            "R-PFA-110145",
+            "R-OSA-110144",
+            "R-HSA-110144",
+            "R-BTA-110144",
+            "R-DRE-110145",
+            "R-DRE-110144",
+            "R-SPO-110145",
+            "R-CEL-110144",
+            "R-CFA-110144",
+            "R-XTR-110145",
+            "R-MMU-110144",
+            "R-DME-110144",
+            "R-SPO-110144",
+            "R-DDI-110145",
+            "R-GGA-110144",
+            "R-TGU-110144",
+            "R-BTA-110145",
+            "R-CEL-110145",
+            "R-CFA-110145",
+            "R-DME-110145",
+            "R-TGU-110145",
+            "R-DDI-110144",
+            "R-MMU-110145"
+         ],
+         "rhea": [
+            "12975",
+            "12973",
+            "12976",
+            "12974"
+         ],
+         "sabiork": [
+            "82"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00097"
+         ]
+      }
+   },
+   "2-Oxogluterate dehydrogenase": {
+      "reaction": {
+         "original": "akg_c + coa_c + nad_c <-> co2_c + nadh_c + succoa_c",
+         "substituted": "2-Oxoglutarate + Coenzyme_A + Nicotinamide_adenine_dinucleotide <-> CO2 + Nicotinamide_adenine_dinucleotide-reduced + Succinyl-CoA"
+      },
+      "chemicals": [
+         "2-Oxoglutarate",
+         "Coenzyme A",
+         "Nicotinamide adenine dinucleotide",
+         "CO2",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Succinyl-CoA"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "AKGDH"
+         ],
+         "biocyc": [
+            "META:2OXOGLUTARATEDEH-RXN"
+         ],
+         "ec-code": [
+            "1.2.1.52",
+            "2.3.1.61",
+            "1.8.1.4",
+            "1.2.4.2"
+         ],
+         "kegg.reaction": [
+            "R08549"
+         ],
+         "metanetx.reaction": [
+            "MNXR95655"
+         ],
+         "reactome.reaction": [
+            "R-PFA-71401",
+            "R-XTR-71401",
+            "R-SCE-71401",
+            "R-SSC-71401",
+            "R-TGU-71401",
+            "R-ATH-71401",
+            "R-OSA-71401",
+            "R-SPO-71401",
+            "R-CEL-71401",
+            "R-RNO-71401",
+            "R-DRE-71401",
+            "R-GGA-373042",
+            "R-DDI-71401",
+            "R-CFA-71401",
+            "R-HSA-71401",
+            "R-BTA-71401",
+            "R-DME-71401",
+            "R-MMU-71401",
+            "R-GGA-71401"
+         ],
+         "rhea": [
+            "27789",
+            "27788",
+            "27786",
+            "27787"
+         ],
+         "sabiork": [
+            "8163"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn08094"
+         ]
+      }
+   },
+   "ATP synthase (four protons for one ATP)": {
+      "reaction": {
+         "original": "adp_c + 4.0 h_e + pi_c <-> atp_c + 3.0 h_c + h2o_c",
+         "substituted": "ADP + 4.0 H+ + Phosphate <-> ATP + 3.0 H+ + H2O"
+      },
+      "chemicals": [
+         "ADP",
+         "4.0 H+",
+         "Phosphate",
+         "ATP",
+         "3.0 H+",
+         "H2O"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ATPS4r"
+         ],
+         "biocyc": [
+            "META:ATPSYN-RXN"
+         ],
+         "ec-code": [
+            "3.6.3.14"
+         ],
+         "metanetx.reaction": [
+            "MNXR96136"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08173",
+            "rxn10042"
+         ]
+      }
+   },
+   "Phosphotransacetylase": {
+      "reaction": {
+         "original": "accoa_c + pi_c <-> actp_c + coa_c",
+         "substituted": "Acetyl-CoA + Phosphate <-> Acetyl_phosphate + Coenzyme_A"
+      },
+      "chemicals": [
+         "Acetyl-CoA",
+         "Phosphate",
+         "Acetyl phosphate",
+         "Coenzyme A"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PTAr"
+         ],
+         "biocyc": [
+            "META:PHOSACETYLTRANS-RXN"
+         ],
+         "ec-code": [
+            "2.3.1.8"
+         ],
+         "kegg.reaction": [
+            "R00230"
+         ],
+         "metanetx.reaction": [
+            "MNXR103319"
+         ],
+         "rhea": [
+            "19521",
+            "19523",
+            "19522",
+            "19524"
+         ],
+         "sabiork": [
+            "72"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00173"
+         ]
+      }
+   },
+   "Pyruvate kinase": {
+      "reaction": {
+         "original": "adp_c + h_c + pep_c <-> atp_c + pyr_c",
+         "substituted": "ADP + H+ + Phosphoenolpyruvate <-> ATP + Pyruvate"
+      },
+      "chemicals": [
+         "ADP",
+         "H+",
+         "Phosphoenolpyruvate",
+         "ATP",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PYK"
+         ],
+         "biocyc": [
+            "META:PEPDEPHOS-RXN"
+         ],
+         "ec-code": [
+            "2.7.1.40"
+         ],
+         "kegg.reaction": [
+            "R00200"
+         ],
+         "metanetx.reaction": [
+            "MNXR103371"
+         ],
+         "reactome.reaction": [
+            "R-SSC-71670",
+            "R-GGA-353056",
+            "R-DRE-71670",
+            "R-OSA-71670",
+            "R-SPO-71670",
+            "R-DDI-71670",
+            "R-SCE-71670",
+            "R-CEL-71670",
+            "R-PFA-71670",
+            "R-HSA-71670",
+            "R-TGU-71670",
+            "R-DME-71670",
+            "R-ATH-71670",
+            "R-BTA-71670",
+            "R-MMU-71670",
+            "R-RNO-71670",
+            "R-GGA-71670",
+            "R-CFA-71670",
+            "R-XTR-71670"
+         ],
+         "rhea": [
+            "18160",
+            "18159",
+            "18158",
+            "18157"
+         ],
+         "sabiork": [
+            "9"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00148"
+         ]
+      }
+   },
+   "Biomass Objective Function with GAM": {
+      "reaction": {
+         "original": "1.496 3pg_c + 3.7478 accoa_c + 59.81 atp_c + 0.361 e4p_c + 0.0709 f6p_c + 0.129 g3p_c + 0.205 g6p_c + 0.2557 gln__L_c + 4.9414 glu__L_c + 59.81 h2o_c + 3.547 nad_c + 13.0279 nadph_c + 1.7867 oaa_c + 0.5191 pep_c + 2.8328 pyr_c + 0.8977 r5p_c <-> 59.81 adp_c + 4.1182 akg_c + 3.7478 coa_c + 59.81 h_c + 3.547 nadh_c + 13.0279 nadp_c + 59.81 pi_c",
+         "substituted": "1.496 3-Phospho-D-glycerate + 3.7478 Acetyl-CoA + 59.81 ATP + 0.361 D-Erythrose_4-phosphate + 0.0709 D-Fructose_6-phosphate + 0.129 Glyceraldehyde_3-phosphate + 0.205 D-Glucose_6-phosphate + 0.2557 L-Glutamine + 4.9414 L-Glutamate + 59.81 H2O + 3.547 Nicotinamide_adenine_dinucleotide + 13.0279 Nicotinamide_adenine_dinucleotide_phosphate-reduced + 1.7867 Oxaloacetate + 0.5191 Phosphoenolpyruvate + 2.8328 Pyruvate + 0.8977 Alpha-D-Ribose_5-phosphate <-> 59.81 ADP + 4.1182 2-Oxoglutarate + 3.7478 Coenzyme_A + 59.81 H+ + 3.547 Nicotinamide_adenine_dinucleotide-reduced + 13.0279 Nicotinamide_adenine_dinucleotide_phosphate + 59.81 Phosphate"
+      },
+      "chemicals": [
+         "1.496 3-Phospho-D-glycerate",
+         "3.7478 Acetyl-CoA",
+         "59.81 ATP",
+         "0.361 D-Erythrose 4-phosphate",
+         "0.0709 D-Fructose 6-phosphate",
+         "0.129 Glyceraldehyde 3-phosphate",
+         "0.205 D-Glucose 6-phosphate",
+         "0.2557 L-Glutamine",
+         "4.9414 L-Glutamate",
+         "59.81 H2O",
+         "3.547 Nicotinamide adenine dinucleotide",
+         "13.0279 Nicotinamide adenine dinucleotide phosphate-reduced",
+         "1.7867 Oxaloacetate",
+         "0.5191 Phosphoenolpyruvate",
+         "2.8328 Pyruvate",
+         "0.8977 Alpha-D-Ribose 5-phosphate",
+         "59.81 ADP",
+         "4.1182 2-Oxoglutarate",
+         "3.7478 Coenzyme A",
+         "59.81 H+",
+         "3.547 Nicotinamide adenine dinucleotide-reduced",
+         "13.0279 Nicotinamide adenine dinucleotide phosphate",
+         "59.81 Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "BIOMASS_Ecoli_core_w_GAM"
+         ],
+         "metanetx.reaction": [
+            "MNXR96280"
+         ],
+         "sbo": "SBO:0000629"
+      }
+   },
+   "Pyruvate transport in via proton symport": {
+      "reaction": {
+         "original": "h_e + pyr_e <-> h_c + pyr_c",
+         "substituted": "H+ + Pyruvate <-> H+ + Pyruvate"
+      },
+      "chemicals": [
+         "H+",
+         "Pyruvate",
+         "H+",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PYRt2"
+         ],
+         "metanetx.reaction": [
+            "MNXR103385"
+         ],
+         "reactome.reaction": [
+            "R-RNO-372347",
+            "R-HSA-372342",
+            "R-GGA-372359"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn05469",
+            "rxn09832",
+            "rxn09717",
+            "rxn09217"
+         ]
+      }
+   },
+   "CO2 transporter via diffusion": {
+      "reaction": {
+         "original": "co2_e <-> co2_c",
+         "substituted": "CO2 <-> CO2"
+      },
+      "chemicals": [
+         "CO2",
+         "CO2"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "CO2t"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-545"
+         ],
+         "metanetx.reaction": [
+            "MNXR96810"
+         ],
+         "reactome.reaction": [
+            "R-DDI-1247645",
+            "R-CFA-1237069",
+            "R-TGU-1247649",
+            "R-CFA-1237042",
+            "R-CEL-1247645",
+            "R-XTR-1237069",
+            "R-HSA-1247645",
+            "R-OSA-1237042",
+            "R-GGA-1237042",
+            "R-BTA-1247645",
+            "R-GGA-1247649",
+            "R-RNO-1247645",
+            "R-XTR-1247645",
+            "R-TGU-1237042",
+            "R-SCE-1247649",
+            "R-MMU-1247649",
+            "R-CFA-1247649",
+            "R-GGA-1247645",
+            "R-SSC-1247645",
+            "R-BTA-1237069",
+            "R-RNO-1237069",
+            "R-SCE-1237042",
+            "R-DDI-1247649",
+            "R-SSC-1237042",
+            "R-DRE-1247649",
+            "R-DRE-1237042",
+            "R-DDI-1237042",
+            "R-DME-1237042",
+            "R-MMU-1237042",
+            "R-SSC-1247649",
+            "R-TGU-1237069",
+            "R-BTA-1247649",
+            "R-CFA-1247645",
+            "R-RNO-1247649",
+            "R-HSA-1237069",
+            "R-CEL-1237069",
+            "R-DDI-1237069",
+            "R-MMU-1237069",
+            "R-DME-1247645",
+            "R-ATH-1237042",
+            "R-OSA-1247649",
+            "R-HSA-1237042",
+            "R-DRE-1247645",
+            "R-HSA-1247649",
+            "R-MMU-1247645",
+            "R-DME-1237069",
+            "R-RNO-1237042",
+            "R-TGU-1247645",
+            "R-BTA-1237042",
+            "R-GGA-1237069",
+            "R-DME-1247649",
+            "R-SSC-1237069",
+            "R-DRE-1237069",
+            "R-ATH-1247649"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn05467",
+            "rxn08237",
+            "rxn09706",
+            "rxn09821",
+            "rxn09775",
+            "rxn09876",
+            "rxn08238",
+            "rxn09860"
+         ]
+      }
+   },
+   "Ribulose 5-phosphate 3-epimerase": {
+      "reaction": {
+         "original": "ru5p__D_c <-> xu5p__D_c",
+         "substituted": "D-Ribulose_5-phosphate <-> D-Xylulose_5-phosphate"
+      },
+      "chemicals": [
+         "D-Ribulose 5-phosphate",
+         "D-Xylulose 5-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "RPE"
+         ],
+         "biocyc": [
+            "META:RIBULP3EPIM-RXN"
+         ],
+         "ec-code": [
+            "5.1.3.1"
+         ],
+         "kegg.reaction": [
+            "R01529"
+         ],
+         "metanetx.reaction": [
+            "MNXR104083"
+         ],
+         "reactome.reaction": [
+            "R-SPO-71303",
+            "R-CFA-199803",
+            "R-ATH-71303",
+            "R-SCE-71303",
+            "R-CFA-71303",
+            "R-DME-199803",
+            "R-XTR-199803",
+            "R-SSC-199803",
+            "R-GGA-199803",
+            "R-TGU-71303",
+            "R-OSA-199803",
+            "R-SSC-71303",
+            "R-MMU-71303",
+            "R-OSA-71303",
+            "R-HSA-71303",
+            "R-MMU-199803",
+            "R-XTR-71303",
+            "R-SPO-199803",
+            "R-SCE-199803",
+            "R-DDI-71303",
+            "R-RNO-71303",
+            "R-DME-71303",
+            "R-HSA-199803",
+            "R-DRE-71303",
+            "R-PFA-199803",
+            "R-CEL-199803",
+            "R-RNO-199803",
+            "R-PFA-71303",
+            "R-CEL-71303",
+            "R-TGU-199803",
+            "R-GGA-71303",
+            "R-DDI-199803",
+            "R-BTA-71303",
+            "R-ATH-199803",
+            "R-DRE-199803",
+            "R-BTA-199803"
+         ],
+         "rhea": [
+            "13677",
+            "13680",
+            "13678",
+            "13679"
+         ],
+         "sabiork": [
+            "62"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn01116"
+         ]
+      }
+   },
+   "Citrate synthase": {
+      "reaction": {
+         "original": "accoa_c + h2o_c + oaa_c <-> cit_c + coa_c + h_c",
+         "substituted": "Acetyl-CoA + H2O + Oxaloacetate <-> Citrate + Coenzyme_A + H+"
+      },
+      "chemicals": [
+         "Acetyl-CoA",
+         "H2O",
+         "Oxaloacetate",
+         "Citrate",
+         "Coenzyme A",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "CS"
+         ],
+         "biocyc": [
+            "META:CITSYN-RXN",
+            "META:RXN-14905"
+         ],
+         "ec-code": [
+            "2.3.3.16",
+            "2.3.3.1",
+            "2.3.3.3"
+         ],
+         "kegg.reaction": [
+            "R00351"
+         ],
+         "metanetx.reaction": [
+            "MNXR96920"
+         ],
+         "reactome.reaction": [
+            "R-GGA-373006",
+            "R-GGA-70975",
+            "R-CEL-70975",
+            "R-HSA-70975",
+            "R-DRE-70975",
+            "R-MMU-70975",
+            "R-ATH-70975",
+            "R-SPO-70975",
+            "R-OSA-70975",
+            "R-SCE-70975",
+            "R-SSC-70975",
+            "R-DDI-70975",
+            "R-RNO-70975",
+            "R-DME-70975",
+            "R-PFA-70975",
+            "R-XTR-70975",
+            "R-CFA-70975",
+            "R-BTA-70975"
+         ],
+         "rhea": [
+            "16847",
+            "16846",
+            "16845",
+            "16848"
+         ],
+         "sabiork": [
+            "267"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00256"
+         ]
+      }
+   },
+   "Ribose-5-phosphate isomerase": {
+      "reaction": {
+         "original": "r5p_c <-> ru5p__D_c",
+         "substituted": "Alpha-D-Ribose_5-phosphate <-> D-Ribulose_5-phosphate"
+      },
+      "chemicals": [
+         "Alpha-D-Ribose 5-phosphate",
+         "D-Ribulose 5-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "RPI"
+         ],
+         "ec-code": [
+            "5.3.1.6"
+         ],
+         "metanetx.reaction": [
+            "MNXR104084"
+         ],
+         "sbo": "SBO:0000176"
+      }
+   },
+   "Succinate transport via proton symport (2 H)": {
+      "reaction": {
+         "original": "2.0 h_e + succ_e <-> 2.0 h_c + succ_c",
+         "substituted": "2.0 H+ + Succinate <-> 2.0 H+ + Succinate"
+      },
+      "chemicals": [
+         "2.0 H+",
+         "Succinate",
+         "2.0 H+",
+         "Succinate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "SUCCt2_2"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-121"
+         ],
+         "metanetx.reaction": [
+            "MNXR104620"
+         ],
+         "rhea": [
+            "29305",
+            "29306",
+            "29304",
+            "29303"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn10154",
+            "rxn09269"
+         ]
+      }
+   },
+   "Cytochrome oxidase bd (ubiquinol-8: 2 protons)": {
+      "reaction": {
+         "original": "2.0 h_c + 0.5 o2_c + q8h2_c <-> 2.0 h_e + h2o_c + q8_c",
+         "substituted": "2.0 H+ + 0.5 O2_O2 + Ubiquinol-8 <-> 2.0 H+ + H2O + Ubiquinone-8"
+      },
+      "chemicals": [
+         "2.0 H+",
+         "0.5 O2 O2",
+         "Ubiquinol-8",
+         "2.0 H+",
+         "H2O",
+         "Ubiquinone-8"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "CYTBD"
+         ],
+         "metanetx.reaction": [
+            "MNXR97031"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn12494",
+            "rxn10112",
+            "rxn08288"
+         ]
+      }
+   },
+   "D lactate transport via proton symport": {
+      "reaction": {
+         "original": "h_e + lac__D_e <-> h_c + lac__D_c",
+         "substituted": "H+ + D-Lactate <-> H+ + D-Lactate"
+      },
+      "chemicals": [
+         "H+",
+         "D-Lactate",
+         "H+",
+         "D-Lactate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "D_LACt2"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-515"
+         ],
+         "metanetx.reaction": [
+            "MNXR97838"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn10171",
+            "rxn09772",
+            "rxn08350"
+         ]
+      }
+   },
+   "Enolase": {
+      "reaction": {
+         "original": "2pg_c <-> h2o_c + pep_c",
+         "substituted": "D-Glycerate_2-phosphate <-> H2O + Phosphoenolpyruvate"
+      },
+      "chemicals": [
+         "D-Glycerate 2-phosphate",
+         "H2O",
+         "Phosphoenolpyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ENO"
+         ],
+         "biocyc": [
+            "META:2PGADEHYDRAT-RXN"
+         ],
+         "ec-code": [
+            "4.2.1.11"
+         ],
+         "kegg.reaction": [
+            "R00658"
+         ],
+         "metanetx.reaction": [
+            "MNXR97932"
+         ],
+         "reactome.reaction": [
+            "R-BTA-71660",
+            "R-RNO-70494",
+            "R-TGU-71660",
+            "R-SSC-71660",
+            "R-GGA-352981",
+            "R-DME-70494",
+            "R-CFA-70494",
+            "R-OSA-70494",
+            "R-SCE-71660",
+            "R-GGA-353044",
+            "R-CFA-71660",
+            "R-GGA-70494",
+            "R-PFA-71660",
+            "R-SPO-71660",
+            "R-SPO-70494",
+            "R-DDI-70494",
+            "R-RNO-71660",
+            "R-MMU-70494",
+            "R-ATH-70494",
+            "R-SCE-70494",
+            "R-SSC-70494",
+            "R-HSA-70494",
+            "R-DME-71660",
+            "R-CEL-71660",
+            "R-HSA-71660",
+            "R-TGU-70494",
+            "R-XTR-71660",
+            "R-DRE-70494",
+            "R-DRE-71660",
+            "R-MMU-71660",
+            "R-ATH-71660",
+            "R-BTA-70494",
+            "R-CEL-70494",
+            "R-XTR-70494",
+            "R-DDI-71660",
+            "R-OSA-71660",
+            "R-PFA-70494",
+            "R-GGA-71660"
+         ],
+         "rhea": [
+            "10166",
+            "10165",
+            "10164",
+            "10167"
+         ],
+         "sabiork": [
+            "8"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00459"
+         ]
+      }
+   },
+   "Succinate transport out via proton antiport": {
+      "reaction": {
+         "original": "h_e + succ_c <-> h_c + succ_e",
+         "substituted": "H+ + Succinate <-> H+ + Succinate"
+      },
+      "chemicals": [
+         "H+",
+         "Succinate",
+         "H+",
+         "Succinate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "SUCCt3"
+         ],
+         "metanetx.reaction": [
+            "MNXR104623"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn09270"
+         ]
+      }
+   },
+   "Ethanol reversible transport via proton symport": {
+      "reaction": {
+         "original": "h_e + etoh_e <-> etoh_c + h_c",
+         "substituted": "H+ + Ethanol <-> Ethanol + H+"
+      },
+      "chemicals": [
+         "H+",
+         "Ethanol",
+         "Ethanol",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ETOHt2r"
+         ],
+         "metanetx.reaction": [
+            "MNXR97981"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn10146",
+            "rxn08427"
+         ]
+      }
+   },
+   "Succinate dehydrogenase (irreversible)": {
+      "reaction": {
+         "original": "q8_c + succ_c <-> fum_c + q8h2_c",
+         "substituted": "Ubiquinone-8 + Succinate <-> Fumarate + Ubiquinol-8"
+      },
+      "chemicals": [
+         "Ubiquinone-8",
+         "Succinate",
+         "Fumarate",
+         "Ubiquinol-8"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "SUCDi"
+         ],
+         "metanetx.reaction": [
+            "MNXR99641"
+         ],
+         "rhea": [
+            "29190",
+            "29189",
+            "29187",
+            "29188"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn09272"
+         ]
+      }
+   },
+   "Succinyl-CoA synthetase (ADP-forming)": {
+      "reaction": {
+         "original": "atp_c + coa_c + succ_c <-> adp_c + pi_c + succoa_c",
+         "substituted": "ATP + Coenzyme_A + Succinate <-> ADP + Phosphate + Succinyl-CoA"
+      },
+      "chemicals": [
+         "ATP",
+         "Coenzyme A",
+         "Succinate",
+         "ADP",
+         "Phosphate",
+         "Succinyl-CoA"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "SUCOAS"
+         ],
+         "biocyc": [
+            "META:SUCCCOASYN-RXN"
+         ],
+         "ec-code": [
+            "6.2.1.5"
+         ],
+         "kegg.reaction": [
+            "R00405"
+         ],
+         "metanetx.reaction": [
+            "MNXR104635"
+         ],
+         "reactome.reaction": [
+            "R-BTA-70997",
+            "R-GGA-372977",
+            "R-PFA-70997",
+            "R-GGA-373134",
+            "R-TGU-70997",
+            "R-XTR-70997",
+            "R-SSC-70997",
+            "R-HSA-70997",
+            "R-DRE-70997",
+            "R-SCE-70997",
+            "R-SPO-70997",
+            "R-DDI-70997",
+            "R-CFA-70997",
+            "R-OSA-70997",
+            "R-GGA-70997",
+            "R-RNO-70997",
+            "R-ATH-70997",
+            "R-MMU-70997"
+         ],
+         "rhea": [
+            "17664",
+            "17663",
+            "17662",
+            "17661"
+         ],
+         "sabiork": [
+            "260"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00285"
+         ]
+      }
+   },
+   "Transaldolase": {
+      "reaction": {
+         "original": "g3p_c + s7p_c <-> e4p_c + f6p_c",
+         "substituted": "Glyceraldehyde_3-phosphate + Sedoheptulose_7-phosphate <-> D-Erythrose_4-phosphate + D-Fructose_6-phosphate"
+      },
+      "chemicals": [
+         "Glyceraldehyde 3-phosphate",
+         "Sedoheptulose 7-phosphate",
+         "D-Erythrose 4-phosphate",
+         "D-Fructose 6-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "TALA"
+         ],
+         "biocyc": [
+            "META:TRANSALDOL-RXN"
+         ],
+         "ec-code": [
+            "2.2.1.2"
+         ],
+         "kegg.reaction": [
+            "R01827"
+         ],
+         "metanetx.reaction": [
+            "MNXR104715"
+         ],
+         "rhea": [
+            "17056",
+            "17055",
+            "17054",
+            "17053"
+         ],
+         "sbo": "SBO:0000176"
+      }
+   },
+   "NAD(P) transhydrogenase": {
+      "reaction": {
+         "original": "2.0 h_e + nadh_c + nadp_c <-> 2.0 h_c + nad_c + nadph_c",
+         "substituted": "2.0 H+ + Nicotinamide_adenine_dinucleotide-reduced + Nicotinamide_adenine_dinucleotide_phosphate <-> 2.0 H+ + Nicotinamide_adenine_dinucleotide + Nicotinamide_adenine_dinucleotide_phosphate-reduced"
+      },
+      "chemicals": [
+         "2.0 H+",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Nicotinamide adenine dinucleotide phosphate",
+         "2.0 H+",
+         "Nicotinamide adenine dinucleotide",
+         "Nicotinamide adenine dinucleotide phosphate-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "THD2"
+         ],
+         "ec-code": [
+            "1.6.1.1"
+         ],
+         "metanetx.reaction": [
+            "MNXR104805"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn10125",
+            "rxn09295"
+         ]
+      }
+   },
+   "Transketolase": {
+      "reaction": {
+         "original": "e4p_c + xu5p__D_c <-> f6p_c + g3p_c",
+         "substituted": "D-Erythrose_4-phosphate + D-Xylulose_5-phosphate <-> D-Fructose_6-phosphate + Glyceraldehyde_3-phosphate"
+      },
+      "chemicals": [
+         "D-Erythrose 4-phosphate",
+         "D-Xylulose 5-phosphate",
+         "D-Fructose 6-phosphate",
+         "Glyceraldehyde 3-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "TKT2"
+         ],
+         "biocyc": [
+            "META:2TRANSKETO-RXN"
+         ],
+         "ec-code": [
+            "2.2.1.1"
+         ],
+         "kegg.reaction": [
+            "R01830"
+         ],
+         "metanetx.reaction": [
+            "MNXR104869"
+         ],
+         "rhea": [
+            "27627",
+            "27628",
+            "27626",
+            "27629"
+         ],
+         "sbo": "SBO:0000176"
+      }
+   },
+   "Triose-phosphate isomerase": {
+      "reaction": {
+         "original": "dhap_c <-> g3p_c",
+         "substituted": "Dihydroxyacetone_phosphate <-> Glyceraldehyde_3-phosphate"
+      },
+      "chemicals": [
+         "Dihydroxyacetone phosphate",
+         "Glyceraldehyde 3-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "TPI"
+         ],
+         "biocyc": [
+            "META:TRIOSEPISOMERIZATION-RXN"
+         ],
+         "ec-code": [
+            "5.3.1.1"
+         ],
+         "kegg.reaction": [
+            "R01015"
+         ],
+         "metanetx.reaction": [
+            "MNXR104918"
+         ],
+         "reactome.reaction": [
+            "R-RNO-70481",
+            "R-MMU-70481",
+            "R-XTR-70481",
+            "R-SSC-70481",
+            "R-GGA-352927",
+            "R-SCE-70454",
+            "R-CEL-70481",
+            "R-PFA-70454",
+            "R-XTR-70454",
+            "R-BTA-70481",
+            "R-BTA-70454",
+            "R-GGA-352914",
+            "R-ATH-70481",
+            "R-CFA-70454",
+            "R-OSA-70454",
+            "R-HSA-70481",
+            "R-DRE-70454",
+            "R-DME-70481",
+            "R-OSA-70481",
+            "R-DRE-70481",
+            "R-ATH-70454",
+            "R-HSA-70454",
+            "R-SSC-70454",
+            "R-DDI-70454",
+            "R-SCE-70481",
+            "R-CFA-70481",
+            "R-PFA-70481",
+            "R-DDI-70481",
+            "R-SPO-70454",
+            "R-SPO-70481",
+            "R-RNO-70454",
+            "R-MMU-70454",
+            "R-CEL-70454",
+            "R-GGA-70481",
+            "R-GGA-70454",
+            "R-DME-70454"
+         ],
+         "rhea": [
+            "18587",
+            "18588",
+            "18586",
+            "18585"
+         ],
+         "sabiork": [
+            "4"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00747"
+         ]
+      }
+   },
+   "Acetate exchange": {
+      "reaction": {
+         "original": "ac_e <-> ",
+         "substituted": "Acetate <-> "
+      },
+      "chemicals": [
+         "Acetate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_ac_e"
+         ],
+         "biocyc": [
+            "META:RXN0-1981",
+            "META:TRANS-RXN0-567"
+         ],
+         "metanetx.reaction": [
+            "MNXR95431"
+         ],
+         "rhea": [
+            "27817",
+            "27814",
+            "27816",
+            "27815"
+         ],
+         "sabiork": [
+            "12184"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn09787",
+            "rxn09866",
+            "rxn10904",
+            "rxn08063"
+         ]
+      }
+   },
+   "Acetaldehyde exchange": {
+      "reaction": {
+         "original": "acald_e <-> ",
+         "substituted": "Acetaldehyde <-> "
+      },
+      "chemicals": [
+         "Acetaldehyde"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_acald_e"
+         ],
+         "metanetx.reaction": [
+            "MNXR95212"
+         ],
+         "reactome.reaction": [
+            "R-HSA-449872"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn09700",
+            "rxn08033",
+            "rxn13212",
+            "rxn08032"
+         ]
+      }
+   },
+   "2-Oxoglutarate exchange": {
+      "reaction": {
+         "original": "akg_e <-> ",
+         "substituted": "2-Oxoglutarate <-> "
+      },
+      "chemicals": [
+         "2-Oxoglutarate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_akg_e"
+         ],
+         "metanetx.reaction": [
+            "MNXR95663"
+         ],
+         "sabiork": [
+            "13794"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn10923",
+            "rxn08096",
+            "rxn13220"
+         ]
+      }
+   },
+   "CO2 exchange": {
+      "reaction": {
+         "original": "co2_e <-> ",
+         "substituted": "CO2 <-> "
+      },
+      "chemicals": [
+         "CO2"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_co2_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-545"
+         ],
+         "metanetx.reaction": [
+            "MNXR96810"
+         ],
+         "reactome.reaction": [
+            "R-DDI-1247645",
+            "R-CFA-1237069",
+            "R-TGU-1247649",
+            "R-CFA-1237042",
+            "R-CEL-1247645",
+            "R-XTR-1237069",
+            "R-HSA-1247645",
+            "R-OSA-1237042",
+            "R-GGA-1237042",
+            "R-BTA-1247645",
+            "R-GGA-1247649",
+            "R-RNO-1247645",
+            "R-XTR-1247645",
+            "R-TGU-1237042",
+            "R-SCE-1247649",
+            "R-MMU-1247649",
+            "R-CFA-1247649",
+            "R-GGA-1247645",
+            "R-SSC-1247645",
+            "R-BTA-1237069",
+            "R-RNO-1237069",
+            "R-SCE-1237042",
+            "R-DDI-1247649",
+            "R-SSC-1237042",
+            "R-DRE-1247649",
+            "R-DRE-1237042",
+            "R-DDI-1237042",
+            "R-DME-1237042",
+            "R-MMU-1237042",
+            "R-SSC-1247649",
+            "R-TGU-1237069",
+            "R-BTA-1247649",
+            "R-CFA-1247645",
+            "R-RNO-1247649",
+            "R-HSA-1237069",
+            "R-CEL-1237069",
+            "R-DDI-1237069",
+            "R-MMU-1237069",
+            "R-DME-1247645",
+            "R-ATH-1237042",
+            "R-OSA-1247649",
+            "R-HSA-1237042",
+            "R-DRE-1247645",
+            "R-HSA-1247649",
+            "R-MMU-1247645",
+            "R-DME-1237069",
+            "R-RNO-1237042",
+            "R-TGU-1247645",
+            "R-BTA-1237042",
+            "R-GGA-1237069",
+            "R-DME-1247649",
+            "R-SSC-1237069",
+            "R-DRE-1237069",
+            "R-ATH-1247649"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn05467",
+            "rxn08237",
+            "rxn09706",
+            "rxn09821",
+            "rxn09775",
+            "rxn09876",
+            "rxn08238",
+            "rxn09860"
+         ]
+      }
+   },
+   "Ethanol exchange": {
+      "reaction": {
+         "original": "etoh_e <-> ",
+         "substituted": "Ethanol <-> "
+      },
+      "chemicals": [
+         "Ethanol"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_etoh_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-546"
+         ],
+         "metanetx.reaction": [
+            "MNXR97980"
+         ],
+         "rhea": [
+            "35269",
+            "35267",
+            "35270",
+            "35268"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn09683",
+            "rxn08428",
+            "rxn09764"
+         ]
+      }
+   },
+   "Formate exchange": {
+      "reaction": {
+         "original": "for_e <-> ",
+         "substituted": "Formate <-> "
+      },
+      "chemicals": [
+         "Formate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_for_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-1"
+         ],
+         "metanetx.reaction": [
+            "MNXR99620"
+         ],
+         "reactome.reaction": [
+            "R-HSA-6803255"
+         ],
+         "rhea": [
+            "29681",
+            "29680",
+            "29682",
+            "29679"
+         ],
+         "sabiork": [
+            "12483"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn09754",
+            "rxn08525",
+            "rxn09682",
+            "rxn08526"
+         ]
+      }
+   },
+   "D-Fructose exchange": {
+      "reaction": {
+         "original": "fru_e <-> ",
+         "substituted": "D-Fructose <-> "
+      },
+      "chemicals": [
+         "D-Fructose"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_fru_e"
+         ],
+         "metanetx.reaction": [
+            "MNXR99663"
+         ],
+         "reactome.reaction": [
+            "R-OSA-189222",
+            "R-XTR-189222",
+            "R-SCE-189222",
+            "R-ATH-189222",
+            "R-RNO-189222",
+            "R-DME-189222",
+            "R-TGU-189222",
+            "R-SSC-189222",
+            "R-CFA-189222",
+            "R-DRE-189222",
+            "R-HSA-189222",
+            "R-GGA-189222",
+            "R-BTA-189222",
+            "R-MMU-189222",
+            "R-DDI-189222"
+         ],
+         "sabiork": [
+            "13415"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn12996",
+            "rxn08537"
+         ]
+      }
+   },
+   "Fumarate exchange": {
+      "reaction": {
+         "original": "fum_e <-> ",
+         "substituted": "Fumarate <-> "
+      },
+      "chemicals": [
+         "Fumarate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_fum_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-553"
+         ],
+         "metanetx.reaction": [
+            "MNXR99715"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn08544",
+            "rxn11013"
+         ]
+      }
+   },
+   "D-Glucose exchange": {
+      "reaction": {
+         "original": "glc__D_e <-> ",
+         "substituted": "D-Glucose <-> "
+      },
+      "chemicals": [
+         "D-Glucose"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_glc__D_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-574"
+         ],
+         "metanetx.reaction": [
+            "MNXR100188"
+         ],
+         "sabiork": [
+            "7002",
+            "601"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn09875",
+            "rxn09679",
+            "rxn08617"
+         ]
+      }
+   },
+   "L-Glutamine exchange": {
+      "reaction": {
+         "original": "gln__L_e <-> ",
+         "substituted": "L-Glutamine <-> "
+      },
+      "chemicals": [
+         "L-Glutamine"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_gln__L_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-233"
+         ],
+         "metanetx.reaction": [
+            "MNXR100259"
+         ],
+         "reactome.reaction": [
+            "R-HSA-212651",
+            "R-BTA-212614",
+            "R-RNO-212614",
+            "R-SSC-212614",
+            "R-MMU-212614",
+            "R-HSA-212614",
+            "R-GGA-212614",
+            "R-CFA-212614",
+            "R-TGU-212614",
+            "R-SCE-212614"
+         ],
+         "sabiork": [
+            "13421"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn08625",
+            "rxn10928"
+         ]
+      }
+   },
+   "L-Glutamate exchange": {
+      "reaction": {
+         "original": "glu__L_e <-> ",
+         "substituted": "L-Glutamate <-> "
+      },
+      "chemicals": [
+         "L-Glutamate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_glu__L_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-234",
+            "META:TRANS-RXN-232"
+         ],
+         "metanetx.reaction": [
+            "MNXR100301"
+         ],
+         "reactome.reaction": [
+            "R-HSA-212658",
+            "R-TGU-210439",
+            "R-GGA-210439",
+            "R-XTR-210439",
+            "R-RNO-210439",
+            "R-CFA-210439",
+            "R-CEL-210439",
+            "R-DME-210439",
+            "R-SSC-210439",
+            "R-HSA-210439",
+            "R-DRE-210439",
+            "R-MMU-210439",
+            "R-BTA-210439"
+         ],
+         "sabiork": [
+            "12283"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn08633",
+            "rxn09750",
+            "rxn13304",
+            "rxn13120",
+            "rxn10917"
+         ]
+      }
+   },
+   "H+ exchange": {
+      "reaction": {
+         "original": "h_e <-> ",
+         "substituted": "H+ <-> "
+      },
+      "chemicals": [
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_h_e"
+         ],
+         "biocyc": [
+            "META:RXN-14452"
+         ],
+         "metanetx.reaction": [
+            "MNXR100765"
+         ],
+         "reactome.reaction": [
+            "R-HSA-2534378",
+            "R-DDI-74723",
+            "R-BTA-170026",
+            "R-CFA-170026",
+            "R-SCE-74723",
+            "R-DRE-74723",
+            "R-HSA-170026",
+            "R-TGU-2534378",
+            "R-HSA-74723",
+            "R-CFA-2534378",
+            "R-TGU-74723",
+            "R-OSA-170026",
+            "R-RNO-2534378",
+            "R-GGA-2534378",
+            "R-MMU-2534378",
+            "R-BTA-2534378",
+            "R-SSC-2534378",
+            "R-DRE-170026",
+            "R-TGU-170026",
+            "R-GGA-170026",
+            "R-SCE-170026",
+            "R-DRE-2534378",
+            "R-BTA-74723",
+            "R-SPO-74723",
+            "R-XTR-74723",
+            "R-RNO-74723",
+            "R-XTR-2534378",
+            "R-MMU-74723",
+            "R-CFA-74723",
+            "R-GGA-74723",
+            "R-CEL-170026",
+            "R-MMU-170026",
+            "R-ATH-74723",
+            "R-DME-74723",
+            "R-PFA-74723",
+            "R-SSC-74723",
+            "R-XTR-170026",
+            "R-SSC-170026",
+            "R-CEL-74723",
+            "R-ATH-170026",
+            "R-RNO-170026",
+            "R-DME-170026"
+         ],
+         "rhea": [
+            "34980",
+            "34981",
+            "34982",
+            "34979"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn11009",
+            "rxn08730"
+         ]
+      }
+   },
+   "H2O exchange": {
+      "reaction": {
+         "original": "h2o_e <-> ",
+         "substituted": "H2O <-> "
+      },
+      "chemicals": [
+         "H2O"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_h2o_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-145",
+            "META:TRANS-RXN0-547"
+         ],
+         "metanetx.reaction": [
+            "MNXR98641"
+         ],
+         "reactome.reaction": [
+            "R-ATH-507868",
+            "R-CFA-432054",
+            "R-CFA-432010",
+            "R-RNO-507868",
+            "R-OSA-432065",
+            "R-GGA-432010",
+            "R-SPO-445714",
+            "R-PFA-445714",
+            "R-CFA-432065",
+            "R-GGA-432067",
+            "R-TGU-432054",
+            "R-TGU-445714",
+            "R-OSA-507868",
+            "R-DRE-507868",
+            "R-SPO-507868",
+            "R-BTA-432054",
+            "R-GGA-507870",
+            "R-OSA-432010",
+            "R-DME-432065",
+            "R-DRE-432067",
+            "R-PFA-507868",
+            "R-SSC-432054",
+            "R-HSA-432065",
+            "R-OSA-507870",
+            "R-HSA-432054",
+            "R-SSC-432065",
+            "R-CEL-507868",
+            "R-XTR-507868",
+            "R-ATH-507870",
+            "R-SCE-432065",
+            "R-BTA-507870",
+            "R-DME-432010",
+            "R-CFA-445714",
+            "R-DRE-445714",
+            "R-BTA-507868",
+            "R-GGA-507868",
+            "R-RNO-432054",
+            "R-RNO-432010",
+            "R-SSC-432067",
+            "R-CEL-445714",
+            "R-DDI-432065",
+            "R-ATH-432010",
+            "R-SCE-432054",
+            "R-MMU-432065",
+            "R-MMU-445714",
+            "R-GGA-432065",
+            "R-HSA-432067",
+            "R-SSC-507870",
+            "R-SCE-432067",
+            "R-RNO-507870",
+            "R-DME-432054",
+            "R-ATH-432067",
+            "R-BTA-445714",
+            "R-DRE-507870",
+            "R-DME-507868",
+            "R-DME-507870",
+            "R-DRE-432010",
+            "R-MMU-432010",
+            "R-HSA-445714",
+            "R-OSA-432054",
+            "R-RNO-432067",
+            "R-TGU-432010",
+            "R-TGU-507868",
+            "R-DDI-432054",
+            "R-PFA-507870",
+            "R-HSA-507870",
+            "R-XTR-432067",
+            "R-HSA-432010",
+            "R-SSC-507868",
+            "R-SCE-507870",
+            "R-CEL-507870",
+            "R-DDI-507868",
+            "R-DRE-432054",
+            "R-XTR-507870",
+            "R-DDI-432010",
+            "R-BTA-432065",
+            "R-CFA-432067",
+            "R-OSA-432067",
+            "R-ATH-432065",
+            "R-GGA-445714",
+            "R-SCE-507868",
+            "R-TGU-432065",
+            "R-MMU-432067",
+            "R-TGU-507870",
+            "R-CFA-507870",
+            "R-RNO-432065",
+            "R-MMU-432054",
+            "R-MMU-507868",
+            "R-SPO-507870",
+            "R-SCE-432010",
+            "R-MMU-507870",
+            "R-SSC-445714",
+            "R-HSA-507868",
+            "R-DME-432067",
+            "R-SSC-432010",
+            "R-TGU-432067",
+            "R-GGA-432054",
+            "R-BTA-432010",
+            "R-SCE-445714",
+            "R-DDI-507870",
+            "R-ATH-432054",
+            "R-DDI-432067",
+            "R-XTR-445714",
+            "R-BTA-432067",
+            "R-CFA-507868",
+            "R-RNO-445714"
+         ],
+         "rhea": [
+            "29668",
+            "29669",
+            "29667",
+            "29670"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn08687",
+            "rxn08686",
+            "rxn09745",
+            "rxn09838",
+            "rxn09874",
+            "rxn09812",
+            "rxn09643",
+            "rxn05319"
+         ]
+      }
+   },
+   "D-lactate exchange": {
+      "reaction": {
+         "original": "lac__D_e <-> ",
+         "substituted": "D-Lactate <-> "
+      },
+      "chemicals": [
+         "D-Lactate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_lac__D_e"
+         ],
+         "metanetx.reaction": [
+            "MNXR97840"
+         ],
+         "sabiork": [
+            "12471"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn08351"
+         ]
+      }
+   },
+   "L-Malate exchange": {
+      "reaction": {
+         "original": "mal__L_e <-> ",
+         "substituted": "L-Malate <-> "
+      },
+      "chemicals": [
+         "L-Malate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_mal__L_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-225",
+            "META:TRANS-RXN-224"
+         ],
+         "metanetx.reaction": [
+            "MNXR101367"
+         ],
+         "sabiork": [
+            "13793"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn10967",
+            "rxn08868"
+         ]
+      }
+   },
+   "Ammonia exchange": {
+      "reaction": {
+         "original": "nh4_e <-> ",
+         "substituted": "Ammonium <-> "
+      },
+      "chemicals": [
+         "Ammonium"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_nh4_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-206",
+            "META:RXN-9615",
+            "META:TRANS-RXN0-544"
+         ],
+         "metanetx.reaction": [
+            "MNXR101950"
+         ],
+         "reactome.reaction": [
+            "R-CEL-444416",
+            "R-SSC-444416",
+            "R-DDI-444416",
+            "R-MMU-444416",
+            "R-DRE-444416",
+            "R-GGA-444416",
+            "R-CFA-444416",
+            "R-HSA-444416",
+            "R-XTR-444416",
+            "R-BTA-444416",
+            "R-RNO-444416",
+            "R-TGU-444416",
+            "R-DME-444416"
+         ],
+         "rhea": [
+            "28749",
+            "28748",
+            "28750",
+            "28747"
+         ],
+         "sabiork": [
+            "11683"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn13364",
+            "rxn09835",
+            "rxn05466",
+            "rxn08987",
+            "rxn08986",
+            "rxn09736"
+         ]
+      }
+   },
+   "O2 exchange": {
+      "reaction": {
+         "original": "o2_e <-> ",
+         "substituted": "O2_O2 <-> "
+      },
+      "chemicals": [
+         "O2 O2"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_o2_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-474"
+         ],
+         "metanetx.reaction": [
+            "MNXR102090"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn09641",
+            "rxn05468",
+            "rxn09031",
+            "rxn09032",
+            "rxn09734"
+         ]
+      }
+   },
+   "Phosphate exchange": {
+      "reaction": {
+         "original": "pi_e <-> ",
+         "substituted": "Phosphate <-> "
+      },
+      "chemicals": [
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_pi_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-470"
+         ],
+         "metanetx.reaction": [
+            "MNXR102871"
+         ],
+         "rhea": [
+            "32824",
+            "32826",
+            "32825",
+            "32823"
+         ],
+         "sabiork": [
+            "10985"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn10838",
+            "rxn09722",
+            "rxn09121",
+            "rxn13178"
+         ]
+      }
+   },
+   "Pyruvate exchange": {
+      "reaction": {
+         "original": "pyr_e <-> ",
+         "substituted": "Pyruvate <-> "
+      },
+      "chemicals": [
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_pyr_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-506",
+            "META:TRANS-RXN0-570"
+         ],
+         "metanetx.reaction": [
+            "MNXR103384"
+         ],
+         "sabiork": [
+            "12168"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn10929",
+            "rxn09218"
+         ]
+      }
+   },
+   "Succinate exchange": {
+      "reaction": {
+         "original": "succ_e <-> ",
+         "substituted": "Succinate <-> "
+      },
+      "chemicals": [
+         "Succinate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "EX_succ_e"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-552"
+         ],
+         "metanetx.reaction": [
+            "MNXR104619"
+         ],
+         "sbo": "SBO:0000627",
+         "seed.reaction": [
+            "rxn10952",
+            "rxn09271"
+         ]
+      }
+   },
+   "Fructose-bisphosphate aldolase": {
+      "reaction": {
+         "original": "fdp_c <-> dhap_c + g3p_c",
+         "substituted": "D-Fructose_1,6-bisphosphate <-> Dihydroxyacetone_phosphate + Glyceraldehyde_3-phosphate"
+      },
+      "chemicals": [
+         "D-Fructose 1,6-bisphosphate",
+         "Dihydroxyacetone phosphate",
+         "Glyceraldehyde 3-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FBA"
+         ],
+         "ec-code": [
+            "4.1.2.13"
+         ],
+         "kegg.reaction": [
+            "R01068"
+         ],
+         "metanetx.reaction": [
+            "MNXR99459"
+         ],
+         "rhea": [
+            "14729",
+            "14732",
+            "14731",
+            "14730"
+         ],
+         "sabiork": [
+            "1338"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00786"
+         ]
+      }
+   },
+   "Fructose-bisphosphatase": {
+      "reaction": {
+         "original": "fdp_c + h2o_c <-> f6p_c + pi_c",
+         "substituted": "D-Fructose_1,6-bisphosphate + H2O <-> D-Fructose_6-phosphate + Phosphate"
+      },
+      "chemicals": [
+         "D-Fructose 1,6-bisphosphate",
+         "H2O",
+         "D-Fructose 6-phosphate",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FBP"
+         ],
+         "ec-code": [
+            "3.1.3.11"
+         ],
+         "metanetx.reaction": [
+            "MNXR99465"
+         ],
+         "rhea": [
+            "11067",
+            "11065",
+            "11066",
+            "11064"
+         ],
+         "sabiork": [
+            "2084"
+         ],
+         "sbo": "SBO:0000176"
+      }
+   },
+   "Formate transport in via proton symport": {
+      "reaction": {
+         "original": "for_e + h_e <-> for_c + h_c",
+         "substituted": "Formate + H+ <-> Formate + H+"
+      },
+      "chemicals": [
+         "Formate",
+         "H+",
+         "Formate",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FORt2"
+         ],
+         "metanetx.reaction": [
+            "MNXR99621"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08524",
+            "rxn05559"
+         ]
+      }
+   },
+   "Formate transport via diffusion": {
+      "reaction": {
+         "original": "for_e <-> for_c",
+         "substituted": "Formate <-> Formate"
+      },
+      "chemicals": [
+         "Formate",
+         "Formate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FORt"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-1"
+         ],
+         "metanetx.reaction": [
+            "MNXR99620"
+         ],
+         "reactome.reaction": [
+            "R-HSA-6803255"
+         ],
+         "rhea": [
+            "29681",
+            "29680",
+            "29682",
+            "29679"
+         ],
+         "sabiork": [
+            "12483"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn09754",
+            "rxn08525",
+            "rxn09682",
+            "rxn08526"
+         ]
+      }
+   },
+   "Fumarate reductase": {
+      "reaction": {
+         "original": "fum_c + q8h2_c <-> q8_c + succ_c",
+         "substituted": "Fumarate + Ubiquinol-8 <-> Ubiquinone-8 + Succinate"
+      },
+      "chemicals": [
+         "Fumarate",
+         "Ubiquinol-8",
+         "Ubiquinone-8",
+         "Succinate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FRD7"
+         ],
+         "metanetx.reaction": [
+            "MNXR99641"
+         ],
+         "rhea": [
+            "29190",
+            "29189",
+            "29187",
+            "29188"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn09272"
+         ]
+      }
+   },
+   "Fructose transport via PEP:Pyr PTS (f6p generating)": {
+      "reaction": {
+         "original": "fru_e + pep_c <-> f6p_c + pyr_c",
+         "substituted": "D-Fructose + Phosphoenolpyruvate <-> D-Fructose_6-phosphate + Pyruvate"
+      },
+      "chemicals": [
+         "D-Fructose",
+         "Phosphoenolpyruvate",
+         "D-Fructose 6-phosphate",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FRUpts2"
+         ],
+         "metanetx.reaction": [
+            "MNXR99662"
+         ],
+         "sbo": "SBO:0000185"
+      }
+   },
+   "Fumarase": {
+      "reaction": {
+         "original": "fum_c + h2o_c <-> mal__L_c",
+         "substituted": "Fumarate + H2O <-> L-Malate"
+      },
+      "chemicals": [
+         "Fumarate",
+         "H2O",
+         "L-Malate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FUM"
+         ],
+         "biocyc": [
+            "META:FUMHYDR-RXN"
+         ],
+         "ec-code": [
+            "4.2.1.2"
+         ],
+         "kegg.reaction": [
+            "R01082"
+         ],
+         "metanetx.reaction": [
+            "MNXR99705"
+         ],
+         "reactome.reaction": [
+            "R-TGU-451033",
+            "R-TGU-70982",
+            "R-HSA-70982",
+            "R-ATH-451033",
+            "R-SPO-70982",
+            "R-SPO-451033",
+            "R-XTR-451033",
+            "R-MMU-70982",
+            "R-DRE-70982",
+            "R-DME-70982",
+            "R-DME-451033",
+            "R-HSA-451033",
+            "R-SCE-451033",
+            "R-DDI-451033",
+            "R-OSA-451033",
+            "R-CFA-70982",
+            "R-XTR-70982",
+            "R-MMU-451033",
+            "R-OSA-70982",
+            "R-BTA-70982",
+            "R-DRE-451033",
+            "R-GGA-373141",
+            "R-RNO-451033",
+            "R-CEL-451033",
+            "R-ATH-70982",
+            "R-GGA-373145",
+            "R-CEL-70982",
+            "R-BTA-451033",
+            "R-SSC-451033",
+            "R-SCE-70982",
+            "R-CFA-451033",
+            "R-RNO-70982",
+            "R-GGA-70982",
+            "R-DDI-70982",
+            "R-GGA-451033",
+            "R-SSC-70982"
+         ],
+         "rhea": [
+            "12463",
+            "12461",
+            "12462",
+            "12460"
+         ],
+         "sabiork": [
+            "256"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00799"
+         ]
+      }
+   },
+   "Fumarate transport via proton symport (2 H)": {
+      "reaction": {
+         "original": "fum_e + 2.0 h_e <-> fum_c + 2.0 h_c",
+         "substituted": "Fumarate + 2.0 H+ <-> Fumarate + 2.0 H+"
+      },
+      "chemicals": [
+         "Fumarate",
+         "2.0 H+",
+         "Fumarate",
+         "2.0 H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "FUMt2_2"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-121B"
+         ],
+         "metanetx.reaction": [
+            "MNXR99711"
+         ],
+         "rhea": [
+            "29332",
+            "29334",
+            "29333",
+            "29331"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08542",
+            "rxn10152"
+         ]
+      }
+   },
+   "Glucose 6-phosphate dehydrogenase": {
+      "reaction": {
+         "original": "g6p_c + nadp_c <-> 6pgl_c + h_c + nadph_c",
+         "substituted": "D-Glucose_6-phosphate + Nicotinamide_adenine_dinucleotide_phosphate <-> 6-phospho-D-glucono-1,5-lactone + H+ + Nicotinamide_adenine_dinucleotide_phosphate-reduced"
+      },
+      "chemicals": [
+         "D-Glucose 6-phosphate",
+         "Nicotinamide adenine dinucleotide phosphate",
+         "6-phospho-D-glucono-1,5-lactone",
+         "H+",
+         "Nicotinamide adenine dinucleotide phosphate-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "G6PDH2r"
+         ],
+         "biocyc": [
+            "META:GLU6PDEHYDROG-RXN"
+         ],
+         "ec-code": [
+            "1.1.1.363",
+            "1.1.1.49"
+         ],
+         "kegg.reaction": [
+            "R00835"
+         ],
+         "metanetx.reaction": [
+            "MNXR99907"
+         ],
+         "rhea": [
+            "15842",
+            "15843",
+            "15841",
+            "15844"
+         ],
+         "sabiork": [
+            "1176",
+            "6509"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00604"
+         ]
+      }
+   },
+   "Glyceraldehyde-3-phosphate dehydrogenase": {
+      "reaction": {
+         "original": "g3p_c + nad_c + pi_c <-> 13dpg_c + h_c + nadh_c",
+         "substituted": "Glyceraldehyde_3-phosphate + Nicotinamide_adenine_dinucleotide + Phosphate <-> 3-Phospho-D-glyceroyl_phosphate + H+ + Nicotinamide_adenine_dinucleotide-reduced"
+      },
+      "chemicals": [
+         "Glyceraldehyde 3-phosphate",
+         "Nicotinamide adenine dinucleotide",
+         "Phosphate",
+         "3-Phospho-D-glyceroyl phosphate",
+         "H+",
+         "Nicotinamide adenine dinucleotide-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GAPD"
+         ],
+         "biocyc": [
+            "META:GAPOXNPHOSPHN-RXN"
+         ],
+         "ec-code": [
+            "1.2.1.12",
+            "1.2.1.59"
+         ],
+         "kegg.reaction": [
+            "R01061"
+         ],
+         "metanetx.reaction": [
+            "MNXR100040"
+         ],
+         "reactome.reaction": [
+            "R-ATH-70482",
+            "R-DME-70449",
+            "R-PFA-70482",
+            "R-SPO-70449",
+            "R-DRE-70449",
+            "R-CEL-70449",
+            "R-CEL-70482",
+            "R-CFA-70449",
+            "R-MMU-70482",
+            "R-HSA-70449",
+            "R-OSA-70482",
+            "R-GGA-352956",
+            "R-RNO-70449",
+            "R-SCE-70449",
+            "R-SSC-70482",
+            "R-ATH-70449",
+            "R-GGA-70482",
+            "R-OSA-70449",
+            "R-GGA-352921",
+            "R-DDI-70449",
+            "R-SPO-70482",
+            "R-TGU-70482",
+            "R-SCE-70482",
+            "R-HSA-70482",
+            "R-DME-70482",
+            "R-PFA-70449",
+            "R-XTR-70449",
+            "R-DRE-70482",
+            "R-XTR-70482",
+            "R-GGA-70449",
+            "R-RNO-70482",
+            "R-SSC-70449",
+            "R-DDI-70482",
+            "R-TGU-70449",
+            "R-MMU-70449",
+            "R-CFA-70482",
+            "R-BTA-70449",
+            "R-BTA-70482"
+         ],
+         "rhea": [
+            "10303",
+            "10300",
+            "10302",
+            "10301"
+         ],
+         "sabiork": [
+            "7844"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00781"
+         ]
+      }
+   },
+   "D-glucose transport via PEP:Pyr PTS": {
+      "reaction": {
+         "original": "glc__D_e + pep_c <-> g6p_c + pyr_c",
+         "substituted": "D-Glucose + Phosphoenolpyruvate <-> D-Glucose_6-phosphate + Pyruvate"
+      },
+      "chemicals": [
+         "D-Glucose",
+         "Phosphoenolpyruvate",
+         "D-Glucose 6-phosphate",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLCpts"
+         ],
+         "metanetx.reaction": [
+            "MNXR100237"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08612",
+            "rxn05226"
+         ]
+      }
+   },
+   "Glutamine synthetase": {
+      "reaction": {
+         "original": "atp_c + glu__L_c + nh4_c <-> adp_c + gln__L_c + h_c + pi_c",
+         "substituted": "ATP + L-Glutamate + Ammonium <-> ADP + L-Glutamine + H+ + Phosphate"
+      },
+      "chemicals": [
+         "ATP",
+         "L-Glutamate",
+         "Ammonium",
+         "ADP",
+         "L-Glutamine",
+         "H+",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLNS"
+         ],
+         "biocyc": [
+            "META:GLUTAMINESYN-RXN"
+         ],
+         "ec-code": [
+            "6.3.1.2"
+         ],
+         "kegg.reaction": [
+            "R00253"
+         ],
+         "metanetx.reaction": [
+            "MNXR100024"
+         ],
+         "reactome.reaction": [
+            "R-GGA-70606",
+            "R-RNO-70606",
+            "R-TGU-70606",
+            "R-DME-70606",
+            "R-CEL-70606",
+            "R-DRE-70606",
+            "R-XTR-70606",
+            "R-SPO-70606",
+            "R-ATH-70606",
+            "R-CFA-70606",
+            "R-BTA-70606",
+            "R-OSA-70606",
+            "R-SSC-70606",
+            "R-MMU-70606",
+            "R-HSA-70606",
+            "R-SCE-70606"
+         ],
+         "rhea": [
+            "16172",
+            "16171",
+            "16169",
+            "16170"
+         ],
+         "sabiork": [
+            "760"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00187"
+         ]
+      }
+   },
+   "L-glutamine transport via ABC system": {
+      "reaction": {
+         "original": "h2o_c + atp_c + gln__L_e <-> gln__L_c + h_c + adp_c + pi_c",
+         "substituted": "H2O + ATP + L-Glutamine <-> L-Glutamine + H+ + ADP + Phosphate"
+      },
+      "chemicals": [
+         "H2O",
+         "ATP",
+         "L-Glutamine",
+         "L-Glutamine",
+         "H+",
+         "ADP",
+         "Phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLNabc"
+         ],
+         "biocyc": [
+            "META:ABC-12-RXN"
+         ],
+         "ec-code": [
+            "3.6.3.21"
+         ],
+         "metanetx.reaction": [
+            "MNXR100258"
+         ],
+         "rhea": [
+            "29895#1",
+            "29897#1",
+            "29898#1",
+            "29896#1"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn11233",
+            "rxn05196",
+            "rxn05155",
+            "rxn11101",
+            "rxn08624"
+         ]
+      }
+   },
+   "Glutamate dehydrogenase (NADP)": {
+      "reaction": {
+         "original": "glu__L_c + h2o_c + nadp_c <-> akg_c + h_c + nadph_c + nh4_c",
+         "substituted": "L-Glutamate + H2O + Nicotinamide_adenine_dinucleotide_phosphate <-> 2-Oxoglutarate + H+ + Nicotinamide_adenine_dinucleotide_phosphate-reduced + Ammonium"
+      },
+      "chemicals": [
+         "L-Glutamate",
+         "H2O",
+         "Nicotinamide adenine dinucleotide phosphate",
+         "2-Oxoglutarate",
+         "H+",
+         "Nicotinamide adenine dinucleotide phosphate-reduced",
+         "Ammonium"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLUDy"
+         ],
+         "biocyc": [
+            "META:GLUTDEHYD-RXN"
+         ],
+         "ec-code": [
+            "1.4.1.13",
+            "1.4.1.3",
+            "1.4.1.4"
+         ],
+         "kegg.reaction": [
+            "R00248"
+         ],
+         "metanetx.reaction": [
+            "MNXR100086"
+         ],
+         "rhea": [
+            "11613",
+            "11614",
+            "11612",
+            "11615"
+         ],
+         "sabiork": [
+            "757"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00184"
+         ]
+      }
+   },
+   "Glutaminase": {
+      "reaction": {
+         "original": "gln__L_c + h2o_c <-> glu__L_c + nh4_c",
+         "substituted": "L-Glutamine + H2O <-> L-Glutamate + Ammonium"
+      },
+      "chemicals": [
+         "L-Glutamine",
+         "H2O",
+         "L-Glutamate",
+         "Ammonium"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLUN"
+         ],
+         "biocyc": [
+            "META:GLUTAMIN-RXN"
+         ],
+         "ec-code": [
+            "6.3.5.2",
+            "4.3.3.6",
+            "6.3.5.5",
+            "1.4.7.1",
+            "6.3.5.4",
+            "3.5.1.2",
+            "6.3.4.2",
+            "1.4.1.13",
+            "3.5.1.38"
+         ],
+         "kegg.reaction": [
+            "R00256"
+         ],
+         "metanetx.reaction": [
+            "MNXR100030"
+         ],
+         "reactome.reaction": [
+            "R-TGU-70609",
+            "R-XTR-70609",
+            "R-SSC-70609",
+            "R-GGA-70609",
+            "R-DDI-70609",
+            "R-MMU-70609",
+            "R-DME-70609",
+            "R-RNO-70609",
+            "R-CEL-70609",
+            "R-BTA-70609",
+            "R-DRE-70609",
+            "R-HSA-70609",
+            "R-CFA-70609"
+         ],
+         "rhea": [
+            "15892",
+            "15889",
+            "15891",
+            "15890"
+         ],
+         "sabiork": [
+            "762"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00189"
+         ]
+      }
+   },
+   "Glutamate synthase (NADPH)": {
+      "reaction": {
+         "original": "akg_c + gln__L_c + h_c + nadph_c <-> 2.0 glu__L_c + nadp_c",
+         "substituted": "2-Oxoglutarate + L-Glutamine + H+ + Nicotinamide_adenine_dinucleotide_phosphate-reduced <-> 2.0 L-Glutamate + Nicotinamide_adenine_dinucleotide_phosphate"
+      },
+      "chemicals": [
+         "2-Oxoglutarate",
+         "L-Glutamine",
+         "H+",
+         "Nicotinamide adenine dinucleotide phosphate-reduced",
+         "2.0 L-Glutamate",
+         "Nicotinamide adenine dinucleotide phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLUSy"
+         ],
+         "biocyc": [
+            "META:GLUTAMATESYN-RXN"
+         ],
+         "ec-code": [
+            "1.4.1.13"
+         ],
+         "kegg.reaction": [
+            "R00114"
+         ],
+         "metanetx.reaction": [
+            "MNXR100291"
+         ],
+         "rhea": [
+            "15503",
+            "15501",
+            "15504",
+            "15502"
+         ],
+         "sabiork": [
+            "694"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00085"
+         ]
+      }
+   },
+   "L glutamate transport via proton symport  reversible": {
+      "reaction": {
+         "original": "glu__L_e + h_e <-> glu__L_c + h_c",
+         "substituted": "L-Glutamate + H+ <-> L-Glutamate + H+"
+      },
+      "chemicals": [
+         "L-Glutamate",
+         "H+",
+         "L-Glutamate",
+         "H+"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GLUt2r"
+         ],
+         "metanetx.reaction": [
+            "MNXR100300"
+         ],
+         "reactome.reaction": [
+            "R-SCE-8875623",
+            "R-MMU-8875623",
+            "R-TGU-8875623",
+            "R-XTR-8875623",
+            "R-SSC-8875623",
+            "R-DME-8875623",
+            "R-CEL-8875623",
+            "R-DRE-8875623",
+            "R-GGA-8875623",
+            "R-HSA-8875623",
+            "R-RNO-8875623",
+            "R-DDI-8875623",
+            "R-CFA-8875623",
+            "R-BTA-8875623"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn05297",
+            "rxn09813",
+            "rxn13303",
+            "rxn09751",
+            "rxn08631"
+         ]
+      }
+   },
+   "Phosphogluconate dehydrogenase": {
+      "reaction": {
+         "original": "6pgc_c + nadp_c <-> co2_c + nadph_c + ru5p__D_c",
+         "substituted": "6-Phospho-D-gluconate + Nicotinamide_adenine_dinucleotide_phosphate <-> CO2 + Nicotinamide_adenine_dinucleotide_phosphate-reduced + D-Ribulose_5-phosphate"
+      },
+      "chemicals": [
+         "6-Phospho-D-gluconate",
+         "Nicotinamide adenine dinucleotide phosphate",
+         "CO2",
+         "Nicotinamide adenine dinucleotide phosphate-reduced",
+         "D-Ribulose 5-phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "GND"
+         ],
+         "biocyc": [
+            "META:RXN-9952"
+         ],
+         "ec-code": [
+            "1.1.1.44",
+            "1.1.1.351"
+         ],
+         "kegg.reaction": [
+            "R01528"
+         ],
+         "metanetx.reaction": [
+            "MNXR100389"
+         ],
+         "reactome.reaction": [
+            "R-PFA-71299",
+            "R-GGA-71299",
+            "R-HSA-71299",
+            "R-SPO-71299",
+            "R-XTR-71299",
+            "R-ATH-71299",
+            "R-TGU-71299",
+            "R-OSA-71299",
+            "R-MMU-71299",
+            "R-DRE-71299",
+            "R-SCE-71299",
+            "R-SSC-71299",
+            "R-DDI-71299",
+            "R-CFA-71299",
+            "R-DME-71299",
+            "R-BTA-71299",
+            "R-CEL-71299"
+         ],
+         "rhea": [
+            "10116",
+            "10117",
+            "10118",
+            "10119"
+         ],
+         "sabiork": [
+            "108"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn01115"
+         ]
+      }
+   },
+   "H2O transport via diffusion": {
+      "reaction": {
+         "original": "h2o_e <-> h2o_c",
+         "substituted": "H2O <-> H2O"
+      },
+      "chemicals": [
+         "H2O",
+         "H2O"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "H2Ot"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-145",
+            "META:TRANS-RXN0-547"
+         ],
+         "metanetx.reaction": [
+            "MNXR98641"
+         ],
+         "reactome.reaction": [
+            "R-ATH-507868",
+            "R-CFA-432054",
+            "R-CFA-432010",
+            "R-RNO-507868",
+            "R-OSA-432065",
+            "R-GGA-432010",
+            "R-SPO-445714",
+            "R-PFA-445714",
+            "R-CFA-432065",
+            "R-GGA-432067",
+            "R-TGU-432054",
+            "R-TGU-445714",
+            "R-OSA-507868",
+            "R-DRE-507868",
+            "R-SPO-507868",
+            "R-BTA-432054",
+            "R-GGA-507870",
+            "R-OSA-432010",
+            "R-DME-432065",
+            "R-DRE-432067",
+            "R-PFA-507868",
+            "R-SSC-432054",
+            "R-HSA-432065",
+            "R-OSA-507870",
+            "R-HSA-432054",
+            "R-SSC-432065",
+            "R-CEL-507868",
+            "R-XTR-507868",
+            "R-ATH-507870",
+            "R-SCE-432065",
+            "R-BTA-507870",
+            "R-DME-432010",
+            "R-CFA-445714",
+            "R-DRE-445714",
+            "R-BTA-507868",
+            "R-GGA-507868",
+            "R-RNO-432054",
+            "R-RNO-432010",
+            "R-SSC-432067",
+            "R-CEL-445714",
+            "R-DDI-432065",
+            "R-ATH-432010",
+            "R-SCE-432054",
+            "R-MMU-432065",
+            "R-MMU-445714",
+            "R-GGA-432065",
+            "R-HSA-432067",
+            "R-SSC-507870",
+            "R-SCE-432067",
+            "R-RNO-507870",
+            "R-DME-432054",
+            "R-ATH-432067",
+            "R-BTA-445714",
+            "R-DRE-507870",
+            "R-DME-507868",
+            "R-DME-507870",
+            "R-DRE-432010",
+            "R-MMU-432010",
+            "R-HSA-445714",
+            "R-OSA-432054",
+            "R-RNO-432067",
+            "R-TGU-432010",
+            "R-TGU-507868",
+            "R-DDI-432054",
+            "R-PFA-507870",
+            "R-HSA-507870",
+            "R-XTR-432067",
+            "R-HSA-432010",
+            "R-SSC-507868",
+            "R-SCE-507870",
+            "R-CEL-507870",
+            "R-DDI-507868",
+            "R-DRE-432054",
+            "R-XTR-507870",
+            "R-DDI-432010",
+            "R-BTA-432065",
+            "R-CFA-432067",
+            "R-OSA-432067",
+            "R-ATH-432065",
+            "R-GGA-445714",
+            "R-SCE-507868",
+            "R-TGU-432065",
+            "R-MMU-432067",
+            "R-TGU-507870",
+            "R-CFA-507870",
+            "R-RNO-432065",
+            "R-MMU-432054",
+            "R-MMU-507868",
+            "R-SPO-507870",
+            "R-SCE-432010",
+            "R-MMU-507870",
+            "R-SSC-445714",
+            "R-HSA-507868",
+            "R-DME-432067",
+            "R-SSC-432010",
+            "R-TGU-432067",
+            "R-GGA-432054",
+            "R-BTA-432010",
+            "R-SCE-445714",
+            "R-DDI-507870",
+            "R-ATH-432054",
+            "R-DDI-432067",
+            "R-XTR-445714",
+            "R-BTA-432067",
+            "R-CFA-507868",
+            "R-RNO-445714"
+         ],
+         "rhea": [
+            "29668",
+            "29669",
+            "29667",
+            "29670"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08687",
+            "rxn08686",
+            "rxn09745",
+            "rxn09838",
+            "rxn09874",
+            "rxn09812",
+            "rxn09643",
+            "rxn05319"
+         ]
+      }
+   },
+   "Isocitrate dehydrogenase (NADP)": {
+      "reaction": {
+         "original": "icit_c + nadp_c <-> akg_c + co2_c + nadph_c",
+         "substituted": "Isocitrate + Nicotinamide_adenine_dinucleotide_phosphate <-> 2-Oxoglutarate + CO2 + Nicotinamide_adenine_dinucleotide_phosphate-reduced"
+      },
+      "chemicals": [
+         "Isocitrate",
+         "Nicotinamide adenine dinucleotide phosphate",
+         "2-Oxoglutarate",
+         "CO2",
+         "Nicotinamide adenine dinucleotide phosphate-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ICDHyr"
+         ],
+         "ec-code": [
+            "1.1.1.42"
+         ],
+         "kegg.reaction": [
+            "R00267"
+         ],
+         "metanetx.reaction": [
+            "MNXR100781"
+         ],
+         "rhea": [
+            "19629",
+            "19630",
+            "19631",
+            "19632"
+         ],
+         "sabiork": [
+            "269"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00198"
+         ]
+      }
+   },
+   "Isocitrate lyase": {
+      "reaction": {
+         "original": "icit_c <-> glx_c + succ_c",
+         "substituted": "Isocitrate <-> Glyoxylate + Succinate"
+      },
+      "chemicals": [
+         "Isocitrate",
+         "Glyoxylate",
+         "Succinate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ICL"
+         ],
+         "ec-code": [
+            "4.1.3.1"
+         ],
+         "kegg.reaction": [
+            "R00479"
+         ],
+         "metanetx.reaction": [
+            "MNXR100789"
+         ],
+         "rhea": [
+            "13248",
+            "13245",
+            "13246",
+            "13247"
+         ],
+         "sabiork": [
+            "911"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00336"
+         ]
+      }
+   },
+   "D-lactate dehydrogenase": {
+      "reaction": {
+         "original": "lac__D_c + nad_c <-> h_c + nadh_c + pyr_c",
+         "substituted": "D-Lactate + Nicotinamide_adenine_dinucleotide <-> H+ + Nicotinamide_adenine_dinucleotide-reduced + Pyruvate"
+      },
+      "chemicals": [
+         "D-Lactate",
+         "Nicotinamide adenine dinucleotide",
+         "H+",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "LDH_D"
+         ],
+         "biocyc": [
+            "META:DLACTDEHYDROGNAD-RXN"
+         ],
+         "ec-code": [
+            "1.1.1.28"
+         ],
+         "kegg.reaction": [
+            "R00704"
+         ],
+         "metanetx.reaction": [
+            "MNXR101037"
+         ],
+         "rhea": [
+            "16370",
+            "16371",
+            "16372",
+            "16369"
+         ],
+         "sabiork": [
+            "155"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00500"
+         ]
+      }
+   },
+   "Malate synthase": {
+      "reaction": {
+         "original": "accoa_c + glx_c + h2o_c <-> coa_c + h_c + mal__L_c",
+         "substituted": "Acetyl-CoA + Glyoxylate + H2O <-> Coenzyme_A + H+ + L-Malate"
+      },
+      "chemicals": [
+         "Acetyl-CoA",
+         "Glyoxylate",
+         "H2O",
+         "Coenzyme A",
+         "H+",
+         "L-Malate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "MALS"
+         ],
+         "biocyc": [
+            "META:MALSYN-RXN"
+         ],
+         "ec-code": [
+            "2.3.3.9"
+         ],
+         "kegg.reaction": [
+            "R00472"
+         ],
+         "metanetx.reaction": [
+            "MNXR101347"
+         ],
+         "rhea": [
+            "18181",
+            "18182",
+            "18184",
+            "18183"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00330"
+         ]
+      }
+   },
+   "Malate transport via proton symport (2 H)": {
+      "reaction": {
+         "original": "2.0 h_e + mal__L_e <-> 2.0 h_c + mal__L_c",
+         "substituted": "2.0 H+ + L-Malate <-> 2.0 H+ + L-Malate"
+      },
+      "chemicals": [
+         "2.0 H+",
+         "L-Malate",
+         "2.0 H+",
+         "L-Malate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "MALt2_2"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN-121A"
+         ],
+         "metanetx.reaction": [
+            "MNXR101370"
+         ],
+         "rhea": [
+            "29341",
+            "29340",
+            "29342",
+            "29339"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08865",
+            "rxn10153"
+         ]
+      }
+   },
+   "Malate dehydrogenase": {
+      "reaction": {
+         "original": "mal__L_c + nad_c <-> h_c + nadh_c + oaa_c",
+         "substituted": "L-Malate + Nicotinamide_adenine_dinucleotide <-> H+ + Nicotinamide_adenine_dinucleotide-reduced + Oxaloacetate"
+      },
+      "chemicals": [
+         "L-Malate",
+         "Nicotinamide adenine dinucleotide",
+         "H+",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Oxaloacetate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "MDH"
+         ],
+         "biocyc": [
+            "META:MALATE-DEH-RXN"
+         ],
+         "ec-code": [
+            "1.1.1.37",
+            "1.1.1.299"
+         ],
+         "kegg.reaction": [
+            "R00342"
+         ],
+         "metanetx.reaction": [
+            "MNXR101439"
+         ],
+         "reactome.reaction": [
+            "R-BTA-70979",
+            "R-BTA-198508",
+            "R-SCE-70979",
+            "R-GGA-70979",
+            "R-MMU-71783",
+            "R-RNO-71783",
+            "R-DDI-198508",
+            "R-CFA-71783",
+            "R-CFA-198508",
+            "R-ATH-70979",
+            "R-DME-198508",
+            "R-TGU-71783",
+            "R-HSA-71783",
+            "R-BTA-71783",
+            "R-DRE-198508",
+            "R-SPO-70979",
+            "R-GGA-71783",
+            "R-TGU-198508",
+            "R-GGA-372422",
+            "R-CEL-71783",
+            "R-XTR-70979",
+            "R-RNO-198508",
+            "R-MMU-70979",
+            "R-SPO-71783",
+            "R-ATH-71783",
+            "R-MMU-198508",
+            "R-DME-70979",
+            "R-TGU-70979",
+            "R-CEL-198508",
+            "R-DME-71783",
+            "R-DRE-70979",
+            "R-OSA-71783",
+            "R-SSC-198508",
+            "R-GGA-372855",
+            "R-SSC-70979",
+            "R-OSA-70979",
+            "R-GGA-373047",
+            "R-GGA-198508",
+            "R-SSC-71783",
+            "R-HSA-70979",
+            "R-CFA-70979",
+            "R-XTR-71783",
+            "R-HSA-198508",
+            "R-XTR-198508",
+            "R-SCE-71783",
+            "R-RNO-70979",
+            "R-DRE-71783",
+            "R-CEL-70979"
+         ],
+         "rhea": [
+            "21432",
+            "21433",
+            "21434",
+            "21435"
+         ],
+         "sabiork": [
+            "113"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00248"
+         ]
+      }
+   },
+   "Malic enzyme (NAD)": {
+      "reaction": {
+         "original": "mal__L_c + nad_c <-> co2_c + nadh_c + pyr_c",
+         "substituted": "L-Malate + Nicotinamide_adenine_dinucleotide <-> CO2 + Nicotinamide_adenine_dinucleotide-reduced + Pyruvate"
+      },
+      "chemicals": [
+         "L-Malate",
+         "Nicotinamide adenine dinucleotide",
+         "CO2",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ME1"
+         ],
+         "biocyc": [
+            "META:1.1.1.39-RXN"
+         ],
+         "ec-code": [
+            "1.1.1.38",
+            "1.1.1.39"
+         ],
+         "kegg.reaction": [
+            "R00214"
+         ],
+         "metanetx.reaction": [
+            "MNXR101446"
+         ],
+         "rhea": [
+            "12655",
+            "12654",
+            "12653",
+            "12656"
+         ],
+         "sabiork": [
+            "141"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00159"
+         ]
+      }
+   },
+   "Malic enzyme (NADP)": {
+      "reaction": {
+         "original": "mal__L_c + nadp_c <-> co2_c + nadph_c + pyr_c",
+         "substituted": "L-Malate + Nicotinamide_adenine_dinucleotide_phosphate <-> CO2 + Nicotinamide_adenine_dinucleotide_phosphate-reduced + Pyruvate"
+      },
+      "chemicals": [
+         "L-Malate",
+         "Nicotinamide adenine dinucleotide phosphate",
+         "CO2",
+         "Nicotinamide adenine dinucleotide phosphate-reduced",
+         "Pyruvate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "ME2"
+         ],
+         "biocyc": [
+            "META:MALIC-NADP-RXN"
+         ],
+         "ec-code": [
+            "1.1.1.40"
+         ],
+         "kegg.reaction": [
+            "R00216"
+         ],
+         "metanetx.reaction": [
+            "MNXR101443"
+         ],
+         "rhea": [
+            "18255",
+            "18256",
+            "18254",
+            "18253"
+         ],
+         "sabiork": [
+            "142"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00161"
+         ]
+      }
+   },
+   "NADH dehydrogenase (ubiquinone-8 & 3 protons)": {
+      "reaction": {
+         "original": "4.0 h_c + nadh_c + q8_c <-> 3.0 h_e + nad_c + q8h2_c",
+         "substituted": "4.0 H+ + Nicotinamide_adenine_dinucleotide-reduced + Ubiquinone-8 <-> 3.0 H+ + Nicotinamide_adenine_dinucleotide + Ubiquinol-8"
+      },
+      "chemicals": [
+         "4.0 H+",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Ubiquinone-8",
+         "3.0 H+",
+         "Nicotinamide adenine dinucleotide",
+         "Ubiquinol-8"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "NADH16"
+         ],
+         "ec-code": [
+            "1.6.5.3"
+         ],
+         "metanetx.reaction": [
+            "MNXR101864"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn08972"
+         ]
+      }
+   },
+   "NAD transhydrogenase": {
+      "reaction": {
+         "original": "nad_c + nadph_c <-> nadh_c + nadp_c",
+         "substituted": "Nicotinamide_adenine_dinucleotide + Nicotinamide_adenine_dinucleotide_phosphate-reduced <-> Nicotinamide_adenine_dinucleotide-reduced + Nicotinamide_adenine_dinucleotide_phosphate"
+      },
+      "chemicals": [
+         "Nicotinamide adenine dinucleotide",
+         "Nicotinamide adenine dinucleotide phosphate-reduced",
+         "Nicotinamide adenine dinucleotide-reduced",
+         "Nicotinamide adenine dinucleotide phosphate"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "NADTRHD"
+         ],
+         "biocyc": [
+            "META:PYRNUTRANSHYDROGEN-RXN"
+         ],
+         "ec-code": [
+            "1.6.1.3",
+            "1.6.1.2",
+            "1.6.1.1"
+         ],
+         "kegg.reaction": [
+            "R00112"
+         ],
+         "metanetx.reaction": [
+            "MNXR101898"
+         ],
+         "rhea": [
+            "11692",
+            "11695",
+            "11694",
+            "11693"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00083"
+         ]
+      }
+   },
+   "Ammonia reversible transport": {
+      "reaction": {
+         "original": "nh4_e <-> nh4_c",
+         "substituted": "Ammonium <-> Ammonium"
+      },
+      "chemicals": [
+         "Ammonium",
+         "Ammonium"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "NH4t"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-206",
+            "META:RXN-9615",
+            "META:TRANS-RXN0-544"
+         ],
+         "metanetx.reaction": [
+            "MNXR101950"
+         ],
+         "reactome.reaction": [
+            "R-CEL-444416",
+            "R-SSC-444416",
+            "R-DDI-444416",
+            "R-MMU-444416",
+            "R-DRE-444416",
+            "R-GGA-444416",
+            "R-CFA-444416",
+            "R-HSA-444416",
+            "R-XTR-444416",
+            "R-BTA-444416",
+            "R-RNO-444416",
+            "R-TGU-444416",
+            "R-DME-444416"
+         ],
+         "rhea": [
+            "28749",
+            "28748",
+            "28750",
+            "28747"
+         ],
+         "sabiork": [
+            "11683"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn13364",
+            "rxn09835",
+            "rxn05466",
+            "rxn08987",
+            "rxn08986",
+            "rxn09736"
+         ]
+      }
+   },
+   "O2 transport  diffusion ": {
+      "reaction": {
+         "original": "o2_e <-> o2_c",
+         "substituted": "O2_O2 <-> O2_O2"
+      },
+      "chemicals": [
+         "O2 O2",
+         "O2 O2"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "O2t"
+         ],
+         "biocyc": [
+            "META:TRANS-RXN0-474"
+         ],
+         "metanetx.reaction": [
+            "MNXR102090"
+         ],
+         "sbo": "SBO:0000185",
+         "seed.reaction": [
+            "rxn09641",
+            "rxn05468",
+            "rxn09031",
+            "rxn09032",
+            "rxn09734"
+         ]
+      }
+   },
+   "Pyruvate dehydrogenase": {
+      "reaction": {
+         "original": "coa_c + nad_c + pyr_c <-> accoa_c + co2_c + nadh_c",
+         "substituted": "Coenzyme_A + Nicotinamide_adenine_dinucleotide + Pyruvate <-> Acetyl-CoA + CO2 + Nicotinamide_adenine_dinucleotide-reduced"
+      },
+      "chemicals": [
+         "Coenzyme A",
+         "Nicotinamide adenine dinucleotide",
+         "Pyruvate",
+         "Acetyl-CoA",
+         "CO2",
+         "Nicotinamide adenine dinucleotide-reduced"
+      ],
+      "annotations": {
+         "bigg.reaction": [
+            "PDH"
+         ],
+         "biocyc": [
+            "META:PYRUVDEH-RXN"
+         ],
+         "ec-code": [
+            "1.2.1",
+            "1.8.1.4",
+            "1.2.1.51",
+            "1.2.4.1",
+            "2.3.1.12"
+         ],
+         "kegg.reaction": [
+            "R00209"
+         ],
+         "metanetx.reaction": [
+            "MNXR102425"
+         ],
+         "reactome.reaction": [
+            "R-RNO-71397",
+            "R-OSA-71397",
+            "R-GGA-373177",
+            "R-DME-71397",
+            "R-TGU-71397",
+            "R-XTR-71397",
+            "R-CFA-71397",
+            "R-BTA-71397",
+            "R-HSA-71397",
+            "R-GGA-71397",
+            "R-SPO-71397",
+            "R-CEL-71397",
+            "R-DDI-71397",
+            "R-DRE-71397",
+            "R-SSC-71397",
+            "R-SCE-71397",
+            "R-ATH-71397",
+            "R-MMU-71397"
+         ],
+         "rhea": [
+            "28043",
+            "28045",
+            "28044",
+            "28042"
+         ],
+         "sabiork": [
+            "523"
+         ],
+         "sbo": "SBO:0000176",
+         "seed.reaction": [
+            "rxn00154"
+         ]
+      }
+   }
+}
