@@ -2,9 +2,11 @@
 """
 @authors: Ethan Sean Chan, Andrew Philip Freiburger
 """
-from scipy.constants import minute, hour
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
+
+from scipy.constants import minute, hour
 from shutil import rmtree
 from glob import glob
 import numpy as np
@@ -12,8 +14,42 @@ import datetime
 import pandas
 import json, time, re, os
 
-#Taken from: https://github.com/hmallen/numpyencoder
-class NumpyEncoder(json.JSONEncoder):
+
+def isnumber(string):
+    try:
+        string = str(string)
+        string = string.strip()
+        if re.sub('([0-9\.])', '',string) == '':
+            return True
+    except:
+        return False
+    
+def average(num_1, num_2 = None):
+    if isnumber(num_1): 
+        if isnumber(num_2):
+            numbers = [num_1, num_2]
+            return sum(numbers) / len(numbers)
+        else:
+            return num_1
+    elif type(num_1) is list:
+        summation = total = 0
+        for num in num_1:
+            if num is not None:
+                summation += num
+                total += 1
+        if total > 0:
+            return summation/total
+        raise None # ValueError('The arguments must be numbers or a list of numbers')
+    elif isnumber(num_2):
+        return num_2
+    else:
+        raise None # ValueError('The arguments must be numbers or a list of numbers')
+    
+    
+    
+
+# encoding the final JSON
+class NumpyEncoder(json.JSONEncoder):     # sourced from https://github.com/hmallen/numpyencoder
     """ Custom encoder for numpy data types """
     def default(self, obj):
         if isinstance(obj, (np.int_, np.intc, np.intp, np.int8,
@@ -40,6 +76,7 @@ class NumpyEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
     
     
+# allows case insensitive dictionary searches
 class CaseInsensitiveDict(dict):   # sourced from https://stackoverflow.com/questions/2082152/case-insensitive-dictionary
     @classmethod
     def _k(cls, key):
@@ -580,6 +617,26 @@ class SABIO_scraping():
         STEP 4: COMBINE XLS AND ENTRYID DATA INTO A SINGLE JSON FILE
     --------------------------------------------------------------------
     """   
+    
+    def _determine_parameter_value(self, unit, value, param):
+        if re.search('m', unit):
+            if re.search('(\/m|\/\(m)', unit):
+                value /= milli
+            else:
+                value *= milli
+        elif re.search('n', unit):
+            if re.search('(\/n|\/\(n)', unit):
+                value /= milli
+            else:
+                value *= nano
+        elif re.search('u|U\+00B5', unit):
+            if re.search('(\/u|\/U\+00B5|\/\(m|\/\(U\+00B5)', unit):
+                value /= micro
+            else:
+                value *= micro
+        else:
+            print(f'-->The parameter {param} is possess differently in the BiGG model')
+        return value
 
     def combine_data(self,):
         # import previously parsed content
@@ -607,12 +664,12 @@ class SABIO_scraping():
                 
                 # ensure that the reaction chemicals match before accepting kinetic data
                 print('reaction', reaction)
-                rxn_string, sabio_chemicals, expected_bigg_chemicals= self._split_reaction(reaction, sabio = True)
+                rxn_string, sabio_chemicals, expected_bigg_chemicals = self._split_reaction(reaction, sabio = True)
                 bigg_chemicals = self.model_contents[enzyme]['chemicals']
                 
                 extra_bigg = set(bigg_chemicals) - set(expected_bigg_chemicals) 
                 extra_bigg = set(re.sub('(H\+|H2O)', '', chem) for chem in extra_bigg)           
-                if len(extra_bigg) != 1 and extra_bigg[0] = '':
+                if len(extra_bigg) != 1 and extra_bigg[0] != '':
                     missed_reaction = f'The || {rxn_string} || reaction with {expected_bigg_chemicals} chemicals does not match the BiGG reaction of {bigg_chemicals} chemicals.'
                     if self.printing:
                         print(missed_reaction)
@@ -629,57 +686,59 @@ class SABIO_scraping():
                     head_of_df = enzyme_reaction_entryids_df.head(1).squeeze()
                     entry_id_flag = True
                     parameter_info = {}
-
-                    try:
-                        parameter_info = entry_id_data[str(entryid)]
-                        enzyme_dict[enzyme][reaction][entryid_string]["Parameters"] = parameter_info
-                    except:
-                        missing_entry_ids.append(str(entryid))
-                        entry_id_flag = False
-                        enzyme_dict[enzyme][reaction][entryid_string]["Parameters"] = "NaN"
-
-                    rate_law = head_of_df["Rate Equation"]
-                    bad_rate_laws = ["unknown", "", "-"]
-
-                    if not rate_law in bad_rate_laws:                    
-                        enzyme_dict[enzyme][reaction][entryid_string]["RateLaw"] = rate_law
-                        enzyme_dict[enzyme][reaction][entryid_string]["SubstitutedRateLaw"] = rate_law
+                    entryid = str(entryid)
+                    
+                    # define the parameters for extant entryids
+                    enzyme_dict[enzyme][reaction][entryid_string]["Parameters"] = "NaN"
+                    if entryid in entry_id_data:
+                        parameters = entry_id_data[str(entryid)]
+                        enzyme_dict[enzyme][reaction][entryid_string]["Parameters"] = parameters
                     else:
-                        enzyme_dict[enzyme][reaction][entryid_string]["RateLaw"] = "NaN"
-                        enzyme_dict[enzyme][reaction][entryid_string]["SubstitutedRateLaw"] = "NaN"
+                        missing_entry_ids.append(str(entryid))
+                        continue
 
-                    if entry_id_flag:
-                        fields_to_copy = ["Buffer", "Product", "PubMedID", "Publication", "pH", "Temperature", "Enzyme Variant", "UniProtKB_AC", "Organism", "KineticMechanismType", "SabioReactionID"]
-                        for field in fields_to_copy:  
-                            enzyme_dict[enzyme][reaction][entryid_string][field] = head_of_df[field]
-                            
-                        enzyme_dict[enzyme][reaction][entryid_string]["Substrates"] = head_of_df["Substrate"].split(";")
-                        out_rate_law = rate_law
-                        if not rate_law in bad_rate_laws:                    
-                            substrates = head_of_df["Substrate"].split(";")
+                    # assign the rate law for an entryid
+                    rate_law = head_of_df["Rate Equation"]
+                    if not rate_law in ["unknown", "", "-"]:                    
+                        enzyme_dict[enzyme][reaction][entryid_string]["RateLaw"] = rate_law
+                    else:
+                        continue
 
-                            stripped_string = re.sub('[0-9]', '', rate_law)
+                    # add metadata to the assembled dictionary
+                    annotations = {}
+                    for annotation in ["SabioReactionID", "PubMedID", 'ECNumber', 'KeggReactionID']:
+                        annotations[annotation] = head_of_df[annotation]
+                    enzyme_dict[enzyme][reaction][entryid_string]['annotations'] = annotations
+                    
+                    for field in ["Buffer", "Product", "Publication", "pH", "Temperature", "Enzyme Variant", "KineticMechanismType", "Organism", "Pathway", ]:  
+                        enzyme_dict[enzyme][reaction][entryid_string][field] = head_of_df[field]
+                        
+                    # parse the rate law of the respective reaction               
+                    stripped_string = re.sub('[0-9]', '', rate_law)
+                    variables = re.split("[^*+-/() ]", stripped_string)
+                    variables = ' '.join(variables).split()
+                    for var in variables:
+                        # the acceptable variables are filtered for those that possess data and those that are substrates
+                        if var in parameters:
+                            if var not in ['E'] and parameters[var]['type'] == 'concentration' and len(var) == 1:
+                                # determine the average parameter value
+                                for start in ["start val.","start value", ]:
+                                    if start not in parameter_info[var]:
+                                        continue
+                                    start_value = parameter_info[var][start]                                
+                                for end in ["end val.","end value", ]:
+                                    if end not in parameter_info[var]:
+                                        continue
+                                    end_value = parameter_info[var][end]                                
+                                    
+                                value = average(start_value, end_value)
+                                unit = parameter_info[var]['unit']
+                                value = self._determine_parameter_value(unit, value, var)
+                                
+                                if value is not None:           
+                                    substituted_rate_law = rate_law.replace(var, value)
 
-                            variables = re.split("\^|\*|\+|\-|\/|\(|\)| ", stripped_string)
-                            variables = ' '.join(variables).split()
-
-                            start_value_permutations = ["start value", "start val."]
-                            substrates_key = {}
-                            for var in variables:
-                                if var in parameter_info:
-                                    for permutation in start_value_permutations:
-                                        try:
-                                            if var == "A" or var == "B":
-                                                substrates_key[var] = parameter_info[var]["species"]
-                                            else:
-                                                value = parameter_info[var][permutation]
-                                                if value != "-" and value != "" and value != " ":           # The quantities must be converted to base units
-                                                    out_rate_law = out_rate_law.replace(var, parameter_info[var][permutation])
-                                        except:
-                                            pass
-
-                            enzyme_dict[enzyme][reaction][entryid_string]["RateLawSubstrates"] = substrates_key
-                            enzyme_dict[enzyme][reaction][entryid_string]["SubstitutedRateLaw"] = out_rate_law
+                    enzyme_dict[enzyme][reaction][entryid_string]["SubstitutedRateLaw"] = substituted_rate_law
 
         with open(self.paths["scraped_model_path"], 'w', encoding="utf-8") as f:
             json.dump(enzyme_dict, f, indent=4, sort_keys=True, separators=(', ', ': '), ensure_ascii=False, cls=NumpyEncoder)
