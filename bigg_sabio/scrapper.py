@@ -6,7 +6,8 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
 
-from scipy.constants import minute, hour
+from scipy.constants import minute, hour, milli, nano, micro
+from pprint import pprint
 from shutil import rmtree
 from glob import glob
 import numpy as np
@@ -124,8 +125,13 @@ class SABIO_scraping():
 #     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, scraped_entryids_prefix, sel_raw_data, processed_xls, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, scraped_model_path, bigg_model, step_number, cwd])
     
     def __init__(self,
-                 export_content: bool = False):
-        self.export_content = export_content 
+                 bigg_model_path: str,        # the JSON version of the BiGG model
+                 bigg_model_name: str = None,  # the name of the BiGG model
+                 export_model_content: bool = False,
+                 verbose: bool = False
+                 ):
+        self.export_model_content = export_model_content 
+        self.verbose = verbose
         self.count = 0
         self.paths = {}
         
@@ -134,11 +140,22 @@ class SABIO_scraping():
         
         self.variables = {}
         
-        # load BiGG model content 
+        # load BiGG dictionary content 
         self.paths['root_path'] = os.path.dirname(__file__)
         self.bigg_to_sabio_metabolites = json.load(open(os.path.join(self.paths['root_path'],'BiGG_metabolites, parsed.json')))
         self.sabio_to_bigg_metabolites = json.load(open(os.path.join(self.paths['root_path'],'BiGG_metabolite_names, parsed.json')))
         self.bigg_reactions = json.load(open(os.path.join(self.paths['root_path'],'BiGG_reactions, parsed.json')))
+        
+        # load the BiGG model content
+        if os.path.exists(self.bigg_model_path):
+            self.model = json.load(open(self.bigg_model_path))
+        else:
+            raise ValueError('The BiGG model file does not exist')
+            
+        self.bigg_model_name = bigg_model_name 
+        if bigg_model_name is None:
+            self.bigg_model_name = re.search("([\w+\.?\s?]+)(?=\.json)", self.bigg_model_path).group()
+            
 
     #Clicks a HTML element with selenium by id
     def _click_element_id(self,n_id):
@@ -149,7 +166,7 @@ class SABIO_scraping():
     def _wait_for_id(self,n_id):
         while True:
             try:
-                element = self.driver.find_element_by_id(n_id)   # what is the purpose of this catch?
+                element = self.driver.find_element_by_id(n_id)   #!!! what is the purpose of this catch?
                 break
             except:
                 time.sleep(self.parameters['general_delay'])
@@ -167,22 +184,9 @@ class SABIO_scraping():
     --------------------------------------------------------------------    
     """
 
-    def start(self,
-              bigg_model_path:str,  # the JSON version of the BiGG model
-              bigg_model_name:str   # the name of the BiGG model
-              ): 
-        
-        if os.path.exists(bigg_model_path):
-            self.model = json.load(open(bigg_model_path))
-        else:
-            raise ValueError('The BiGG model file does not exist')
-            
-        self.bigg_model_name = bigg_model_name 
-        if bigg_model_name is None:
-            self.bigg_model_name = re.search("([\w+\.?\s?]+)(?=\.json)", bigg_model_path).group()
-
+    def start(self):
         # define core paths
-        self.paths['cwd'] = os.path.dirname(os.path.realpath(bigg_model_path))        # what is the point of the relative path within the directory name?
+        self.paths['cwd'] = os.path.dirname(os.path.realpath(self.bigg_model_path))        # what is the point of the relative path within the directory name?
         self.paths['output_directory'] = os.path.join(self.paths['cwd'],f"scraping-{self.bigg_model_name}")       
         self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
         
@@ -224,7 +228,6 @@ class SABIO_scraping():
         self.paths['entryids_path'] = os.path.join(self.paths['processed_data'], "entryids.json")
         self.variables['entryids'] = {}
         if os.path.exists(self.paths['entryids_path']):
-            f = open(self.paths[''], "r")
             with open(self.paths['entryids_path'], 'r') as f:
                 try:
                     self.variables['entryids'] = json.load(f)
@@ -235,7 +238,8 @@ class SABIO_scraping():
         self.model_contents = {}       
         if os.path.exists(self.paths['model_contents']):
             with open(self.paths['model_contents'], 'r') as f:
-                self.model_contents = json.load(f)
+                self.model_contents = json.load(f)        
+        
         
     """
     --------------------------------------------------------------------
@@ -419,13 +423,13 @@ class SABIO_scraping():
 #        df.to_csv(df_path)
 
     def scrape_bigg_xls(self,):        
-        # estimate the completion time
-        minutes_per_enzyme = 3
-        reactions_quantity = len(self.model['reactions'])
-        estimated_time = reactions_quantity*minutes_per_enzyme*minute
-        estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = estimated_time)          # approximately 1 minute per enzyme for Step 1
-        print(f'Estimated completion of scraping data for {self.bigg_model_name}: {estimated_completion}, in {estimated_time/hour} hours')
-
+        # estimate the time to scrape the XLS files
+        minutes_per_enzyme = 3*minute
+        scraping_time = minutes_per_enzyme * len(self.model['reactions'])
+        estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)     
+        print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
+        
+        # scrape SABIO data based upon various search parameters
         self.count = len(self.variables["is_scraped"])
         annotation_search_pairs = {"sabiork":"SabioReactionID", "metanetx.reaction":"MetaNetXReactionID", "ec-code":"ECNumber", "kegg.reaction":"KeggReactionID", "rhea":"RheaReactionID"}
         for enzyme in self.model['reactions']:
@@ -470,18 +474,19 @@ class SABIO_scraping():
                 self.count += 1
                 print("\nReaction: " + str(self.count) + "/" + str(len(self.model['reactions'])), end='\r')
             else:
-                print(f'The {enzyme_name} was already scraped, or is duplicated in the model')
+                print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
 
             # tracks scraping progress
             with open(self.paths['is_scraped'], 'w') as outfile:
                 json.dump(self.variables['is_scraped'], outfile, indent = 4)   
                 outfile.close()
                 
-        if self.export_content:
+        if self.export_model_content:
             with open(self.paths['model_contents'], 'w') as out:
                 json.dump(self.model_contents, out, indent = 3)
                 
         # update the step counter
+        print(f'SABIO XLS data has been scraped.')
         self.step_number = 2
         self._progress_update(self.step_number)
 
@@ -510,6 +515,7 @@ class SABIO_scraping():
         combined_df.to_csv(self.paths['concatenated_data'])
         
         # update the step counter
+        print(f'The XLS data has been concatenated.')
         self.step_number = 3
         self._progress_update(self.step_number)
 
@@ -520,8 +526,7 @@ class SABIO_scraping():
     """
 
     def _scrape_entry_id(self,entry_id):
-        entry_id = str(entry_id)
-        self.driver = webdriver.Firefox(firefox_profile=self.fp, executable_path="geckodriver.exe")         
+        entry_id = str(entry_id)  
         self.driver.get("http://sabiork.h-its.org/newSearch/index")
         
         time.sleep(self.parameters['general_delay'])
@@ -588,26 +593,46 @@ class SABIO_scraping():
         
         self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
         entryids = self.sabio_df["EntryID"].unique().tolist()
+        
+        # estimate the time to scrape the the entryids
+        minutes_per_enzyme = 2*minute
+        scraping_time = minutes_per_enzyme * len(entryids)
+        estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)          # approximately 1 minute per enzyme for Step 1
+        print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
+        
         for entryid in entryids:
             if not str(entryid) in self.variables['entryids']:
                 # only entries that possess calculable units will be processed and accepted
-                parameters = self._scrape_entry_id(entryid)
                 self.variables['scraped_entryids'][str(entryid)] = "erroneous"
-                if 'unit' in parameters:
-                    self.variables['scraped_entryids'][str(entryid)] = "missing_unit"
-                    if parameters['unit'] != '-':
-                        self.variables['entryids'][str(entryid)]
+                parameters = self._scrape_entry_id(entryid)
+                for param in parameters:
+                    if not 'unit' in parameters[param]:
+                        self.variables['scraped_entryids'][str(entryid)] = "missing_unit"
+                    elif parameters[param]['unit'] == '-':
+                        self.variables['scraped_entryids'][str(entryid)] = "missing_unit"
+                    elif parameters[param]['start val.'] == '-' and parameters[param]['end val.'] == '-':
+                        self.variables['scraped_entryids'][str(entryid)] = "missing_values"   
+                    else:
                         self.variables['scraped_entryids'][str(entryid)] = "acceptable"
-                
-                    
-            with open(self.paths["scraped_entryids"], 'w') as outfile:
-                json.dump(self.variables['scraped_entryids'], outfile, indent = 4)   
-                outfile.close()
-            with open(self.paths["entryids_path"], 'w') as f:
-                json.dump(self.variables['entryids'], f, indent = 4)        
-                f.close()
+                        
+                if self.variables['scraped_entryids'][str(entryid)] == 'acceptable':
+                    self.variables['entryids'][str(entryid)] = parameters
+                                    
+                    with open(self.paths["scraped_entryids"], 'w') as outfile:
+                        json.dump(self.variables['scraped_entryids'], outfile, indent = 4)   
+                        outfile.close()
+                    with open(self.paths["entryids_path"], 'w') as f:
+                        json.dump(self.variables['entryids'], f, indent = 4)        
+                        f.close()    
+                else:
+                    if self.verbose:
+                        print(entryid, self.variables['scraped_entryids'][str(entryid)])
+                        pprint(parameters[param])
+                        
+                print(f'Scraped entryID: {entryid}')
         
         # update the step counter
+        print(f'The parameter specifications have been scraped.')
         self.step_number = 4
         self._progress_update(self.step_number)
 
@@ -715,7 +740,7 @@ class SABIO_scraping():
             
         return average(start_value, end_value)
 
-    def combine_data(self,):
+    def to_fba(self,):
         # import previously parsed content
         with open(self.paths['entryids_path']) as json_file: 
             entry_id_data_file = json.load(json_file)
@@ -843,6 +868,7 @@ class SABIO_scraping():
             json.dump(enzyme_dict, f, indent=4, sort_keys=True, separators=(', ', ': '), ensure_ascii=False, cls=NumpyEncoder)
             
         # update the step counter
+        print(f'The dFBA data file have been generated.')
         self.step_number = 5
         self._progress_update(self.step_number)
         
@@ -855,10 +881,8 @@ class SABIO_scraping():
         f.close()
 
     def main(self,                               #!!! arguments must be added to the individual functions to promote modularity of the script and thus more use-cases
-             bigg_model_path: dict,
-             bigg_model_name: str = None
              ):
-        self.start(bigg_model_path, bigg_model_name)
+        self.start()
 
         # commence the browser
         self.fp = webdriver.FirefoxProfile(os.path.join(self.paths['root_path'],"l2pnahxq.scraper"))
@@ -877,7 +901,7 @@ class SABIO_scraping():
             elif self.step_number == 3:
                 self.scrape_entryids()
             elif self.step_number == 4:
-                self.combine_data()
+                self.to_fba()
             elif self.step_number == 5:
                 print("Execution complete. Scraper finished.")
                 rmtree(self.paths['progress_path'])

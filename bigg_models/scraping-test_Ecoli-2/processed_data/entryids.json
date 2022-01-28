@@ -1,0 +1,3311 @@
+{
+    "12525": {
+        "B": {
+            "type": "concentration",
+            "species": "Formate",
+            "start val.": "125.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "sodium formate"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "31.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Pyruvate",
+            "start val.": "0.02",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        }
+    },
+    "12526": {
+        "B": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "50.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "potassium pyruvate"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "36.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Formate",
+            "start val.": "0.0584",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        }
+    },
+    "15281": {
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Pyruvate",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "15282": {
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Ki": {
+            "type": "Ki",
+            "species": "Glycerone phosphate",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "15283": {
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Ki": {
+            "type": "Ki",
+            "species": "Glyceraldehyde 3-phosphate",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "15291": {
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "from: PubMed ID 9286977"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "from: PubMed ID 9286977"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Pyruvate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "15292": {
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "from: PubMed ID 9286977"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "from: PubMed ID 9286977"
+        },
+        "Ki": {
+            "type": "Ki",
+            "species": "Glycerone phosphate",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "15293": {
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "from: PubMed ID 9286977"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "from: PubMed ID 9286977"
+        },
+        "Ki": {
+            "type": "Ki",
+            "species": "Glyceraldehyde 3-phosphate",
+            "start val.": "0.7",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "16042": {
+        "B": {
+            "type": "concentration",
+            "species": "Formate",
+            "start val.": "60.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "sodium [14C]formate"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "2.0",
+            "end val.": "10.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "potassium pyruvate"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Pyruvate",
+            "start val.": "6.5",
+            "end val.": "-",
+            "deviat.": "2.5",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "16043": {
+        "B": {
+            "type": "concentration",
+            "species": "Formate",
+            "start val.": "60.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "sodium [14C]formate"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "2.0",
+            "end val.": "10.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "potassium pyruvate"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Pyruvate",
+            "start val.": "8.1",
+            "end val.": "-",
+            "deviat.": "1.4",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "28149": {
+        "A": {
+            "type": "concentration",
+            "species": "Pyruvate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.08",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "KmA_app": {
+            "type": "Km",
+            "species": "Pyruvate",
+            "start val.": "2.6",
+            "end val.": "5.4",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "5.4 mM when the reaction was initiated by the additon of Pyruvate ; 2.6 mM when the reaction was initiated by the additon of Enzyme"
+        },
+        "KmB_app": {
+            "type": "Km",
+            "species": "Coenzyme A",
+            "start val.": "0.0091",
+            "end val.": "0.024",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "0.024 mM when the reaction was initiated by the additon of Pyruvate ; 0.0091 mM when the reaction was initiated by the additon of Enzyme"
+        },
+        "activity": {
+            "type": "specific enz. activity",
+            "species": "-",
+            "start val.": "12.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5mol/(min*mg)",
+            "comment": "-"
+        }
+    },
+    "30252": {
+        "B": {
+            "type": "concentration",
+            "species": "Succinate",
+            "start val.": "10.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "ATP",
+            "start val.": "0.005",
+            "end val.": "2.36",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Kis": {
+            "type": "Ki",
+            "species": "ATP",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "ATP",
+            "start val.": "0.055",
+            "end val.": "-",
+            "deviat.": "5E-3",
+            "unit": "mM",
+            "comment": "apparent"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.61",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "purified enzyme"
+        }
+    },
+    "30253": {
+        "C": {
+            "type": "concentration",
+            "species": "ATP",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Succinate",
+            "start val.": "1.0",
+            "end val.": "10.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Succinate",
+            "start val.": "5.1",
+            "end val.": "-",
+            "deviat.": "1.7",
+            "unit": "mM",
+            "comment": "apparent"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.61",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "purified enzyme"
+        }
+    },
+    "30254": {
+        "C": {
+            "type": "concentration",
+            "species": "Succinate",
+            "start val.": "10.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.005",
+            "end val.": "0.092",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "ATP",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Coenzyme A",
+            "start val.": "0.032",
+            "end val.": "-",
+            "deviat.": "7E-3",
+            "unit": "mM",
+            "comment": "apparent"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.61",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "purified enzyme"
+        }
+    },
+    "30255": {
+        "C": {
+            "type": "concentration",
+            "species": "Phosphate",
+            "start val.": "10.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "0.004",
+            "end val.": "1.58",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "ADP",
+            "start val.": "0.25",
+            "end val.": "-",
+            "deviat.": "0.02",
+            "unit": "mM",
+            "comment": "apparent"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.61",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "purified enzyme"
+        }
+    },
+    "30256": {
+        "C": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "0.004",
+            "end val.": "0.086",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Phosphate",
+            "start val.": "10.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Succinyl-CoA",
+            "start val.": "0.041",
+            "end val.": "-",
+            "deviat.": "8E-3",
+            "unit": "mM",
+            "comment": "apparent"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.61",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "purified enzyme"
+        }
+    },
+    "30257": {
+        "C": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Phosphate",
+            "start val.": "0.25",
+            "end val.": "10.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Phosphate",
+            "start val.": "0.72",
+            "end val.": "-",
+            "deviat.": "0.14",
+            "unit": "mM",
+            "comment": "apparent"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.61",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "purified enzyme"
+        }
+    },
+    "69377": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "390.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "250.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "150.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "7.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "nmol/(min*mg)",
+            "comment": "-"
+        }
+    },
+    "69378": {
+        "B": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "150.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "250.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "25.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "nmol/(min*mg)",
+            "comment": "-"
+        }
+    },
+    "69379": {
+        "B": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "150.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "250.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "20.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "nmol/(min*mg)",
+            "comment": "-"
+        }
+    },
+    "69380": {
+        "A": {
+            "type": "concentration",
+            "species": "ADP",
+            "start val.": "250.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Succinyl-CoA",
+            "start val.": "150.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "nmol/(min*mg)",
+            "comment": "-"
+        }
+    },
+    "12754": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.38",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.19",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "12755": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.38",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.63",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "24017": {
+        "S": {
+            "type": "concentration",
+            "species": "Glyceraldehyde 3-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Glyceraldehyde 3-phosphate",
+            "start val.": "0.0021",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "100.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24018": {
+        "S": {
+            "type": "concentration",
+            "species": "D-Erythrose 4-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Erythrose 4-phosphate",
+            "start val.": "9.0E-5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "110.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24019": {
+        "S": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.0014",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "50.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24020": {
+        "S": {
+            "type": "concentration",
+            "species": "Formaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Formaldehyde",
+            "start val.": "0.031",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "12.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24021": {
+        "S": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.6E-4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "110.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24022": {
+        "S": {
+            "type": "concentration",
+            "species": "D-Fructose 6-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Fructose 6-phosphate",
+            "start val.": "0.0011",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "62.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24023": {
+        "S": {
+            "type": "concentration",
+            "species": "Sedoheptulose 7-phosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Sedoheptulose 7-phosphate",
+            "start val.": "0.004",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "6.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24024": {
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "1.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24025": {
+        "S": {
+            "type": "concentration",
+            "species": "3-Hydroxypyruvate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "3-Hydroxypyruvate",
+            "start val.": "0.018",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "60.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24026": {
+        "S": {
+            "type": "concentration",
+            "species": "D-Ribose",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Ribose",
+            "start val.": "1.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "25.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24027": {
+        "S": {
+            "type": "concentration",
+            "species": "D-Erythrose",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Erythrose",
+            "start val.": "0.15",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "75.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24028": {
+        "S": {
+            "type": "concentration",
+            "species": "Glyceraldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Glyceraldehyde",
+            "start val.": "0.01",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "25.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24029": {
+        "S": {
+            "type": "concentration",
+            "species": "Glycolaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Glycolaldehyde",
+            "start val.": "0.014",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "V": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "60.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "24030": {
+        "I": {
+            "type": "concentration",
+            "species": "D-Arabinose 5-phosphate",
+            "start val.": "2.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Ki": {
+            "type": "Ki",
+            "species": "D-Arabinose 5-phosphate",
+            "start val.": "6.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "24031": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "10.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Mg2+",
+            "start val.": "36.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "24032": {
+        "A": {
+            "type": "concentration",
+            "species": "Mg2+",
+            "start val.": "10.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "M",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "29.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "27649": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.15",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "420.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mol/(mol*min)",
+            "comment": "-"
+        }
+    },
+    "27984": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.1",
+            "end val.": "15.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "2.38",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5mol/(min*mg)",
+            "comment": "purified enzyme preparation, containing 15% Transketolase and 85% Glyceraldehyde-3-phosphate dehydrogenase"
+        }
+    },
+    "30200": {
+        "Km3": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.2",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km2": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "1750.0",
+            "end val.": "-",
+            "deviat.": "157",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km1": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "595.0",
+            "end val.": "-",
+            "deviat.": "39",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "30201": {
+        "Km2": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "5970.0",
+            "end val.": "-",
+            "deviat.": "628",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km1": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "829.0",
+            "end val.": "-",
+            "deviat.": "97",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km3": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "30202": {
+        "Km2": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "5650.0",
+            "end val.": "-",
+            "deviat.": "720",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km1": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "163.0",
+            "end val.": "-",
+            "deviat.": "29",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km3": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.9",
+            "end val.": "-",
+            "deviat.": "0.5",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "30203": {
+        "Km3": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "2.4",
+            "end val.": "-",
+            "deviat.": "0.4",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km2": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "7000.0",
+            "end val.": "-",
+            "deviat.": "950",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km1": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "318.0",
+            "end val.": "-",
+            "deviat.": "36",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "31500": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.0",
+            "end val.": "4.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.0",
+            "end val.": "3.6",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "5.0",
+            "end val.": "7.0",
+            "deviat.": "-",
+            "unit": "nM",
+            "comment": "apoenzyme"
+        },
+        "Kma": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "73.0",
+            "end val.": "-",
+            "deviat.": "7",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmb": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "146.0",
+            "end val.": "-",
+            "deviat.": "20",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmc": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.6",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "31501": {
+        "Km_1": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "762.0",
+            "end val.": "-",
+            "deviat.": "166",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km_2": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "105.0",
+            "end val.": "-",
+            "deviat.": "16",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km_3": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "4.4",
+            "end val.": "-",
+            "deviat.": "0.6",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "31502": {
+        "Km_3": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "4.1",
+            "end val.": "-",
+            "deviat.": "0.4",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km_1": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "900.0",
+            "end val.": "-",
+            "deviat.": "177",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Km_2": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "94.0",
+            "end val.": "-",
+            "deviat.": "17",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "31503": {
+        "Km": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "4.8",
+            "end val.": "-",
+            "deviat.": "0.7",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "31561": {
+        "S": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "n": {
+            "type": "Hill coefficient",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.9",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "S_half": {
+            "type": "S_half",
+            "species": "Thiamine diphosphate",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "2.7",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "31562": {
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "2.28",
+            "end val.": "-",
+            "deviat.": "0.22",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "5.6",
+            "end val.": "-",
+            "deviat.": "1.2",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.06",
+            "end val.": "-",
+            "deviat.": "0.05",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "356.0",
+            "end val.": "-",
+            "deviat.": "17",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "k_obs": {
+            "type": "rate const.",
+            "species": "-",
+            "start val.": "0.0029",
+            "end val.": "-",
+            "deviat.": "0.0008",
+            "unit": "s^(-1)",
+            "comment": "binding rate for Thiamine diphosphate"
+        }
+    },
+    "31563": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "3.41",
+            "end val.": "-",
+            "deviat.": "0.21",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "949.0",
+            "end val.": "-",
+            "deviat.": "55",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "11.4",
+            "end val.": "-",
+            "deviat.": "1.6",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.77",
+            "end val.": "-",
+            "deviat.": "0.13",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "k_obs": {
+            "type": "rate const.",
+            "species": "-",
+            "start val.": "0.016",
+            "end val.": "-",
+            "deviat.": "0.0025",
+            "unit": "s^(-1)",
+            "comment": "binding rate for Thiamine diphosphate"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "37.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "31564": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "37.8",
+            "end val.": "-",
+            "deviat.": "3.9",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "33.6",
+            "end val.": "-",
+            "deviat.": "5.8",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "2316.0",
+            "end val.": "-",
+            "deviat.": "256",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "85.9",
+            "end val.": "-",
+            "deviat.": "10.2",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "k_obs": {
+            "type": "rate const.",
+            "species": "-",
+            "start val.": "0.0015",
+            "end val.": "-",
+            "deviat.": "0.0001",
+            "unit": "s^(-1)",
+            "comment": "binding rate for Thiamine diphosphate"
+        }
+    },
+    "31565": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "3.57",
+            "end val.": "-",
+            "deviat.": "0.47",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "837.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "27.8",
+            "end val.": "-",
+            "deviat.": "2.5",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "20.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "k_obs": {
+            "type": "rate const.",
+            "species": "-",
+            "start val.": "0.0019",
+            "end val.": "-",
+            "deviat.": "0.0001",
+            "unit": "s^(-1)",
+            "comment": "binding rate for Thiamine diphosphate"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "30.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "31566": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "33.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "130.0",
+            "end val.": "-",
+            "deviat.": "180",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "436.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "21.8",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "31567": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "65.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "739.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "9.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "31568": {
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "0.03",
+            "end val.": "20.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1.7",
+            "end val.": "440.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "15.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "882.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "13500.0",
+            "end val.": "-",
+            "deviat.": "300",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "2.7",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "U/mg",
+            "comment": "-"
+        }
+    },
+    "31569": {
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.1",
+            "end val.": "-",
+            "deviat.": "0.10",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "0.04",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "k_obs": {
+            "type": "rate const.",
+            "species": "-",
+            "start val.": "0.004",
+            "end val.": "-",
+            "deviat.": "0.0017",
+            "unit": "s^(-1)",
+            "comment": "binding rate for Thiamine diphosphate"
+        }
+    },
+    "31570": {
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "Kd": {
+            "type": "Kd",
+            "species": "Thiamine diphosphate",
+            "start val.": "2.5",
+            "end val.": "-",
+            "deviat.": "0.42",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.37",
+            "end val.": "-",
+            "deviat.": "0.07",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "k_obs": {
+            "type": "rate const.",
+            "species": "-",
+            "start val.": "0.0198",
+            "end val.": "-",
+            "deviat.": "0.0030",
+            "unit": "s^(-1)",
+            "comment": "binding rate for Thiamine diphosphate"
+        }
+    },
+    "31571": {
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1280.0",
+            "end val.": "-",
+            "deviat.": "40",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "31572": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "220.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "C": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.0",
+            "end val.": "1.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "8.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "KmC": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "2430.0",
+            "end val.": "-",
+            "deviat.": "80",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "32650": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "14.6",
+            "end val.": "1460.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "7.3",
+            "end val.": "730.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "100.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmb": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "146.0",
+            "end val.": "-",
+            "deviat.": "21",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kma": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "73.0",
+            "end val.": "-",
+            "deviat.": "7",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "32651": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "8.4",
+            "end val.": "840.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "10.6",
+            "end val.": "1060.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "100.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kma": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "84.0",
+            "end val.": "-",
+            "deviat.": "8",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmb": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "106.0",
+            "end val.": "-",
+            "deviat.": "12",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "32652": {
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "100.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "125.0",
+            "end val.": "12500.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "41.4",
+            "end val.": "4140.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kma": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "414.0",
+            "end val.": "-",
+            "deviat.": "57",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmb": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "1250.0",
+            "end val.": "-",
+            "deviat.": "170",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "32653": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "32.9",
+            "end val.": "3290.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "110.0",
+            "end val.": "11000.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "100.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmb": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "1100.0",
+            "end val.": "-",
+            "deviat.": "145",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kma": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "329.0",
+            "end val.": "-",
+            "deviat.": "27",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "32654": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "23.4",
+            "end val.": "2340.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "10.1",
+            "end val.": "1010.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "100.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kmb": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "234.0",
+            "end val.": "-",
+            "deviat.": "22",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "Kma": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "101.0",
+            "end val.": "-",
+            "deviat.": "15",
+            "unit": "\u00b5M",
+            "comment": "-"
+        }
+    },
+    "32655": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.1",
+            "end val.": "2.5",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "Apoenzyme"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.26",
+            "end val.": "-",
+            "deviat.": "0.04",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation without D-Xylulose 5-phosphate"
+        }
+    },
+    "32656": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.025",
+            "end val.": "2.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "5.0",
+            "end val.": "7.0",
+            "deviat.": "-",
+            "unit": "nM",
+            "comment": "Apoenzyme"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.11",
+            "end val.": "-",
+            "deviat.": "0.02",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation with D-Xylulose 5-phosphate"
+        }
+    },
+    "32657": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.1",
+            "end val.": "2.5",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "Apoenzyme"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "5.6",
+            "end val.": "-",
+            "deviat.": "1.2",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation without D-Xylulose 5-phosphate"
+        }
+    },
+    "32658": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "5.0",
+            "end val.": "7.0",
+            "deviat.": "-",
+            "unit": "nM",
+            "comment": "Apoenzyme"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.025",
+            "end val.": "2.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.21",
+            "end val.": "-",
+            "deviat.": "0.02",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation with D-Xylulose 5-phosphate"
+        }
+    },
+    "32659": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.1",
+            "end val.": "2.5",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "Apoenzyme"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.7",
+            "end val.": "-",
+            "deviat.": "0.3",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation without D-Xylulose 5-phosphate"
+        }
+    },
+    "32660": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "5.0",
+            "end val.": "7.0",
+            "deviat.": "-",
+            "unit": "nM",
+            "comment": "Apoenzyme"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.025",
+            "end val.": "2.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.06",
+            "end val.": "-",
+            "deviat.": "0.01",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation with D-Xylulose 5-phosphate"
+        }
+    },
+    "32661": {
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.1",
+            "end val.": "2.5",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "Apoenzyme"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "22.0",
+            "end val.": "-",
+            "deviat.": "3",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation without D-Xylulose 5-phosphate"
+        }
+    },
+    "32662": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "5.0",
+            "end val.": "7.0",
+            "deviat.": "-",
+            "unit": "nM",
+            "comment": "Apoenzyme"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.025",
+            "end val.": "2.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "17.0",
+            "end val.": "-",
+            "deviat.": "2",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation with D-Xylulose 5-phosphate"
+        }
+    },
+    "32663": {
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "0.1",
+            "end val.": "2.5",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "Apoenzyme"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "6.5",
+            "end val.": "-",
+            "deviat.": "0.6",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation without D-Xylulose 5-phosphate"
+        }
+    },
+    "32664": {
+        "M": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.025",
+            "end val.": "2.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "5.0",
+            "end val.": "7.0",
+            "deviat.": "-",
+            "unit": "nM",
+            "comment": "Apoenzyme"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "3.6",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "K_half": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "5.3",
+            "end val.": "-",
+            "deviat.": "0.8",
+            "unit": "\u00b5M",
+            "comment": "determined by preincubation with D-Xylulose 5-phosphate"
+        }
+    },
+    "34657": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "46.3",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.6",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "70.0",
+            "end val.": "-",
+            "deviat.": "10",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_C": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "146.0",
+            "end val.": "-",
+            "deviat.": "21",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34658": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "0.69",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.8",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1010.0",
+            "end val.": "-",
+            "deviat.": "170",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_C": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "290.0",
+            "end val.": "-",
+            "deviat.": "100",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34659": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "0.09",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34660": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "150.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "0.69",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "400.0",
+            "end val.": "-",
+            "deviat.": "98",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.8",
+            "end val.": "-",
+            "deviat.": "0.7",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_C": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "193.0",
+            "end val.": "-",
+            "deviat.": "40",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34661": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "0.23",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "23.0",
+            "end val.": "-",
+            "deviat.": "5",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_C": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "93.0",
+            "end val.": "-",
+            "deviat.": "10",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "1.2",
+            "end val.": "-",
+            "deviat.": "0.2",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34662": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "2.04",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_C": {
+            "type": "Km",
+            "species": "D-Ribose 5-phosphate",
+            "start val.": "150.0",
+            "end val.": "-",
+            "deviat.": "50",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.3",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "1240.0",
+            "end val.": "-",
+            "deviat.": "90",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34663": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "0.88",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "4080.0",
+            "end val.": "-",
+            "deviat.": "510",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.7",
+            "end val.": "-",
+            "deviat.": "0.1",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    },
+    "34664": {
+        "A": {
+            "type": "concentration",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "2.54",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "D-Xylulose 5-phosphate",
+            "start val.": "3350.0",
+            "end val.": "-",
+            "deviat.": "370",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "Thiamine diphosphate",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "0.6",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
+    }
+}
