@@ -599,8 +599,13 @@ class SABIO_scraping():
         entryids = self.sabio_df["EntryID"].unique().tolist()
         for entryid in entryids:
             if not str(entryid) in self.variables['entryids']:
-                self.variables['entryids'][str(entryid)] = self._scrape_entry_id(entryid)
-                self.variables['scraped_entryids'][str(entryid)] = "yes"
+                # only entries that possess calculable units will be processed and accepted
+                parameters = self._scrape_entry_id(entryid)
+                self.variables['scraped_entryids'][str(entryid)] = "erroneous"
+                if parameters['unit'] != '-':
+                    self.variables['entryids'][str(entryid)]
+                    self.variables['scraped_entryids'][str(entryid)] = "acceptable"
+                    
             with open(self.paths["scraped_entryids"], 'w') as outfile:
                 json.dump(self.variables['scraped_entryids'], outfile, indent = 4)   
                 outfile.close()
@@ -618,24 +623,79 @@ class SABIO_scraping():
     --------------------------------------------------------------------
     """   
     
-    def _determine_parameter_value(self, unit, value, param):
-        if re.search('m', unit):
-            if re.search('(\/m|\/\(m)', unit):
-                value /= milli
-            else:
-                value *= milli
-        elif re.search('n', unit):
-            if re.search('(\/n|\/\(n)', unit):
-                value /= milli
-            else:
-                value *= nano
-        elif re.search('u|U\+00B5', unit):
-            if re.search('(\/u|\/U\+00B5|\/\(m|\/\(U\+00B5)', unit):
-                value /= micro
-            else:
-                value *= micro
-        else:
-            print(f'-->The parameter {param} is possess differently in the BiGG model')
+    def _determine_parameter_value(unit, original_value):
+        # parse the unit
+        numerator = ''
+        denominator = ''
+        term = ''
+        skips = 0
+        next_denominator = False
+        for index in range(len(unit)):
+            if skips > 0:
+                skips -= 1 
+                continue
+                
+            ch = unit[index]
+            term += ch
+            
+            # parse the unit characters
+            if len(unit) == 1:
+                numerator += term
+                term = ''
+                break
+            if index+1 == len(unit)-1:
+                if next_denominator:
+                    denominator += term
+                    denominator += unit[index+1]
+                else:
+                    numerator += term
+                    numerator += unit[index+1]
+                term = ''
+                break
+            if unit[index+1] == '^':
+                if unit[index+2:index+6] == '(-1)':
+                    denominator += term 
+                    skips = 5
+                    term = ''
+                else:
+                    print(unit, term)
+            elif unit[index+1] == '/':
+                numerator += term
+                term = ''
+                skips = 1
+                next_denominator = True
+                
+        if term != '':
+            print(unit, term)
+        unit_dic = {
+            'numerator':numerator,
+            'denominator': denominator
+        }
+        
+        # determine the mathematically equivalent value in base units
+        value = original_value
+        for group in unit_dic:
+            term = unit_dic[group]
+            if re.search('mg|mM|mmol', term):
+                if group == 'numerator':
+                    value *= milli
+                else:
+                    value /= milli                
+            elif re.search('ng|nM|nmol', term):
+                if group == 'numerator':
+                    value *= nano
+                else:
+                    value /= nano   
+            elif re.search('µg|µmol|µM|u00b5g|u00b5mol|u00b5M|U\+00B5g|U\+00B5mol|U\+00B5M', term):
+                if group == 'numerator':
+                    value *= micro
+                else:
+                    value /= micro   
+            elif re.search('min', unit):
+                if group == 'numerator':
+                    value *= minute
+                else:
+                    value /= minute  
         return value
 
     def combine_data(self,):
@@ -710,8 +770,10 @@ class SABIO_scraping():
                         annotations[annotation] = head_of_df[annotation]
                     enzyme_dict[enzyme][reaction][entryid_string]['annotations'] = annotations
                     
+                    metadata = {}
                     for field in ["Buffer", "Product", "Publication", "pH", "Temperature", "Enzyme Variant", "KineticMechanismType", "Organism", "Pathway", ]:  
-                        enzyme_dict[enzyme][reaction][entryid_string][field] = head_of_df[field]
+                        metadata[field] = head_of_df[field]
+                    enzyme_dict[enzyme][reaction][entryid_string]['metadata'] = metadata
                         
                     # parse the rate law of the respective reaction               
                     stripped_string = re.sub('[0-9]', '', rate_law)
@@ -733,7 +795,7 @@ class SABIO_scraping():
                                     
                                 value = average(start_value, end_value)
                                 unit = parameter_info[var]['unit']
-                                value = self._determine_parameter_value(unit, value, var)
+                                value = self._determine_parameter_value(unit, value)
                                 
                                 if value is not None:           
                                     substituted_rate_law = rate_law.replace(var, value)
