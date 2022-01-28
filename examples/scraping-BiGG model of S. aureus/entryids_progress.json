@@ -1,0 +1,550 @@
+{
+    "26732": {
+        "B": {
+            "type": "concentration",
+            "species": "NADH",
+            "start val.": "0.32",
+            "end val.": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Acetyl-CoA",
+            "start val.": "0.0",
+            "end val.": "0.2"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "3.0",
+            "end val.": "12.0"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetyl-CoA",
+            "start val.": "0.055",
+            "end val.": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "3.4",
+            "end val.": "-"
+        }
+    },
+    "26737": {
+        "C": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.2",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "1.0",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "0.0",
+            "end val.": "10.0",
+            "deviat.": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "2.5",
+            "end val.": "250.0",
+            "deviat.": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "7.2",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "60.0",
+            "end val.": "-",
+            "deviat.": "-"
+        }
+    },
+    "31934": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "21.0",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "KmA": {
+            "type": "Km",
+            "species": "Acetyl-CoA",
+            "start val.": "0.154",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "KmB": {
+            "type": "Km",
+            "species": "NADH",
+            "start val.": "0.0082",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "0.034",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "Vmax_KmB": {
+            "type": "Vmax/Km",
+            "species": "NADH",
+            "start val.": "4.3",
+            "end val.": "-",
+            "deviat.": "-"
+        },
+        "Vmax_KmA": {
+            "type": "Vmax/Km",
+            "species": "Acetyl-CoA",
+            "start val.": "0.22",
+            "end val.": "-",
+            "deviat.": "-"
+        }
+    },
+    "44036": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "2.36",
+            "end val.": "116.0",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "S3": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "S2": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "17.2",
+            "end val.": "-",
+            "deviat.": "0.5",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "Acetaldehyde",
+            "start val.": "730.0",
+            "end val.": "-",
+            "deviat.": "0.06E2",
+            "unit": "M*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "23.6",
+            "end val.": "-",
+            "deviat.": "1.8",
+            "unit": "mM"
+        }
+    },
+    "44045": {
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "S3": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "S2": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "4.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "14.1",
+            "end val.": "-",
+            "deviat.": "0.2",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "NAD+",
+            "start val.": "400000.0",
+            "end val.": "-",
+            "deviat.": "0.02E5",
+            "unit": "M*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "NAD+",
+            "start val.": "34.8",
+            "end val.": "-",
+            "deviat.": "1.9",
+            "unit": "\u00b5M"
+        }
+    },
+    "58965": {
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "7.4",
+            "end val.": "-",
+            "deviat.": "0.04",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "Acetaldehyde",
+            "start val.": "1350.0",
+            "end val.": "-",
+            "deviat.": "1.2E2",
+            "unit": "M^(-1)*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "5.5",
+            "end val.": "-",
+            "deviat.": "0.5",
+            "unit": "mM"
+        }
+    },
+    "58967": {
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "3.5",
+            "end val.": "-",
+            "deviat.": "0.01",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "Acetaldehyde",
+            "start val.": "230.0",
+            "end val.": "-",
+            "deviat.": "0.3E2",
+            "unit": "M^(-1)*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "15.4",
+            "end val.": "-",
+            "deviat.": "1.5",
+            "unit": "mM"
+        }
+    },
+    "58969": {
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml"
+        },
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "2.8",
+            "end val.": "-",
+            "deviat.": "0.07",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "Acetaldehyde",
+            "start val.": "300.0",
+            "end val.": "-",
+            "deviat.": "0.3E2",
+            "unit": "M^(-1)*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "9.4",
+            "end val.": "-",
+            "deviat.": "0.8",
+            "unit": "mM"
+        }
+    },
+    "58971": {
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "2.2",
+            "end val.": "-",
+            "deviat.": "0.06",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "Acetaldehyde",
+            "start val.": "140.0",
+            "end val.": "-",
+            "deviat.": "0.1E2",
+            "unit": "M^(-1)*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "15.7",
+            "end val.": "-",
+            "deviat.": "1.3",
+            "unit": "mM"
+        }
+    },
+    "58973": {
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "2.0",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "\u00b5g/ml"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Coenzyme A",
+            "start val.": "0.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM"
+        },
+        "S": {
+            "type": "concentration",
+            "species": "Acetaldehyde",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "17.2",
+            "end val.": "-",
+            "deviat.": "0.5",
+            "unit": "s^(-1)"
+        },
+        "kcat_Km": {
+            "type": "kcat/Km",
+            "species": "Acetaldehyde",
+            "start val.": "730.0",
+            "end val.": "-",
+            "deviat.": "0.06E2",
+            "unit": "M^(-1)*s^(-1)"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "Acetaldehyde",
+            "start val.": "23.6",
+            "end val.": "-",
+            "deviat.": "1.8",
+            "unit": "mM"
+        }
+    },
+    "39574": {
+        "S": {
+            "type": "concentration",
+            "species": "2',3'-Cyclic GMP",
+            "start val.": "0.0"
+        },
+        "Kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "0.37"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "2',3'-Cyclic GMP",
+            "start val.": "15000.0"
+        },
+        "Vmax": {
+            "type": "Vmax",
+            "species": "-",
+            "start val.": "0.38"
+        }
+    }
+}

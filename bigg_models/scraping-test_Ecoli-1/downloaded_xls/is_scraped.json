@@ -1,0 +1,13 @@
+{
+    "Phosphofructokinase": "yes",
+    "Pyruvate formate lyase": "yes",
+    "Glucose-6-phosphate isomerase": "yes",
+    "Phosphoglycerate kinase": "yes",
+    "6-phosphogluconolactonase": "yes",
+    "Acetaldehyde dehydrogenase (acetylating)": "yes",
+    "2 oxoglutarate reversible transport via symport": "no",
+    "Phosphoglycerate mutase": "yes",
+    "Phosphate reversible transport via symport": "no",
+    "Alcohol dehydrogenase (ethanol)": "yes",
+    "Acetaldehyde reversible transport": "no"
+}
