@@ -78,7 +78,7 @@ class NumpyEncoder(json.JSONEncoder):     # sourced from https://github.com/hmal
     
     
 # allows case insensitive dictionary searches
-class CaseInsensitiveDict(dict):   # sourced from https://stackoverflow.com/questions/2082152/case-insensitive-dictionary
+class CaseInsensitiveDict(dict):        # sourced from https://stackoverflow.com/questions/2082152/case-insensitive-dictionary
     @classmethod
     def _k(cls, key):
         return key.lower() if isinstance(key, str) else key
@@ -456,12 +456,9 @@ class SABIO_scraping():
                 annotation_search_pairs.update({
                         enzyme_name:"Enzymename"
                         })
-#                self.variables['is_scraped'][json_dict_key] = False
-#                while not success_flag:
                 for database in annotation_search_pairs:
                     if database in annotations:
                         for ID in annotations[database]:
-    #                                 success_flag = self._scrape_xls(ID, annotation_search_pairs[database])
                             try:
                                 success_flag = self._scrape_xls(ID, annotation_search_pairs[database])
                                 self.variables['is_scraped'][json_dict_key] = True
