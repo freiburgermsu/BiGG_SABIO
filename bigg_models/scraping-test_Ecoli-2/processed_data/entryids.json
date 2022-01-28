@@ -16324,5 +16324,61 @@
             "unit": "U/g",
             "comment": "-"
         }
+    },
+    "52315": {
+        "A": {
+            "type": "concentration",
+            "species": "NADPH",
+            "start val.": "20.0",
+            "end val.": "200.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "E": {
+            "type": "concentration",
+            "species": "Enzyme",
+            "start val.": "-",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "-",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "Iodonitrotetrazolium",
+            "start val.": "60.0",
+            "end val.": "500.0",
+            "deviat.": "-",
+            "unit": "\u00b5M",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "44.0",
+            "end val.": "-",
+            "deviat.": "1.5",
+            "unit": "s^(-1)",
+            "comment": "apparent"
+        },
+        "Km_A": {
+            "type": "Km",
+            "species": "NADPH",
+            "start val.": "84.0",
+            "end val.": "-",
+            "deviat.": "5.8",
+            "unit": "\u00b5M",
+            "comment": "apparent, at 0.5 mM Iodonitrotetrazolium"
+        },
+        "Km_B": {
+            "type": "Km",
+            "species": "Iodonitrotetrazolium",
+            "start val.": "122.0",
+            "end val.": "-",
+            "deviat.": "8.3",
+            "unit": "\u00b5M",
+            "comment": "apparent"
+        }
     }
 }

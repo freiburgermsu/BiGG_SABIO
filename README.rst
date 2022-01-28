@@ -1,4 +1,4 @@
-Acquire SABIO-RK Kinetics Data for the Enyzmes of an arbitrary BiGG model
+Acquire SABIO-RK Kinetics Data for an arbitrary BiGG model
 ___________________________________________________________________________________________
 
 |License|
