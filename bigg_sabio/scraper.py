@@ -134,6 +134,8 @@ class SABIO_scraping():
         self.verbose = verbose
         self.count = 0
         self.paths = {}
+        self.bigg_model_path = bigg_model_path
+        
         
         self.parameters = {}
         self.parameters['general_delay'] = 2
@@ -276,7 +278,6 @@ class SABIO_scraping():
 
             result_num = int(result_num)
         except:
-            #self.driver.close()
             self.driver.get("http://sabiork.h-its.org/newSearch/index")
             return False
 
@@ -300,7 +301,6 @@ class SABIO_scraping():
                 self._click_element_id("allCheckbox")
                 time.sleep(self.parameters['general_delay'])
         else:
-            #self.driver.close()
             self.driver.get("http://sabiork.h-its.org/newSearch/index")
             return False
 
@@ -570,7 +570,7 @@ class SABIO_scraping():
                 if df[0][0] == "Parameter":
                     reaction_parameters_df = table_df[counter]
             except:
-                self.driver.close()
+                self.driver.get("http://sabiork.h-its.org/newSearch/index")
                 return parameters_json
             counter += 1
             
@@ -882,13 +882,15 @@ class SABIO_scraping():
         self.start()
 
         # commence the browser
+        self.options = Options()
+        self.options.headless = True
         self.fp = webdriver.FirefoxProfile(os.path.join(self.paths['root_path'],"l2pnahxq.scraper"))
         self.fp.set_preference("browser.download.folderList", 2)
         self.fp.set_preference("browser.download.manager.showWhenStarting", False)
         self.fp.set_preference("browser.download.dir", self.paths["raw_data"])
         self.fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
-        self.driver = webdriver.Firefox(firefox_profile=self.fp, executable_path=os.path.join(self.paths['root_path'],"geckodriver.exe"))
-        self.driver.get("http://sabiork.h-its.org/newSearch/index")
+        self.driver = webdriver.Firefox(firefox_profile=self.fp, options=self.options, executable_path=os.path.join(self.paths['root_path'],"geckodriver.exe"))
+
 
         while True:
             if self.step_number == 1:
@@ -903,7 +905,7 @@ class SABIO_scraping():
                 print("Execution complete. Scraper finished.")
                 rmtree(self.paths['progress_path'])
                 break
-            
-#scraping = SABIO_scraping()
-#scraping.main('../bigg_models/Ecoli core, BiGG, indented.json', 'test_Ecoli')
-##print(scraping.)
+
+path = r'C:\Users\Ethan\Documents\Python\Polar Bar Chart\SUPER SABIO\e_coli_core.json'            
+scraping = SABIO_scraping(path, "TEST")
+scraping.main()
