@@ -207,6 +207,8 @@ class SABIO_scraping():
                 'annotations': annotations
             }
             
+            
+    # ==================== HELPER FUNCTIONS =======================
 
     #Clicks a HTML element with selenium by id
     def _click_element_id(self,n_id):
@@ -237,12 +239,6 @@ class SABIO_scraping():
         f.write(str(step))
         f.close()
 
-        
-    """
-    --------------------------------------------------------------------
-        STEP 0: GET BIGG MODEL TO SCRAPE AND SETUP DIRECTORIES AND PROGRESS FILE
-    --------------------------------------------------------------------    
-    """
 
     def _previous_scrape(self):
         if os.path.exists(self.paths['progress_path']):
@@ -284,10 +280,8 @@ class SABIO_scraping():
             if self.step_number == 1:
                 self.scrape_bigg_xls()
             elif self.step_number == 2:
-                self.glob_xls_files()
-            elif self.step_number == 3:
                 self.scrape_entryids()
-            elif self.step_number == 4:
+            elif self.step_number == 3:
                 self.to_fba()
                 break
         print("Execution complete.")
@@ -300,6 +294,8 @@ class SABIO_scraping():
     """
 
     def _scrape_xls(self,reaction_identifier, search_option):
+        quantity_of_xls_files = len([file for file in glob(os.path.join(self.paths['raw_data'], '*.xls'))])
+        
         self.driver.get("http://sabiork.h-its.org/newSearch/index")
        
         time.sleep(self.parameters['general_delay'])
@@ -368,6 +364,19 @@ class SABIO_scraping():
         self._click_element_id("excelExport")
         
         time.sleep(self.parameters['general_delay']*2.5)
+        
+        new_quantity_of_xls_files = len([file for file in glob(os.path.join(self.paths['raw_data'], '*.xls'))])
+        loop = 0
+        while new_quantity_of_xls_files != quantity_of_xls_files+1:
+            if loop == 0:
+                warnings.warn(f'The {reaction_identifier} match has not downloaded.')
+            new_quantity_of_xls_files = len([file for file in glob(os.path.join(self.paths['raw_data'], '*.xls'))])
+            time.sleep(self.parameters['general_delay'])
+            loop += 1
+        time.sleep(self.parameters['general_delay']*10)
+        if loop > 0:
+            string = 'The {} downloaded after {} seconds.'.format(reaction_identifier, self.parameters['general_delay']*(loop+10))
+            warnings.warn(string)
 
         return True
     
@@ -473,37 +482,61 @@ class SABIO_scraping():
         
         return reaction_string, sabio_chemicals, bigg_compounds
     
-    def _refine_scraped_file(self, enzyme_name, ID):       #!!! TODO the scrapped XLS files must be named to the enzymes so that they can be distinguished in the folder, and imported and edited.
+    def _refine_scraped_file(self, enzyme_name, ID):     
         # open the most recent file
         xls_files = glob(os.path.join(self.paths['raw_data'], '*.xls'))
         most_recent = max(xls_files, key = os.path.getctime)
         with open(most_recent) as xls:
-            df = pandas.read_xls(xls)
+            df = pandas.read_excel(xls.name)
             
         # apply the enzyme name information with the BiGG name, and save as the 
-        df['Enzymename'] = [enzyme_name for name in len(df['Enzymename'])]
-        df_path = os.path.join(self.paths['raw_data'], enzyme_name, '.csv')
-        sabio_ids = df_path["SabioReactionID"].unique().tolist()
+        df['Enzymename'] = [enzyme_name for name in range(len(df['Enzymename']))]
+        sabio_ids = df["SabioReactionID"].unique().tolist()
         
         # export the XLS with a unique name
         count = -1
         file_extension = ''
+        df_path = os.path.join(self.paths['raw_data'], enzyme_name+'.csv')
         while os.path.exists(df_path):
             count += 1
             if re.search('(\.[a-zA-Z]+$)', df_path):
                 file_extension = re.search('(\.[a-zA-Z]+$)', df_path).group()
-                export_path = re.sub(file_extension, '', df_path)
+                df_path = re.sub(file_extension, '', df_path)
             if not re.search('(-[0-9]+$)', df_path):
-                export_path += f'-{count}'   
+                df_path += f'-{count}'   
             else:
-                export_path = re.sub('([0-9]+)$', str(count), df_path)
+                df_path = re.sub('([0-9]+)$', str(count), df_path)
             df_path += file_extension
         
+        os.remove(most_recent)
         df.to_csv(df_path)
         
         # store the matched content for future access during parsing
         self.id_bigg_matches[enzyme_name] = sabio_ids
         self.id_bigg_matches[ID] = enzyme_name
+        
+    def _glob_csv(self,):
+#         scraped_sans_parentheses_enzymes = glob('./{}/*.xls'.format(self.paths['raw_data']))
+        total_dataframes = []
+        original_files = glob(os.path.join(self.paths['raw_data'], '*.csv')) 
+        for file in original_files:
+            #file_name = os.path.splitext(os.path.basename(file))[0]
+            dfn = pandas.read_excel(file)
+            total_dataframes.append(dfn)
+
+        # All scraped dataframes are combined and duplicate rows are removed
+        combined_df = pandas.DataFrame()
+        combined_df = pandas.concat(total_dataframes)
+        combined_df = combined_df.fillna('')
+        combined_df = combined_df.drop_duplicates()
+
+        # export the dataframe
+        combined_df.to_csv(self.paths['concatenated_data'])
+        for file in original_files:
+            os.remove(file)
+        
+        # update the step counter
+        self._progress_update(self.step_number)
         
 
     def scrape_bigg_xls(self,):        
@@ -516,7 +549,13 @@ class SABIO_scraping():
         
         # scrape SABIO data based upon various search parameters
         self.count = len(self.variables["is_scraped"])
-        annotation_search_pairs = {"sabiork":"SabioReactionID", "metanetx.reaction":"MetaNetXReactionID", "ec-code":"ECNumber", "kegg.reaction":"KeggReactionID", "rhea":"RheaReactionID"}
+        annotation_search_pairs = {
+                "sabiork":"SabioReactionID", 
+                "metanetx.reaction":"MetaNetXReactionID",
+                "ec-code":"ECNumber", 
+                "kegg.reaction":"KeggReactionID",
+                "rhea":"RheaReactionID"
+                }
         self.bigg_sabio_enzymes = {}
         self.id_bigg_matches = {}
         for enzyme in self.model['reactions']:            
@@ -531,18 +570,16 @@ class SABIO_scraping():
                 for database in annotation_search_pairs:
                     if database in self.model_contents[enzyme_name]['annotations']:
                         for ID in self.model_contents[enzyme_name]['annotations'][database]:
-                            try:
-                                self._scrape_xls(ID, annotation_search_pairs[database])
+                            scraped = self._scrape_xls(ID, annotation_search_pairs[database])
+                            if scraped:
                                 self._refine_scraped_file(enzyme_name, ID)
                                 self.variables['is_scraped'][enzyme_name] = True
-    #                                    self._change_enzyme_name(enzyme_name)
-                            except:
-                                continue
+#                                    self._change_enzyme_name(enzyme_name)
                     
                 self.count += 1
                 print("\nReaction: " + str(self.count) + "/" + str(len(self.model['reactions'])), end='\r')
             else:
-                warnings.warn(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
+                print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
 
             # tracks scraping progress
             with open(self.paths['is_scraped'], 'w') as outfile:
@@ -554,41 +591,14 @@ class SABIO_scraping():
                 json.dump(self.model_contents, out, indent = 3)
                 
         # update the step counter
-        print(f'SABIO XLS data has been scraped.')
+        self._glob_csv()
+        print(f'SABIO data has been downloaded and concatenated.')
         self.step_number = 2
         self._progress_update(self.step_number)
 
     """
     --------------------------------------------------------------------
-        STEP 2: GLOB EXPORTED XLS FILES TOGETHER
-    --------------------------------------------------------------------
-    """
-
-    def glob_xls_files(self,):
-#         scraped_sans_parentheses_enzymes = glob('./{}/*.xls'.format(self.paths['raw_data']))
-        total_dataframes = []
-        for file in glob(os.path.join(self.paths['raw_data'], '*.xls')):
-            #file_name = os.path.splitext(os.path.basename(file))[0]
-            dfn = pandas.read_excel(file)
-            total_dataframes.append(dfn)
-
-        # All scraped dataframes are combined and duplicate rows are removed
-        combined_df = pandas.DataFrame()
-        combined_df = pandas.concat(total_dataframes)
-        combined_df = combined_df.fillna(' ')
-        combined_df = combined_df.drop_duplicates()
-
-        # export the dataframe
-        combined_df.to_csv(self.paths['concatenated_data'])
-        
-        # update the step counter
-        print(f'The XLS data has been concatenated.')
-        self.step_number = 3
-        self._progress_update(self.step_number)
-
-    """
-    --------------------------------------------------------------------
-        STEP 3: SCRAPE ADDITIONAL DATA BY ENTRYID
+        STEP 2: SCRAPE ADDITIONAL DATA BY ENTRYID
     --------------------------------------------------------------------    
     """
 
@@ -701,12 +711,12 @@ class SABIO_scraping():
         
         # update the step counter
         print(f'The parameter specifications have been scraped.')
-        self.step_number = 4
+        self.step_number = 3
         self._progress_update(self.step_number)
 
     """
     --------------------------------------------------------------------
-        STEP 4: COMBINE XLS AND ENTRYID DATA INTO A SINGLE JSON FILE
+        STEP 3: COMBINE XLS AND ENTRYID DATA INTO A SINGLE JSON FILE
     --------------------------------------------------------------------
     """   
     
