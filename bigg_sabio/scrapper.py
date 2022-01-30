@@ -13,7 +13,7 @@ from glob import glob
 import numpy as np
 import datetime
 import pandas
-import json, time, re, os
+import warnings, json, time, re, os
 
 
 def isnumber(string):
@@ -128,33 +128,84 @@ class SABIO_scraping():
                  bigg_model_path: str,        # the JSON version of the BiGG model
                  bigg_model_name: str = None,  # the name of the BiGG model
                  export_model_content: bool = False,
-                 verbose: bool = False
+                 verbose: bool = False,
+                 printing: bool = True
                  ):
         self.export_model_content = export_model_content 
         self.verbose = verbose
+        self.printing = printing
+        self.step_number = 1
         self.count = 0
         self.paths = {}
         
+        # initial parameters and variables
         self.parameters = {}
         self.parameters['general_delay'] = 2
         
         self.variables = {}
+        self.variables['is_scraped'] = {}
+        self.variables['scraped_entryids'] = {}
+        self.variables['entryids'] = {}
         
         # load BiGG dictionary content 
+        self.paths['bigg_model_path'] = bigg_model_path
         self.paths['root_path'] = os.path.dirname(__file__)
         self.bigg_to_sabio_metabolites = json.load(open(os.path.join(self.paths['root_path'],'BiGG_metabolites, parsed.json')))
         self.sabio_to_bigg_metabolites = json.load(open(os.path.join(self.paths['root_path'],'BiGG_metabolite_names, parsed.json')))
+        self.sabio_insensitive = CaseInsensitiveDict(self.sabio_to_bigg_metabolites)
+        self.bigg_insensitive = CaseInsensitiveDict(self.sabio_to_bigg_metabolites)
         self.bigg_reactions = json.load(open(os.path.join(self.paths['root_path'],'BiGG_reactions, parsed.json')))
         
         # load the BiGG model content
-        if os.path.exists(self.bigg_model_path):
-            self.model = json.load(open(self.bigg_model_path))
+        if os.path.exists(self.paths['bigg_model_path']):
+            self.model = json.load(open(self.paths['bigg_model_path']))
         else:
             raise ValueError('The BiGG model file does not exist')
             
         self.bigg_model_name = bigg_model_name 
         if bigg_model_name is None:
-            self.bigg_model_name = re.search("([\w+\.?\s?]+)(?=\.json)", self.bigg_model_path).group()
+            self.bigg_model_name = re.search("([\w+\.?\s?]+)(?=\.json)", self.paths['bigg_model_path']).group()
+            
+        # define folder paths
+        self.paths['cwd'] = os.path.dirname(os.path.realpath(self.paths['bigg_model_path']))        #!!! what is the point of the relative path within the directory name?
+        self.paths['output_directory'] = os.path.join(self.paths['cwd'],f"scraping-{self.bigg_model_name}")    
+        self.paths['processed_data'] = os.path.join(self.paths['output_directory'], 'processed_data') 
+        self.paths['raw_data'] = os.path.join(self.paths['output_directory'], 'downloaded_xls')    
+        if not os.path.isdir(self.paths['output_directory']):        
+            os.mkdir(self.paths['output_directory'])
+        if not os.path.isdir(self.paths['raw_data']):
+            os.mkdir(self.paths['raw_data'])
+        if not os.path.isdir(self.paths['processed_data']):
+            os.mkdir(self.paths['processed_data'])
+        
+        # define file paths
+        self.paths['progress_path'] = os.path.join(self.paths['output_directory'], "current_progress.txt")
+        self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
+        self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "00_concatenated_data.csv")
+        self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
+        self.paths['scraped_entryids'] = os.path.join(self.paths['processed_data'], "scraped_entryids.json")
+        self.paths['entryids_path'] = os.path.join(self.paths['processed_data'], "entryids.json")
+        self.paths['model_contents'] = os.path.join(self.paths['processed_data'], f'processed_{self.bigg_model_name}_model.json')
+        
+        # parse the model contents 
+        self._progress_update(self.step_number)
+        self.model_contents = {}        
+        for enzyme in self.model['reactions']:
+            annotations = enzyme['annotation']
+            enzyme_id = enzyme['id']
+            enzyme_name = enzyme['name']
+            
+            og_reaction_string = self.bigg_reactions[enzyme_id]['reaction_string']
+            reaction_string, sabio_chemicals, bigg_compounds = self._split_reaction(og_reaction_string)
+            self.model_contents[enzyme_name] = {
+                'reaction': {
+                    'original': og_reaction_string,
+                    'substituted': reaction_string,
+                },
+                'bigg_chemicals': bigg_compounds,
+                'sabio_chemicals': sabio_chemicals,
+                'annotations': annotations
+            }
             
 
     #Clicks a HTML element with selenium by id
@@ -178,68 +229,69 @@ class SABIO_scraping():
         element.select_by_visible_text(n_choice)
         time.sleep(self.parameters['general_delay'])
         
+        
+    def _progress_update(self, step):
+        if not re.search('[0-5]', str(step)):
+            print(f'--> ERROR: The {step} step is not acceptable.')
+        f = open(self.paths['progress_path'], "w")
+        f.write(str(step))
+        f.close()
+
+        
     """
     --------------------------------------------------------------------
         STEP 0: GET BIGG MODEL TO SCRAPE AND SETUP DIRECTORIES AND PROGRESS FILE
     --------------------------------------------------------------------    
     """
 
-    def start(self):
-        # define core paths
-        self.paths['cwd'] = os.path.dirname(os.path.realpath(self.bigg_model_path))        # what is the point of the relative path within the directory name?
-        self.paths['output_directory'] = os.path.join(self.paths['cwd'],f"scraping-{self.bigg_model_name}")       
-        self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
-        
-        if not os.path.isdir(self.paths['output_directory']):        
-            os.mkdir(self.paths['output_directory'])
-                    
-        # monitor the scrapping progress
-        self.paths['progress_path'] = os.path.join(self.paths['output_directory'], "current_progress.txt")
-        self.step_number = 1
-        self._progress_update(self.step_number)
+    def _previous_scrape(self):
         if os.path.exists(self.paths['progress_path']):
             with open(self.paths['progress_path'], "r") as f:
                 self.step_number = int(f.read(1))
                 if not re.search('[1-5]',str(self.step_number)):
-                    raise ImportError("Progress file malformed. Create a < current_progress.txt > file with a < 1-5 > digit to signify the current scrapping progress.")
+                    raise ImportError(f"Progress file malformed. Create a < current_progress.txt > file with a < 1-5 > digit to signify the current scrapping progress.")
+                print(f'Continuing Step {self.step_number}')
 
-        # define the data directories
-        self.paths['raw_data'] = os.path.join(self.paths['output_directory'], 'downloaded_xls') 
-        if not os.path.isdir(self.paths['raw_data']):
-            os.mkdir(self.paths['raw_data'])
-
-        self.paths['processed_data'] = os.path.join(self.paths['output_directory'], 'processed_data') 
-        if not os.path.isdir(self.paths['processed_data']):
-            os.mkdir(self.paths['processed_data'])
-
-        # define file paths and import content from an interupted scrapping        
-        self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
-        self.variables['is_scraped'] = {}
+        # define file paths and import content from an interupted scrapping       
         if os.path.exists(self.paths['is_scraped']):
             with open(self.paths['is_scraped'], 'r') as f:
                 self.variables['is_scraped'] = json.load(f)
 
-        self.paths['scraped_entryids'] = os.path.join(self.paths['processed_data'], "scraped_entryids.json")
-        self.variables['scraped_entryids'] = {}
         if os.path.exists(self.paths['scraped_entryids']):
             with open(self.paths['scraped_entryids'], 'r') as f:
                 self.variables['scraped_entryids'] = json.load(f)
-
-        self.paths['entryids_path'] = os.path.join(self.paths['processed_data'], "entryids.json")
-        self.variables['entryids'] = {}
+        
         if os.path.exists(self.paths['entryids_path']):
             with open(self.paths['entryids_path'], 'r') as f:
                 try:
                     self.variables['entryids'] = json.load(f)
                 except:
                     raise ImportError('The < entryids.json > file is corrupted or empty.')
+                
+    def _open_driver(self,):
+        self.fp = webdriver.FirefoxProfile(os.path.join(self.paths['root_path'],"l2pnahxq.scraper"))
+        self.fp.set_preference("browser.download.folderList", 2)
+        self.fp.set_preference("browser.download.manager.showWhenStarting", False)
+        self.fp.set_preference("browser.download.dir", self.paths["raw_data"])
+        self.fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+        self.driver = webdriver.Firefox(firefox_profile=self.fp, executable_path=os.path.join(self.paths['root_path'],"geckodriver.exe"))
+        self.driver.get("http://sabiork.h-its.org/newSearch/index")
             
-        self.paths['model_contents'] = os.path.join(self.paths['processed_data'], f'processed_{self.bigg_model_name}_model.json') 
-        self.model_contents = {}       
-        if os.path.exists(self.paths['model_contents']):
-            with open(self.paths['model_contents'], 'r') as f:
-                self.model_contents = json.load(f)        
-        
+            
+    def complete(self,):
+        self._previous_scrape()
+        while True:
+            if self.step_number == 1:
+                self.scrape_bigg_xls()
+            elif self.step_number == 2:
+                self.glob_xls_files()
+            elif self.step_number == 3:
+                self.scrape_entryids()
+            elif self.step_number == 4:
+                self.to_fba()
+                break
+        print("Execution complete.")
+        # os.remove(self.paths['progress_path'])
         
     """
     --------------------------------------------------------------------
@@ -381,11 +433,18 @@ class SABIO_scraping():
                         bigg_chemicals.append(coefficient + reformat_met_name(self.bigg_to_sabio_metabolites[met]['name']))
                 elif sabio:
                     sabio_chemicals.append(coefficient + reformat_met_name(met, True))               
-                    dic = CaseInsensitiveDict(self.sabio_to_bigg_metabolites)
-                    if 'bigg_name' in dic.get(met):
-                        bigg_chemicals.append(coefficient + reformat_met_name(dic.get(met)['bigg_name']))
+                    if met in self.sabio_insensitive:
+                        if 'bigg_name' in self.sabio_insensitive.get(met):
+                            bigg_chemicals.append(coefficient + reformat_met_name(self.sabio_insensitive.get(met)['bigg_name']))
+                        else:
+                            bigg_chemicals.append(coefficient + reformat_met_name(met))
+                    elif met in self.bigg_insensitive:
+                        if 'bigg_name' in self.bigg_insensitive.get(met):
+                            bigg_chemicals.append(coefficient + reformat_met_name(self.bigg_insensitive.get(met)['bigg_name']))
+                        else:
+                            bigg_chemicals.append(coefficient + reformat_met_name(met))
                     else:
-                        bigg_chemicals.append(coefficient + reformat_met_name(met))
+                        print(f'-->ERROR: The metabolite in {chemical_list} at index {chemical_list.index(met)} is not recognized')
             
             return bigg_chemicals, sabio_chemicals
         
@@ -414,15 +473,41 @@ class SABIO_scraping():
         
         return reaction_string, sabio_chemicals, bigg_compounds
     
-#    def _change_enzyme_name(self, enzyme):       #!!! TODO the scrapped XLS files must be named to the enzymes so that they can be distinguished in the folder, and imported and edited.
-#        df_path = os.path.join(self.paths['raw_data'], enzyme)
-#        with open(df_path) as xls:
-#            df = pandas.read_xls(xls)
-#            
-#        df['Enzymename'] = [enzyme for name in len(df['Enzymename'])]
-#        df.to_csv(df_path)
+    def _refine_scraped_file(self, enzyme_name, ID):       #!!! TODO the scrapped XLS files must be named to the enzymes so that they can be distinguished in the folder, and imported and edited.
+        # open the most recent file
+        xls_files = glob(os.path.join(self.paths['raw_data'], '*.xls'))
+        most_recent = max(xls_files, key = os.path.getctime)
+        with open(most_recent) as xls:
+            df = pandas.read_xls(xls)
+            
+        # apply the enzyme name information with the BiGG name, and save as the 
+        df['Enzymename'] = [enzyme_name for name in len(df['Enzymename'])]
+        df_path = os.path.join(self.paths['raw_data'], enzyme_name, '.csv')
+        sabio_ids = df_path["SabioReactionID"].unique().tolist()
+        
+        # export the XLS with a unique name
+        count = -1
+        file_extension = ''
+        while os.path.exists(df_path):
+            count += 1
+            if re.search('(\.[a-zA-Z]+$)', df_path):
+                file_extension = re.search('(\.[a-zA-Z]+$)', df_path).group()
+                export_path = re.sub(file_extension, '', df_path)
+            if not re.search('(-[0-9]+$)', df_path):
+                export_path += f'-{count}'   
+            else:
+                export_path = re.sub('([0-9]+)$', str(count), df_path)
+            df_path += file_extension
+        
+        df.to_csv(df_path)
+        
+        # store the matched content for future access during parsing
+        self.id_bigg_matches[enzyme_name] = sabio_ids
+        self.id_bigg_matches[ID] = enzyme_name
+        
 
     def scrape_bigg_xls(self,):        
+        self._open_driver()
         # estimate the time to scrape the XLS files
         minutes_per_enzyme = 3*minute
         scraping_time = minutes_per_enzyme * len(self.model['reactions'])
@@ -432,46 +517,32 @@ class SABIO_scraping():
         # scrape SABIO data based upon various search parameters
         self.count = len(self.variables["is_scraped"])
         annotation_search_pairs = {"sabiork":"SabioReactionID", "metanetx.reaction":"MetaNetXReactionID", "ec-code":"ECNumber", "kegg.reaction":"KeggReactionID", "rhea":"RheaReactionID"}
-        for enzyme in self.model['reactions']:
-            # parse the reaction
-            annotations = enzyme['annotation']
-            enzyme_id = enzyme['id']
-            enzyme_name = enzyme['name']
-            
-            og_reaction_string = self.bigg_reactions[enzyme_id]['reaction_string']
-            reaction_string, sabio_chemicals, bigg_compounds = self._split_reaction(og_reaction_string)
-            self.model_contents[enzyme_name] = {
-                'reaction': {
-                    'original': og_reaction_string,
-                    'substituted': reaction_string,
-                },
-                'bigg_compounds': bigg_compounds,
-                'sabio_chemicals': sabio_chemicals,
-                'annotations': annotations
-            }
-    
+        self.bigg_sabio_enzymes = {}
+        self.id_bigg_matches = {}
+        for enzyme in self.model['reactions']:            
             # search SABIO for reaction kinetics
-            json_dict_key = enzyme_name.replace("\"", "")
-            if not json_dict_key in self.variables['is_scraped']:
+#            enzyme_name = enzyme['name'].replace("\"", "")
+            enzyme_name = enzyme['name']
+            if not enzyme_name in self.variables['is_scraped']:
+                self.variables['is_scraped'][enzyme_name] = False
                 annotation_search_pairs.update({
                         enzyme_name:"Enzymename"
                         })
                 for database in annotation_search_pairs:
-                    if database in annotations:
-                        for ID in annotations[database]:
+                    if database in self.model_contents[enzyme_name]['annotations']:
+                        for ID in self.model_contents[enzyme_name]['annotations'][database]:
                             try:
-                                success_flag = self._scrape_xls(ID, annotation_search_pairs[database])
-                                self.variables['is_scraped'][json_dict_key] = True
+                                self._scrape_xls(ID, annotation_search_pairs[database])
+                                self._refine_scraped_file(enzyme_name, ID)
+                                self.variables['is_scraped'][enzyme_name] = True
     #                                    self._change_enzyme_name(enzyme_name)
                             except:
-                                if not success_flag:
-                                    self.variables['is_scraped'][json_dict_key] = False
                                 continue
                     
                 self.count += 1
                 print("\nReaction: " + str(self.count) + "/" + str(len(self.model['reactions'])), end='\r')
             else:
-                print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
+                warnings.warn(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
 
             # tracks scraping progress
             with open(self.paths['is_scraped'], 'w') as outfile:
@@ -508,7 +579,6 @@ class SABIO_scraping():
         combined_df = combined_df.drop_duplicates()
 
         # export the dataframe
-        self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "00_concatenated_data.csv")
         combined_df.to_csv(self.paths['concatenated_data'])
         
         # update the step counter
@@ -585,6 +655,7 @@ class SABIO_scraping():
         return parameters_json
 
     def scrape_entryids(self,):
+        self._open_driver()
         if 'concatenated_data' not in self.paths:
             self.paths['concatenated_data'] = os.path.join(self.paths['output_directory'], "00_concatenated_data.csv")
         
@@ -754,25 +825,32 @@ class SABIO_scraping():
         enzyme_dict = {}
         missing_entry_ids = []
         enzymes = self.sabio_df["Enzymename"].unique().tolist()
+        incorrect_enzymes = []
         for enzyme in enzymes:
-            enzyme_df = self.sabio_df.loc[self.sabio_df["Enzymename"] == enzyme]
-            enzyme_dict[enzyme] = {}
-            reactions = enzyme_df["Reaction"].unique().tolist()
-            for reaction in reactions:
-                enzyme_dict[enzyme][reaction] = {}
+            bigg_enzyme_name = enzyme.capitalize()
+            if (enzyme and bigg_enzyme_name) not in self.model_contents:
                 
+                incorrect_enzymes.append(bigg_enzyme_name)
+                
+                print('\n\n{}'.format(self.model_contents[bigg_enzyme_name]['annotations']))
+                print(f'unidentified enzyme name {bigg_enzyme_name}')
+                continue
+            enzyme_df = self.sabio_df.loc[self.sabio_df["Enzymename"] == enzyme]
+            enzyme_dict[bigg_enzyme_name] = {}
+            reactions = enzyme_df["Reaction"].unique().tolist()
+            for reaction in reactions:                
                 # ensure that the reaction chemicals match before accepting kinetic data
-                print('reaction', reaction)
-                rxn_string, sabio_chemicals, expected_bigg_chemicals = self._split_reaction(reaction, sabio = True)
-                bigg_chemicals = self.model_contents[enzyme]['chemicals']
+                print('reaction:', reaction)
+                enzyme_dict[bigg_enzyme_name][reaction] = {}
+                rxn_string, sabio_chemicals, expected_bigg_chemicals = self._split_reaction(reaction, sabio = True) 
+                bigg_chemicals = self.model_contents[bigg_enzyme_name]['bigg_chemicals']
                 
                 extra_bigg = set(bigg_chemicals) - set(expected_bigg_chemicals) 
-                extra_bigg = set(re.sub('(H\+|H2O)', '', chem) for chem in extra_bigg)           
-                if len(extra_bigg) != 1 and extra_bigg[0] != '':
+                extra_bigg = list(set(re.sub('(H\+|H2O)', '', chem) for chem in extra_bigg))         
+                if len(extra_bigg) != 1:
                     missed_reaction = f'The || {rxn_string} || reaction with {expected_bigg_chemicals} chemicals does not match the BiGG reaction of {bigg_chemicals} chemicals.'
-                    if self.printing:
+                    if self.verbose:
                         print(missed_reaction)
-                    enzyme_dict[enzyme][reaction] = missed_reaction
                     continue
                 
                 # parse and filter each entryid of the matching reaction
@@ -781,24 +859,28 @@ class SABIO_scraping():
                 for entryid in entryids:
                     entryid = str(entryid)
                     entry_id_row = enzyme_reactions_df.loc[enzyme_reactions_df["EntryID"] == entryid]
-                    head_of_df = entry_id_row.head(1).squeeze()
+                    if len(entry_id_row.index) == 0:
+                        print(f'{entryid} has no content')
+                        continue
                     
                     # assign the rate law for an entryid
+                    head_of_df = entry_id_row.head(1).squeeze()
                     rate_law = head_of_df["Rate Equation"]
-                    if not rate_law in ["unknown", "", "-"]:                    
-                        enzyme_dict[enzyme][reaction][entryid_string]["RateLaw"] = rate_law
+                    print(rate_law)
+                    if rate_law != []:                    
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid_string]["RateLaw"] = rate_law
                     else:
                         continue
                     
                     # define the parameters for extant entryids
-                    enzyme_dict[enzyme][reaction][entryid] = {}
+                    enzyme_dict[bigg_enzyme_name][reaction][entryid] = {}
                     if entryid in entry_id_data_file:                        
                         # rename "species" -> "chemical"
-                        enzyme_dict[enzyme][reaction][entryid] = entry_id_data_file[entryid]
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid] = entry_id_data_file[entryid]
                         parameters = []
                         for param in entry_id_data_file[entryid]:
-                            enzyme_dict[enzyme][reaction][entryid]["Parameters"][param]['chemical'] = entry_id_data_file[entryid][param]['species']
-                            enzyme_dict[enzyme][reaction][entryid]["Parameters"][param].pop('species')
+                            enzyme_dict[bigg_enzyme_name][reaction][entryid]["Parameters"][param]['chemical'] = entry_id_data_file[entryid][param]['species']
+                            enzyme_dict[bigg_enzyme_name][reaction][entryid]["Parameters"][param].pop('species')
                             parameters.append(param)
                     else:
                         missing_entry_ids.append(entryid)
@@ -808,12 +890,12 @@ class SABIO_scraping():
                     annotations = {}
                     for annotation in ["SabioReactionID", "PubMedID", 'ECNumber', 'KeggReactionID']:
                         annotations[annotation] = head_of_df[annotation]
-                    enzyme_dict[enzyme][reaction][entryid]['annotations'] = annotations
+                    enzyme_dict[bigg_enzyme_name][reaction][entryid]['annotations'] = annotations
                     
                     metadata = {}
                     for field in ["Buffer", "Product", "Publication", "pH", "Temperature", "Enzyme Variant", "KineticMechanismType", "Organism", "Pathway", ]:  
                         metadata[field] = head_of_df[field]
-                    enzyme_dict[enzyme][reaction][entryid]['metadata'] = metadata
+                    enzyme_dict[bigg_enzyme_name][reaction][entryid]['metadata'] = metadata
                         
                     # substitute quantities into the rate law 
                     stripped_string = re.sub('[0-9]', '', rate_law)
@@ -845,65 +927,25 @@ class SABIO_scraping():
                                         variable_molar[var] = parameter_value
 
                         # define the final JSON with the desired content and organization
-                        enzyme_dict[enzyme][reaction][entryid]["substituted_rate_law"] = substituted_rate_law
-                        enzyme_dict[enzyme][reaction][entryid]["substituted_parameters"] = substituted_parameters
-                        enzyme_dict[enzyme][reaction][entryid]["variables_molar"] = variable_molar
-                        enzyme_dict[enzyme][reaction][entryid]["variables_name"] = variable_name
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["substituted_rate_law"] = substituted_rate_law
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["substituted_parameters"] = substituted_parameters
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["variables_molar"] = variable_molar
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["variables_name"] = variable_name
                         
                         defined_content = variable_molar + substituted_parameters
                         if defined_content != parameters:
-                            print('---> ERROR: The rate rate {rate_law} does not reflect all of the defined variables and parameters by the entry: {defined_content}.')
-                        enzyme_dict[enzyme][reaction][entryid].pop('Parameters')
+                            warnings.warn(f'---> ERROR: The rate rate {rate_law} does not reflect all of the defined variables and parameters by the entry: {defined_content}.')
+                        enzyme_dict[bigg_enzyme_name][reaction][entryid].pop('Parameters')
                         
                         parameter_value = False
                     
                     # remove entryids whose rate laws could not be completely substituted, and thus are not calculable
-                    if not "SubstitutedRateLaw" in enzyme_dict[enzyme][reaction][entryid]:
-                        enzyme_dict[enzyme][reaction].pop(entryid)
+                    if not "SubstitutedRateLaw" in enzyme_dict[bigg_enzyme_name][reaction][entryid]:
+                        enzyme_dict[bigg_enzyme_name][reaction].pop(entryid)
 
         with open(self.paths["scraped_model_path"], 'w', encoding="utf-8") as f:
             json.dump(enzyme_dict, f, indent=4, sort_keys=True, separators=(', ', ': '), ensure_ascii=False, cls=NumpyEncoder)
             
         # update the step counter
         print(f'The dFBA data file have been generated.')
-        self.step_number = 5
         self._progress_update(self.step_number)
-        
-        
-    def _progress_update(self, step):
-        if not re.search('[0-5]', str(step)):
-            print(f'--> ERROR: The {step} step is not acceptable.')
-        f = open(self.paths['progress_path'], "w")
-        f.write(str(step))
-        f.close()
-
-    def main(self,                               #!!! arguments must be added to the individual functions to promote modularity of the script and thus more use-cases
-             ):
-        self.start()
-
-        # commence the browser
-        self.fp = webdriver.FirefoxProfile(os.path.join(self.paths['root_path'],"l2pnahxq.scraper"))
-        self.fp.set_preference("browser.download.folderList", 2)
-        self.fp.set_preference("browser.download.manager.showWhenStarting", False)
-        self.fp.set_preference("browser.download.dir", self.paths["raw_data"])
-        self.fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
-        self.driver = webdriver.Firefox(firefox_profile=self.fp, executable_path=os.path.join(self.paths['root_path'],"geckodriver.exe"))
-        self.driver.get("http://sabiork.h-its.org/newSearch/index")
-
-        while True:
-            if self.step_number == 1:
-                self.scrape_bigg_xls()
-            elif self.step_number == 2:
-                self.glob_xls_files()
-            elif self.step_number == 3:
-                self.scrape_entryids()
-            elif self.step_number == 4:
-                self.to_fba()
-            elif self.step_number == 5:
-                print("Execution complete. Scraper finished.")
-                rmtree(self.paths['progress_path'])
-                break
-            
-#scraping = SABIO_scraping()
-#scraping.main('../bigg_models/Ecoli core, BiGG, indented.json', 'test_Ecoli')
-##print(scraping.)

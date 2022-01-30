@@ -1,0 +1,54 @@
+{
+    "6-phosphogluconolactonase": {
+        "H2O + 6-Phospho-D-glucono-1,5-lactone = 6-Phospho-D-gluconate": {}
+    }, 
+    "Acetaldehyde dehydrogenase (acetylating)": {
+        "Coenzyme A + Acetaldehyde + NAD+ = Acetyl-CoA + H+ + NADH": {}, 
+        "Coenzyme A + NAD+ + Butanal = NADH + Butanoyl-CoA + H+": {}, 
+        "Coenzyme A + NADP+ + Butanal = NADPH + Butanoyl-CoA + H+": {}, 
+        "NAD+ + Coenzyme A + 2-Methylpropanal = NADH + H+ + 2-Methylpropanal-CoA": {}, 
+        "NAD+ + Coenzyme A + Propanal = NADH + H+ + Propanoyl-CoA": {}, 
+        "NADPH + Acetyl-CoA + H+ = NADP+ + Coenzyme A + Acetaldehyde": {}
+    }, 
+    "Acetate kinase": {
+        "ATP + Acetate = ADP + Acetyl phosphate": {}, 
+        "GTP + Acetate = GDP + Acetyl phosphate": {}, 
+        "ITP + Acetate = IDP + Acetyl phosphate": {}
+    }, 
+    "Fructose-bisphosphatase": {
+        "H2O + D-Fructose 1,6-bisphosphate = Phosphate + beta-D-Fructose 6-phosphate": {}
+    }, 
+    "Glutaminase": {
+        "L-Glutamine + H2O = L-Glutamate + NH3": {}
+    }, 
+    "Isocitrate lyase": {
+        "(2S,3R)-3-Hydroxybutane-1,2,3-tricarboxylate = Pyruvate + Succinate": {}, 
+        "D-Isocitrate = Glyoxylate + Succinate": {}, 
+        "Isocitrate = Succinate + Glyoxylate": {}
+    }, 
+    "Malate synthase": {
+        "Coenzyme A + L-Malate = Acetyl-CoA + Glyoxylate + H2O": {}
+    }, 
+    "Pyruvate kinase": {
+        "ATP + H2O + Pyruvate = Phosphate + Phosphoenolpyruvate + AMP": {}
+    }, 
+    "Ribose-5-phosphate isomerase": {
+        "D-Allose 6-phosphate = D-Psicose 6-phosphate": {}, 
+        "D-Ribose 5-phosphate = D-Ribulose 5-phosphate": {}
+    }, 
+    "Transketolase": {
+        "Acetaldehyde + D-Xylulose 5-phosphate = D-Erythrose + D-Glyceraldehyde 3-phosphate": {}, 
+        "D-Erythrose + D-Xylulose 5-phosphate = D-Glyceraldehyde 3-phosphate + D-Fructose": {}, 
+        "D-Glyceraldehyde 3-phosphate + D-Fructose 6-phosphate = D-Erythrose 4-phosphate + D-Xylulose 5-phosphate": {}, 
+        "D-Glyceraldehyde 3-phosphate + D-Sedoheptulose 7-phosphate = D-Ribose 5-phosphate + D-Xylulose 5-phosphate": {}, 
+        "D-Glyceraldehyde 3-phosphate + Sedoheptulose 7-phosphate = D-Ribose 5-phosphate + D-Xylulose 5-phosphate": {}, 
+        "D-Sedoheptulose 7-phosphate + Glyceraldehyde 3-phosphate = D-Xylulose 5-phosphate + D-Ribose 5-phosphate": {}, 
+        "D-Sedoheptulose 7-phosphate + Glyceraldehyde = Xylulose + D-Ribose 5-phosphate": {}, 
+        "D-Xylulose 5-phosphate + D-Ribose = D-Glyceraldehyde 3-phosphate + D-Sedoheptulose": {}, 
+        "D-Xylulose 5-phosphate + Formaldehyde = D-Glyceraldehyde 3-phosphate + Dihydroxyacetone": {}, 
+        "Glycolaldehyde + D-Fructose 6-phosphate = D-Glyceraldehyde 3-phosphate + D-Xylulose": {}, 
+        "H2O + D-Fructose 6-phosphate + Hexacyanoferrate(III) = H+ + D-Erythrose 4-phosphate + Glycolate + Hexacyanoferrate(II)": {}, 
+        "Sedoheptulose 7-phosphate + 3-Hydroxypyruvate = D-Erythrose + D-Fructose 6-phosphate": {}, 
+        "Sedoheptulose 7-phosphate + D-Glyceraldehyde 3-phosphate = D-Erythrose 4-phosphate + D-Fructose 6-phosphate": {}
+    }
+}
