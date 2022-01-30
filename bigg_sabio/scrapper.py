@@ -122,7 +122,7 @@ class CaseInsensitiveDict(dict):        # sourced from https://stackoverflow.com
 
 
 class SABIO_scraping():
-#     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, scraped_entryids_prefix, sel_raw_data, processed_xls, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, scraped_model_path, bigg_model, step_number, cwd])
+#     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, scraped_entryids_prefix, sel_raw_data, processed_csv, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, scraped_model_path, bigg_model, step_number, cwd])
     
     def __init__(self,
                  bigg_model_path: str,        # the JSON version of the BiGG model
@@ -167,10 +167,10 @@ class SABIO_scraping():
             self.bigg_model_name = re.search("([\w+\.?\s?]+)(?=\.json)", self.paths['bigg_model_path']).group()
             
         # define folder paths
-        self.paths['cwd'] = os.path.dirname(os.path.realpath(self.paths['bigg_model_path']))        #!!! what is the point of the relative path within the directory name?
+        self.paths['cwd'] = os.path.dirname(os.path.realpath(self.paths['bigg_model_path']))  
         self.paths['output_directory'] = os.path.join(self.paths['cwd'],f"scraping-{self.bigg_model_name}")    
         self.paths['processed_data'] = os.path.join(self.paths['output_directory'], 'processed_data') 
-        self.paths['raw_data'] = os.path.join(self.paths['output_directory'], 'downloaded_xls')    
+        self.paths['raw_data'] = os.path.join(self.paths['output_directory'], 'downloaded')    
         if not os.path.isdir(self.paths['output_directory']):        
             os.mkdir(self.paths['output_directory'])
         if not os.path.isdir(self.paths['raw_data']):
@@ -293,7 +293,7 @@ class SABIO_scraping():
     --------------------------------------------------------------------    
     """
 
-    def _scrape_xls(self,reaction_identifier, search_option):
+    def _scrape_csv(self,reaction_identifier, search_option):
         quantity_of_xls_files = len([file for file in glob(os.path.join(self.paths['raw_data'], '*.xls'))])
         
         self.driver.get("http://sabiork.h-its.org/newSearch/index")
@@ -369,12 +369,12 @@ class SABIO_scraping():
         loop = 0
         while new_quantity_of_xls_files != quantity_of_xls_files+1:
             if loop == 0:
-                warnings.warn(f'The {reaction_identifier} match has not downloaded.')
+                warnings.warn(f'The {reaction_identifier} match has not downloaded. We will wait until it downloads.')
             new_quantity_of_xls_files = len([file for file in glob(os.path.join(self.paths['raw_data'], '*.xls'))])
             time.sleep(self.parameters['general_delay'])
             loop += 1
-        time.sleep(self.parameters['general_delay']*10)
         if loop > 0:
+            time.sleep(self.parameters['general_delay']*10)
             string = 'The {} downloaded after {} seconds.'.format(reaction_identifier, self.parameters['general_delay']*(loop+10))
             warnings.warn(string)
 
@@ -509,6 +509,10 @@ class SABIO_scraping():
             df_path += file_extension
         
         os.remove(most_recent)
+        dir = os.path.dirname(df_path)
+        if not os.path.exists(dir):
+            print(f'missing directory {dir} has been created.')
+            os.mkdir(dir)
         df.to_csv(df_path)
         
         # store the matched content for future access during parsing
@@ -570,7 +574,7 @@ class SABIO_scraping():
                 for database in annotation_search_pairs:
                     if database in self.model_contents[enzyme_name]['annotations']:
                         for ID in self.model_contents[enzyme_name]['annotations'][database]:
-                            scraped = self._scrape_xls(ID, annotation_search_pairs[database])
+                            scraped = self._scrape_csv(ID, annotation_search_pairs[database])
                             if scraped:
                                 self._refine_scraped_file(enzyme_name, ID)
                                 self.variables['is_scraped'][enzyme_name] = True
