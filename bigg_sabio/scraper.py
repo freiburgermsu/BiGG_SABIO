@@ -498,8 +498,10 @@ class SABIO_scraping():
         total_dataframes = []
         for file in glob(os.path.join(self.paths['raw_data'], '*.xls')):
             #file_name = os.path.splitext(os.path.basename(file))[0]
-            dfn = pandas.read_excel(file)
-            total_dataframes.append(dfn)
+            size = os.path.getsize(file)
+            if size > 0:
+                dfn = pandas.read_excel(file)
+                total_dataframes.append(dfn)
 
         # All scraped dataframes are combined and duplicate rows are removed
         combined_df = pandas.DataFrame()
