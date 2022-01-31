@@ -1,5 +1,5 @@
 Acquire SABIO-RK Kinetics Data for an arbitrary BiGG model
-___________________________________________________________________________________________
+-------------------------------------------------------------------------
 
 |License|
 
@@ -20,7 +20,7 @@ ________________________________________________________________________________
    :alt: Downloads
 
 
-Reaction kinetics data is a pillar of biochemical research, and particularly computational biology. Sources of this data, however, are infrequently accessible to programmatic workflows, such as Dynamic Flux Balance Analysis (dFBA), which hinders research progress. The ``BiGG_SABIO`` library attempts to bridge this gab by scraping `SABIO-RK <http://sabio.h-its.org/>`_ kinetics data from any BiGG model-formatted JSON file, which is a powerful ability metabolic and dFBA researchers. Examples Notebook are available in the examples directory of the `BiGG_SABIO GitHub repository <https://github.com/freiburgermsu/BiGG_SABIO/examples>`_. Please submit errors, inquiries, or suggestions as `GitHub issues <https://github.com/freiburgermsu/BiGG_SABIO/issues>`_ where they can be addressed.
+Reaction kinetics data is a pillar of biochemical research, and particularly computational biology. Sources of this data, however, are infrequently accessible to programmatic workflows, such as Dynamic Flux Balance Analysis (dFBA), which hinders research progress. The ``BiGG_SABIO`` library attempts to bridge this gab by scraping `SABIO-RK <http://sabio.h-its.org/>`_ kinetics data from any BiGG model-formatted JSON file, which is a powerful ability metabolic and dFBA researchers. SABIO-RK supports this use of this website in its `statement of webservices <http://sabio.h-its.org/layouts/content/webservices.gsp>`_. Examples Notebook are available in the examples directory of the `BiGG_SABIO GitHub repository <https://github.com/freiburgermsu/BiGG_SABIO/examples>`_. Please submit errors, inquiries, or suggestions as `GitHub issues <https://github.com/freiburgermsu/BiGG_SABIO/issues>`_ where they can be addressed.
 
 
 ____________
@@ -34,11 +34,11 @@ Installation
 
  pip install bigg_sabio
 
------------
-__init__
------------
+---------------
+__init__()
+---------------
 
-The scraping is conducted through the ``SABIO_scraping`` object, which has four arguments:
+The scraping is initiated through four arguments:
 
 .. code-block:: python
 
@@ -48,7 +48,53 @@ The scraping is conducted through the ``SABIO_scraping`` object, which has four 
 - *bigg_model_path* ``str``: specifies the path to the JSON file of the BiGG model that will be parsed.
 - *bigg_model_name* ``str``: specifies the name of the BiGG model, which will be used to identify the model and name the output folder directory, where ``None`` defaults the name of the file from the ``bigg_model_path`` parameter.
 - *export_model_content* ``str``: specifies where parsed information about the BiGG model will be  of the SBML file for the `BiGG model <http://bigg.ucsd.edu/>`_ that will be simulated. 
-- *verbose* ``bool``: specifies whether simulation details and calculated values will be printed. This is valuable for trobuleshooting.
+- *verbose* & *printing* ``bool``: specifies whether simulation details (which is valuable for trobuleshooting) and results, respectively, will be printed. 
+
+-------------------
+complete()
+-------------------
+
+The complete scraping process is concisely conducted through a single function, which references the object variables that are defined through the ``__init__()`` function:
+
+.. code-block:: python
+
+ import bigg_sabio
+ bgsb = bigg_sabio.SABIO_scraping(bigg_model_path, bigg_model_name = None, export_model_content = False, verbose = False)
+ bgsb.complete()
+
+
+____________
+
+Individual functions
+-------------------------------------------------------------------------
+The steps of acquiring and processing SABIO data into input files of kinetic data for dFBA simulations can be individual executed on demand. These steps and functions are detailed in the following sections.
+
+
+-------------------
+scrape_bigg_xls()
+-------------------
+
+This function is the first step in BiGG_SABIO workflow, where a Selenium WebDriver is directed through the advanced search options of SABIO and proceeds to download all of the search results that match annotations from the BiGG model. These numerous XLS files, at the end of the scraping process, are concatenated into a spreadsheet with the duplicate rows are removed to yield a complete CSV file of the SABIO kinetics data for the respective BiGG model. The identities and values for each parameter are subsequently scraped, and assembled and downloaded as a separate JSON file.
+
+ 
+-------------------
+to_fba()
+-------------------
+
+This is the final step in BiGG_SABIO workflow, where the complete assemblage of SABIO kinetics data is refined into a structure that is amenable with the `dFBAy <https://github.com/freiburgermsu/dFBApy>`_ module. 
+
+
+--------------------------------------
+Executing the individual functions
+--------------------------------------
+The individual functions can be executed through the following sequence:
+
+.. code-block:: python
+
+ import bigg_sabio
+ bgsb = bigg_sabio.SABIO_scraping(bigg_model_path, bigg_model_name = None, export_model_content = False, verbose = False)
+ bgsb.scrape_bigg_xls()
+ bgsb.to_fba()
 
 
 ____________

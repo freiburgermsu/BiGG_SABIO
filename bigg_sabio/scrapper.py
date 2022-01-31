@@ -8,11 +8,11 @@ from selenium import webdriver
 
 from scipy.constants import minute, hour, milli, nano, micro
 from pprint import pprint
-from shutil import rmtree
 from glob import glob
-import numpy as np
+from math import floor
 import datetime
 import pandas
+import numpy
 import warnings, json, time, re, os
 
 
@@ -53,25 +53,25 @@ def average(num_1, num_2 = None):
 class NumpyEncoder(json.JSONEncoder):     # sourced from https://github.com/hmallen/numpyencoder
     """ Custom encoder for numpy data types """
     def default(self, obj):
-        if isinstance(obj, (np.int_, np.intc, np.intp, np.int8,
-                            np.int16, np.int32, np.int64, np.uint8,
-                            np.uint16, np.uint32, np.uint64)):
+        if isinstance(obj, (numpy.int_, numpy.intc, numpy.intp, numpy.int8,
+                            numpy.int16, numpy.int32, numpy.int64, numpy.uint8,
+                            numpy.uint16, numpy.uint32, numpy.uint64)):
 
             return int(obj)
 
-        elif isinstance(obj, (np.float_, np.float16, np.float32, np.float64)):
+        elif isinstance(obj, (numpy.float_, numpy.float16, numpy.float32, numpy.float64)):
             return float(obj)
 
-        elif isinstance(obj, (np.complex_, np.complex64, np.complex128)):
+        elif isinstance(obj, (numpy.complex_, numpy.complex64, numpy.complex128)):
             return {'real': obj.real, 'imag': obj.imag}
 
-        elif isinstance(obj, (np.ndarray,)):
+        elif isinstance(obj, (numpy.ndarray,)):
             return obj.tolist()
 
-        elif isinstance(obj, (np.bool_)):
+        elif isinstance(obj, (numpy.bool_)):
             return bool(obj)
 
-        elif isinstance(obj, (np.void)): 
+        elif isinstance(obj, (numpy.void)): 
             return None
 
         return json.JSONEncoder.default(self, obj)
@@ -181,7 +181,7 @@ class SABIO_scraping():
         # define file paths
         self.paths['progress_path'] = os.path.join(self.paths['output_directory'], "current_progress.txt")
         self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
-        self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "00_concatenated_data.csv")
+        self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "concatenated_data.csv")
         self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
         self.paths['scraped_entryids'] = os.path.join(self.paths['processed_data'], "scraped_entryids.json")
         self.paths['entryids_path'] = os.path.join(self.paths['processed_data'], "entryids.json")
@@ -280,17 +280,15 @@ class SABIO_scraping():
             if self.step_number == 1:
                 self.scrape_bigg_xls()
             elif self.step_number == 2:
-                self.scrape_entryids()
-            elif self.step_number == 3:
                 self.to_fba()
                 break
         print("Execution complete.")
         # os.remove(self.paths['progress_path'])
         
     """
-    --------------------------------------------------------------------
+    ---------------------------------------------------------------------------------------------------------
         STEP 1: SCRAPE SABIO WEBSITE BY DOWNLOAD XLS FOR GIVEN REACTIONS IN BIGG MODEL
-    --------------------------------------------------------------------    
+    ---------------------------------------------------------------------------------------------------------    
     """
 
     def _scrape_csv(self,reaction_identifier, search_option):
@@ -302,7 +300,7 @@ class SABIO_scraping():
 
         self._click_element_id("resetbtn")        
         
-        time.sleep(self.parameters['general_delay'])
+        time.sleep(self.parameters['general_delay']*2)
         
         self._click_element_id("option")
         self._select_dropdown_id("searchterms", search_option)
@@ -320,8 +318,7 @@ class SABIO_scraping():
             result_num_ele = self.driver.find_element_by_id("numberofKinLaw")
             for char in result_num_ele.text:
                 if re.search('[0-9]', char):
-                    result_num = result_num + char
-
+                    result_num += char
             result_num = int(result_num)
         except:
             #self.driver.close()
@@ -340,8 +337,12 @@ class SABIO_scraping():
             self._click_element_id("allCheckbox")
             time.sleep(self.parameters['general_delay'])
         elif result_num > 100:
+            loops = floor(result_num/100)
+            if result_num % 100 == 0:
+                loops -= 1
+            
             self._click_element_id("allCheckbox")
-            for i in range(int(result_num/100)):
+            for i in range(loops):
                 element = self.driver.find_element_by_xpath("//*[@class = 'nextLink']")
                 element.click()
                 time.sleep(self.parameters['general_delay'])
@@ -369,14 +370,15 @@ class SABIO_scraping():
         loop = 0
         while new_quantity_of_xls_files != quantity_of_xls_files+1:
             if loop == 0:
-                warnings.warn(f'The {reaction_identifier} match has not downloaded. We will wait until it downloads.')
+                print(f'The search result for {reaction_identifier} has not downloaded. We will wait until it downloads.')
             new_quantity_of_xls_files = len([file for file in glob(os.path.join(self.paths['raw_data'], '*.xls'))])
             time.sleep(self.parameters['general_delay'])
             loop += 1
         if loop > 0:
-            time.sleep(self.parameters['general_delay']*10)
-            string = 'The {} downloaded after {} seconds.'.format(reaction_identifier, self.parameters['general_delay']*(loop+10))
-            warnings.warn(string)
+            time.sleep(self.parameters['general_delay']*30)
+            if self.verbose:
+                string = 'The search result for {} downloaded after {} seconds.'.format(reaction_identifier, self.parameters['general_delay']*loop)
+                print(string)
 
         return True
     
@@ -522,8 +524,15 @@ class SABIO_scraping():
     def _glob_csv(self,):
 #         scraped_sans_parentheses_enzymes = glob('./{}/*.xls'.format(self.paths['raw_data']))
         total_dataframes = []
-        original_files = glob(os.path.join(self.paths['raw_data'], '*.csv')) 
-        for file in original_files:
+        
+        original_csvs = glob(os.path.join(self.paths['raw_data'], '*.csv')) 
+        for file in original_csvs:
+            #file_name = os.path.splitext(os.path.basename(file))[0]
+            dfn = pandas.read_csv(file)
+            total_dataframes.append(dfn)
+            
+        remaining_xls = glob(os.path.join(self.paths['raw_data'], '*.xls')) 
+        for file in remaining_xls:
             #file_name = os.path.splitext(os.path.basename(file))[0]
             dfn = pandas.read_excel(file)
             total_dataframes.append(dfn)
@@ -534,77 +543,14 @@ class SABIO_scraping():
         combined_df = combined_df.fillna('')
         combined_df = combined_df.drop_duplicates()
 
-        # export the dataframe
-        combined_df.to_csv(self.paths['concatenated_data'])
-        for file in original_files:
+        # remove the individual dataframes
+        for file in original_csvs.extend(remaining_xls):
             os.remove(file)
         
-        # update the step counter
-        self._progress_update(self.step_number)
+        # export the concatenated dataframe
+        combined_df.to_csv(self.paths['concatenated_data'])
+        print(f'SABIO data has been concatenated.')
         
-
-    def scrape_bigg_xls(self,):        
-        self._open_driver()
-        # estimate the time to scrape the XLS files
-        minutes_per_enzyme = 3*minute
-        scraping_time = minutes_per_enzyme * len(self.model['reactions'])
-        estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)     
-        print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
-        
-        # scrape SABIO data based upon various search parameters
-        self.count = len(self.variables["is_scraped"])
-        annotation_search_pairs = {
-                "sabiork":"SabioReactionID", 
-                "metanetx.reaction":"MetaNetXReactionID",
-                "ec-code":"ECNumber", 
-                "kegg.reaction":"KeggReactionID",
-                "rhea":"RheaReactionID"
-                }
-        self.bigg_sabio_enzymes = {}
-        self.id_bigg_matches = {}
-        for enzyme in self.model['reactions']:            
-            # search SABIO for reaction kinetics
-#            enzyme_name = enzyme['name'].replace("\"", "")
-            enzyme_name = enzyme['name']
-            if not enzyme_name in self.variables['is_scraped']:
-                self.variables['is_scraped'][enzyme_name] = False
-                annotation_search_pairs.update({
-                        enzyme_name:"Enzymename"
-                        })
-                for database in annotation_search_pairs:
-                    if database in self.model_contents[enzyme_name]['annotations']:
-                        for ID in self.model_contents[enzyme_name]['annotations'][database]:
-                            scraped = self._scrape_csv(ID, annotation_search_pairs[database])
-                            if scraped:
-                                self._refine_scraped_file(enzyme_name, ID)
-                                self.variables['is_scraped'][enzyme_name] = True
-#                                    self._change_enzyme_name(enzyme_name)
-                    
-                self.count += 1
-                print("\nReaction: " + str(self.count) + "/" + str(len(self.model['reactions'])), end='\r')
-            else:
-                print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
-
-            # tracks scraping progress
-            with open(self.paths['is_scraped'], 'w') as outfile:
-                json.dump(self.variables['is_scraped'], outfile, indent = 4)   
-                outfile.close()
-                
-        if self.export_model_content:
-            with open(self.paths['model_contents'], 'w') as out:
-                json.dump(self.model_contents, out, indent = 3)
-                
-        # update the step counter
-        self._glob_csv()
-        print(f'SABIO data has been downloaded and concatenated.')
-        self.step_number = 2
-        self._progress_update(self.step_number)
-
-    """
-    --------------------------------------------------------------------
-        STEP 2: SCRAPE ADDITIONAL DATA BY ENTRYID
-    --------------------------------------------------------------------    
-    """
 
     def _scrape_entry_id(self,entry_id):
         entry_id = str(entry_id)  
@@ -668,10 +614,10 @@ class SABIO_scraping():
             parameters_json[parameter_name] = inner_parameters_json
         return parameters_json
 
-    def scrape_entryids(self,):
+    def _scrape_entryids(self,):
         self._open_driver()
         if 'concatenated_data' not in self.paths:
-            self.paths['concatenated_data'] = os.path.join(self.paths['output_directory'], "00_concatenated_data.csv")
+            self.paths['concatenated_data'] = os.path.join(self.paths['output_directory'], "concatenated_data.csv")
         
         self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
         entryids = self.sabio_df["EntryID"].unique().tolist()
@@ -714,13 +660,73 @@ class SABIO_scraping():
                 print(f'Scraped entryID: {entryid}')
         
         # update the step counter
-        print(f'The parameter specifications have been scraped.')
-        self.step_number = 3
+        print(f'The parameter specifications for each entryid have been scraped.')
+        
+
+    def scrape_bigg_xls(self,):        
+        self._open_driver()
+        # estimate the time to scrape the XLS files
+        minutes_per_enzyme = 3*minute
+        scraping_time = minutes_per_enzyme * len(self.model['reactions'])
+        estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)     
+        print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
+        
+        # scrape SABIO data based upon various search parameters
+        self.count = len(self.variables["is_scraped"])
+        annotation_search_pairs = {
+                "sabiork":"SabioReactionID", 
+                "metanetx.reaction":"MetaNetXReactionID",
+                "ec-code":"ECNumber", 
+                "kegg.reaction":"KeggReactionID",
+                "rhea":"RheaReactionID"
+                }
+        self.bigg_sabio_enzymes = {}
+        self.id_bigg_matches = {}
+        for enzyme in self.model['reactions']:            
+            # search SABIO for reaction kinetics
+#            enzyme_name = enzyme['name'].replace("\"", "")
+            enzyme_name = enzyme['name']
+            if not enzyme_name in self.variables['is_scraped']:
+                self.variables['is_scraped'][enzyme_name] = False
+                annotation_search_pairs.update({
+                        enzyme_name:"Enzymename"
+                        })
+                for database in annotation_search_pairs:
+                    if database in self.model_contents[enzyme_name]['annotations']:
+                        for ID in self.model_contents[enzyme_name]['annotations'][database]:
+                            scraped = self._scrape_csv(ID, annotation_search_pairs[database])
+                            if scraped:
+                                self.variables['is_scraped'][enzyme_name] = True
+                                try:                               
+                                    self._refine_scraped_file(enzyme_name, ID)
+                                except:
+                                    warnings.warn(f'The downloaded XLS file for {enzyme_name} and the {ID} ID could not be opened.')
+#                                self._change_enzyme_name(enzyme_name)
+                    
+                self.count += 1
+                print(f"\nReaction: {self.count}/{len(self.model['reactions'])}\t{datetime.datetime.now()}", end='\r')
+            else:
+                print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
+
+            # tracks scraping progress
+            with open(self.paths['is_scraped'], 'w') as outfile:
+                json.dump(self.variables['is_scraped'], outfile, indent = 4)   
+                outfile.close()
+                
+        if self.export_model_content:
+            with open(self.paths['model_contents'], 'w') as out:
+                json.dump(self.model_contents, out, indent = 3)
+                
+        # process the data
+        print(f'SABIO data has been downloaded.')
+        self._glob_csv()
+        self._scrape_entryids()
+        self.step_number = 2
         self._progress_update(self.step_number)
 
     """
     --------------------------------------------------------------------
-        STEP 3: COMBINE XLS AND ENTRYID DATA INTO A SINGLE JSON FILE
+        STEP 2: COMBINE XLS AND ENTRYID DATA INTO A SINGLE JSON FILE
     --------------------------------------------------------------------
     """   
     
