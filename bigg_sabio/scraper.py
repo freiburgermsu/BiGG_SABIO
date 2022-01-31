@@ -600,7 +600,7 @@ class SABIO_scraping():
                 if df[0][0] == "Parameter":
                     reaction_parameters_df = table_df[counter]
             except:
-                self.driver.close()
+                self.driver.get("http://sabiork.h-its.org/newSearch/index")
                 return parameters_json
             counter += 1
             

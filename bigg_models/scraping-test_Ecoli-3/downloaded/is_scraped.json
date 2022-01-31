@@ -7,5 +7,7 @@
     "Acetaldehyde dehydrogenase (acetylating)": true,
     "2 oxoglutarate reversible transport via symport": false,
     "Phosphoglycerate mutase": true,
-    "Phosphate reversible transport via symport": false
+    "Phosphate reversible transport via symport": false,
+    "Alcohol dehydrogenase (ethanol)": true,
+    "Acetaldehyde reversible transport": false
 }
