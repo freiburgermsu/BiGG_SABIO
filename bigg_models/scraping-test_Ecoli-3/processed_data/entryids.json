@@ -45510,5 +45510,146 @@
             "unit": "mM",
             "comment": "-"
         }
+    },
+    "26094": {
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "B": {
+            "type": "concentration",
+            "species": "R-(-)-Heptan-2-ol",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "7.4",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "kcatKm": {
+            "type": "kcat/Km",
+            "species": "R-(-)-Heptan-2-ol",
+            "start val.": "11.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM^(-1)*s^(-1)",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "R-(-)-Heptan-2-ol",
+            "start val.": "0.66",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "26095": {
+        "B": {
+            "type": "concentration",
+            "species": "S-(+)-Heptan-2-ol",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "1.7",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "kcatKm": {
+            "type": "kcat/Km",
+            "species": "S-(+)-Heptan-2-ol",
+            "start val.": "0.26",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM^(-1)*s^(-1)",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "S-(+)-Heptan-2-ol",
+            "start val.": "6.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
+    },
+    "26096": {
+        "B": {
+            "type": "concentration",
+            "species": "R-(-)-Octan-2-ol",
+            "start val.": "0.05",
+            "end val.": "100.0",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "A": {
+            "type": "concentration",
+            "species": "NAD+",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        },
+        "kcat": {
+            "type": "kcat",
+            "species": "-",
+            "start val.": "8.1",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "s^(-1)",
+            "comment": "-"
+        },
+        "kcatKm": {
+            "type": "kcat/Km",
+            "species": "R-(-)-Octan-2-ol",
+            "start val.": "16.2",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM^(-1)*s^(-1)",
+            "comment": "-"
+        },
+        "Km": {
+            "type": "Km",
+            "species": "R-(-)-Octan-2-ol",
+            "start val.": "0.5",
+            "end val.": "-",
+            "deviat.": "-",
+            "unit": "mM",
+            "comment": "-"
+        }
     }
 }

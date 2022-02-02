@@ -123,7 +123,7 @@ class CaseInsensitiveDict(dict):        # sourced from https://stackoverflow.com
 
 
 class SABIO_scraping():
-#     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, scraped_entryids_prefix, sel_raw_data, processed_csv, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, scraped_model_path, bigg_model, step_number, cwd])
+#     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, is_scraped_entryids_prefix, sel_raw_data, processed_csv, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, is_scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, scraped_model_path, bigg_model, step_number, cwd])
     
     def __init__(self,
                  bigg_model_path: str,        # the JSON version of the BiGG model
@@ -145,7 +145,7 @@ class SABIO_scraping():
         
         self.variables = {}
         self.variables['is_scraped'] = {}
-        self.variables['scraped_entryids'] = {}
+        self.variables['is_scraped_entryids'] = {}
         self.variables['entryids'] = {}
         
         # load BiGG dictionary content 
@@ -184,7 +184,7 @@ class SABIO_scraping():
         self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
         self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "concatenated_data.csv")
         self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
-        self.paths['scraped_entryids'] = os.path.join(self.paths['processed_data'], "scraped_entryids.json")
+        self.paths['is_scraped_entryids'] = os.path.join(self.paths['processed_data'], "is_scraped_entryids.json")
         self.paths['entryids_path'] = os.path.join(self.paths['processed_data'], "entryids.json")
         self.paths['model_contents'] = os.path.join(self.paths['processed_data'], f'processed_{self.bigg_model_name}_model.json')
         
@@ -254,9 +254,12 @@ class SABIO_scraping():
             with open(self.paths['is_scraped'], 'r') as f:
                 self.variables['is_scraped'] = json.load(f)
 
-        if os.path.exists(self.paths['scraped_entryids']):
-            with open(self.paths['scraped_entryids'], 'r') as f:
-                self.variables['scraped_entryids'] = json.load(f)
+        if os.path.exists(self.paths['is_scraped_entryids']):
+            with open(self.paths['is_scraped_entryids'], 'r') as f:
+                try:
+                    self.variables['is_scraped_entryids'] = json.load(f)
+                except:
+                    raise ImportError('The < entryids.json > file is corrupted or empty.')
         
         if os.path.exists(self.paths['entryids_path']):
             with open(self.paths['entryids_path'], 'r') as f:
@@ -602,7 +605,7 @@ class SABIO_scraping():
                 break
             except:
                 if delay == 59:
-                    return {'none':None}
+                    return {'content':None}
                 time.sleep(self.parameters['general_delay'])
 
         element = self.driver.find_element_by_xpath("//table")
@@ -632,12 +635,9 @@ class SABIO_scraping():
 
     def _scrape_entryids(self,):
         self._open_driver()
-        if not os.path.exists(self.variables['scraped_entryids']):
-            self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
-            entryids = self.sabio_df["EntryID"].unique().tolist()
-        else:
-            with open(self.variables['scraped_entryids']) as previous_data:
-                entryids = list(json.load(previous_data).keys())
+        self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
+        self._previous_scrape()
+        entryids = self.sabio_df["EntryID"].unique().tolist()
         
         # estimate the time to scrape the the entryids
         minutes_per_enzyme = 0.5*minute
@@ -646,35 +646,36 @@ class SABIO_scraping():
         print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
         
         for entryid in entryids:
-            if not str(entryid) in self.variables['entryids']:
+            entryid = str(entryid)
+            if not entryid in self.variables['is_scraped_entryids']:
                 # only entries that possess calculable units will be processed and accepted
-                self.variables['scraped_entryids'][str(entryid)] = "erroneous"
+                self.variables['is_scraped_entryids'][entryid] = "erroneous"
                 parameters = self._scrape_entry_id(entryid)
                 for param in parameters:
                     if not 'unit' in parameters[param]:
-                        self.variables['scraped_entryids'][str(entryid)] = "missing_unit"
+                        self.variables['is_scraped_entryids'][entryid] = "missing_unit"
                     elif parameters[param]['unit'] == '-':
-                        self.variables['scraped_entryids'][str(entryid)] = "missing_unit"
+                        self.variables['is_scraped_entryids'][entryid] = "missing_unit"
                     elif parameters[param]['start val.'] == '-' and parameters[param]['end val.'] == '-':
-                        self.variables['scraped_entryids'][str(entryid)] = "missing_values"   
+                        self.variables['is_scraped_entryids'][entryid] = "missing_values"   
                     else:
-                        self.variables['scraped_entryids'][str(entryid)] = "acceptable"
+                        self.variables['is_scraped_entryids'][entryid] = "acceptable"
                         
-                if self.variables['scraped_entryids'][str(entryid)] == 'acceptable':
-                    self.variables['entryids'][str(entryid)] = parameters
+                if self.variables['is_scraped_entryids'][entryid] == 'acceptable':
+                    self.variables['entryids'][entryid] = parameters
                                     
-                    with open(self.paths["scraped_entryids"], 'w') as outfile:
-                        json.dump(self.variables['scraped_entryids'], outfile, indent = 4)   
+                    with open(self.paths["is_scraped_entryids"], 'w') as outfile:
+                        json.dump(self.variables['is_scraped_entryids'], outfile, indent = 4)   
                         outfile.close()
                     with open(self.paths["entryids_path"], 'w') as f:
                         json.dump(self.variables['entryids'], f, indent = 4)        
                         f.close()    
                 else:
                     if self.verbose:
-                        print(entryid, self.variables['scraped_entryids'][str(entryid)])
+                        print(entryid, self.variables['is_scraped_entryids'][entryid])
                         pprint(parameters[param])
                         
-                print(f'Scraped entryID {entryids.index(entryid)}/{len(entryids)}')
+                print(f'Scraped entryID {entryids.index(int(entryid))}/{len(entryids)}')
         
         # update the step counter
         print(f'The parameter specifications for each entryid have been scraped.')
