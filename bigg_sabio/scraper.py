@@ -596,7 +596,7 @@ class SABIO_scraping():
         time.sleep(self.parameters['general_delay'])
         
         self.driver.switch_to.frame(self.driver.find_element_by_xpath("//iframe[@name='iframe_" + entry_id + "']"))
-        while True:
+        for delay in range(60):
             try:
                 element = self.driver.find_element_by_xpath("//table")                
                 break
@@ -630,14 +630,15 @@ class SABIO_scraping():
 
     def _scrape_entryids(self,):
         self._open_driver()
-        if 'concatenated_data' not in self.paths:
-            self.paths['concatenated_data'] = os.path.join(self.paths['output_directory'], "concatenated_data.csv")
-        
-        self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
-        entryids = self.sabio_df["EntryID"].unique().tolist()
+        if not os.path.exists(self.variables['scraped_entryids']):
+            self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
+            entryids = self.sabio_df["EntryID"].unique().tolist()
+        else:
+            with open(self.variables['scraped_entryids']) as previous_data:
+                entryids = list(json.load(previous_data).keys())
         
         # estimate the time to scrape the the entryids
-        minutes_per_enzyme = 2*minute
+        minutes_per_enzyme = 0.5*minute
         scraping_time = minutes_per_enzyme * len(entryids)
         estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)          # approximately 1 minute per enzyme for Step 1
         print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
@@ -671,7 +672,7 @@ class SABIO_scraping():
                         print(entryid, self.variables['scraped_entryids'][str(entryid)])
                         pprint(parameters[param])
                         
-                print(f'Scraped entryID {entryids.index(entryis)}/{len(entryids)}')
+                print(f'Scraped entryID {entryids.index(entryid)}/{len(entryids)}')
         
         # update the step counter
         print(f'The parameter specifications for each entryid have been scraped.')

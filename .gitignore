@@ -131,4 +131,4 @@ dmypy.json
 # BiGG databases and scraping brainstorming
 bigg_databases/
 scraping/
-bigg_models/scraping-test*
+bigg_models/scraping*
