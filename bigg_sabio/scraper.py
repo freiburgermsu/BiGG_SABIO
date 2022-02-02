@@ -601,6 +601,8 @@ class SABIO_scraping():
                 element = self.driver.find_element_by_xpath("//table")                
                 break
             except:
+                if delay == 59:
+                    return {'none':None}
                 time.sleep(self.parameters['general_delay'])
 
         element = self.driver.find_element_by_xpath("//table")
