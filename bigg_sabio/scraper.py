@@ -8,6 +8,7 @@ from selenium import webdriver
 
 from scipy.constants import minute, hour, milli, nano, micro
 from pprint import pprint
+from chardet import detect
 from glob import glob
 from math import floor
 import datetime
@@ -265,6 +266,8 @@ class SABIO_scraping():
                     raise ImportError('The < entryids.json > file is corrupted or empty.')
                 
     def _open_driver(self,):
+        self.options = Options()
+        self.options.headless = True
         self.fp = webdriver.FirefoxProfile(os.path.join(self.paths['root_path'],"l2pnahxq.scraper"))
         self.fp.set_preference("browser.download.folderList", 2)
         self.fp.set_preference("browser.download.manager.showWhenStarting", False)
@@ -526,15 +529,25 @@ class SABIO_scraping():
         total_dataframes = []
         
         original_csvs = glob(os.path.join(self.paths['raw_data'], '*.csv')) 
-        for file in original_csvs:
-            #file_name = os.path.splitext(os.path.basename(file))[0]
-            dfn = pandas.read_csv(file)
+        for path in original_csvs:
+            size = os.path.getsize(path)
+            if size > 0:
+                with open(path, 'rb') as file:
+                    encoding = detect(file.read())['encoding']
+                    if encoding is None:
+                        encoding = 'utf-8'
+            dfn = pandas.read_csv(path)
             total_dataframes.append(dfn)
             
         remaining_xls = glob(os.path.join(self.paths['raw_data'], '*.xls')) 
-        for file in remaining_xls:
-            #file_name = os.path.splitext(os.path.basename(file))[0]
-            dfn = pandas.read_excel(file)
+        for path in remaining_xls:
+            size = os.path.getsize(path)
+            if size > 0:
+                with open(path, 'rb') as file:
+                    encoding = detect(file.read())['encoding']
+                    if encoding is None:
+                        encoding = 'utf-8'
+            dfn = pandas.read_excel(path)
             total_dataframes.append(dfn)
 
         # All scraped dataframes are combined and duplicate rows are removed
@@ -544,7 +557,8 @@ class SABIO_scraping():
         combined_df = combined_df.drop_duplicates()
 
         # remove the individual dataframes
-        for file in original_csvs.extend(remaining_xls):
+        total_files = original_csvs+remaining_xls
+        for file in total_files:
             os.remove(file)
         
         # export the concatenated dataframe
@@ -575,7 +589,7 @@ class SABIO_scraping():
         
         self._click_element_id("addsearch")
         
-        time.sleep(self.parameters['general_delay'])
+        time.sleep(self.parameters['general_delay']*2)
         
         self._click_element_id(entry_id + "img")
         
@@ -657,7 +671,7 @@ class SABIO_scraping():
                         print(entryid, self.variables['scraped_entryids'][str(entryid)])
                         pprint(parameters[param])
                         
-                print(f'Scraped entryID: {entryid}')
+                print(f'Scraped entryID {entryids.index(entryis)}/{len(entryids)}')
         
         # update the step counter
         print(f'The parameter specifications for each entryid have been scraped.')
@@ -666,7 +680,7 @@ class SABIO_scraping():
     def scrape_bigg_xls(self,):        
         self._open_driver()
         # estimate the time to scrape the XLS files
-        minutes_per_enzyme = 3*minute
+        minutes_per_enzyme = 0.016*minute
         scraping_time = minutes_per_enzyme * len(self.model['reactions'])
         estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)     
         print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
@@ -704,7 +718,7 @@ class SABIO_scraping():
 #                                self._change_enzyme_name(enzyme_name)
                     
                 self.count += 1
-                print(f"\nReaction: {self.count}/{len(self.model['reactions'])}\t{datetime.datetime.now()}", end='\r')
+                print(f"\nCompleted reaction: {self.count}/{len(self.model['reactions'])}\t{datetime.datetime.now()}", end='\r')
             else:
                 print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
 

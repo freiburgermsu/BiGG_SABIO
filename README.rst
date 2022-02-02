@@ -47,7 +47,7 @@ The scraping is initiated through four arguments:
 
 - *bigg_model_path* ``str``: specifies the path to the JSON file of the BiGG model that will be parsed.
 - *bigg_model_name* ``str``: specifies the name of the BiGG model, which will be used to identify the model and name the output folder directory, where ``None`` defaults the name of the file from the ``bigg_model_path`` parameter.
-- *export_model_content* ``str``: specifies where parsed information about the BiGG model will be  of the SBML file for the `BiGG model <http://bigg.ucsd.edu/>`_ that will be simulated. 
+- *export_model_content* ``bool``: specifies where parsed information about the BiGG model will be  of the SBML file for the `BiGG model <http://bigg.ucsd.edu/>`_ that will be simulated. 
 - *verbose* & *printing* ``bool``: specifies whether simulation details (which is valuable for trobuleshooting) and results, respectively, will be printed. 
 
 -------------------
