@@ -184,9 +184,9 @@ class SABIO_scraping():
         self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
         self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "concatenated_data.csv")
         self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
-        self.paths['is_scraped_entryids'] = os.path.join(self.paths['processed_data'], "is_scraped_entryids.json")
-        self.paths['entryids_path'] = os.path.join(self.paths['processed_data'], "entryids.json")
-        self.paths['model_contents'] = os.path.join(self.paths['processed_data'], f'processed_{self.bigg_model_name}_model.json')
+        self.paths['is_scraped_entryids'] = os.path.join(self.paths['raw_data'], "is_scraped_entryids.json")
+        self.paths['entryids_path'] = os.path.join(self.paths['raw_data'], "entryids.json")
+        self.paths['model_contents'] = os.path.join(self.paths['raw_data'], f'processed_{self.bigg_model_name}_model.json')
         
         # parse the model contents 
         self._progress_update(self.step_number)
@@ -595,7 +595,7 @@ class SABIO_scraping():
         
         self._click_element_id("addsearch")
         
-        time.sleep(self.parameters['general_delay']*2)
+        time.sleep(self.parameters['general_delay']*3)
         
         self._click_element_id(entry_id + "img")
         
@@ -678,7 +678,7 @@ class SABIO_scraping():
                         print(entryid, self.variables['is_scraped_entryids'][entryid])
                         pprint(parameters[param])
                         
-                print(f'\rScraped entryID {entryids.index(int(entryid))}/{len(entryids)}', end='')
+                print(f'\rScraped entryID {entryids.index(int(entryid))}/{len(entryids)}\t{datetime.datetime.now()}', end='')
         
         # update the step counter
         print(f'The parameter specifications for each entryid have been scraped.')
