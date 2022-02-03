@@ -132,3 +132,6 @@ dmypy.json
 bigg_databases/
 scraping/
 bigg_models/scraping*
+
+# errors
+errors/*

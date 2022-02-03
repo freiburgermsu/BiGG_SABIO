@@ -586,6 +586,9 @@ class SABIO_scraping():
         self._click_element_id("option")
         self._select_dropdown_id("searchterms", "EntryID")
         text_area = self.driver.find_element_by_id("searchtermField")
+        
+        time.sleep(self.parameters['general_delay'])
+        
         text_area.send_keys(entry_id)
         
         time.sleep(self.parameters['general_delay'])
@@ -675,7 +678,7 @@ class SABIO_scraping():
                         print(entryid, self.variables['is_scraped_entryids'][entryid])
                         pprint(parameters[param])
                         
-                print(f'Scraped entryID {entryids.index(int(entryid))}/{len(entryids)}')
+                print(f'\rScraped entryID {entryids.index(int(entryid))}/{len(entryids)}', end='')
         
         # update the step counter
         print(f'The parameter specifications for each entryid have been scraped.')
@@ -722,7 +725,7 @@ class SABIO_scraping():
 #                                self._change_enzyme_name(enzyme_name)
                     
                 self.count += 1
-                print(f"\nCompleted reaction: {self.count}/{len(self.model['reactions'])}\t{datetime.datetime.now()}", end='\r')
+                print(f"\rCompleted reaction: {self.count}/{len(self.model['reactions'])}\t{datetime.datetime.now()}", end='')
             else:
                 print(f'< {enzyme_name} > was either already scraped, or is duplicated in the model.')
 
