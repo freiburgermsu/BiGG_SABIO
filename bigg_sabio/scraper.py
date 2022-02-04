@@ -595,9 +595,14 @@ class SABIO_scraping():
         
         self._click_element_id("addsearch")
         
-        time.sleep(self.parameters['general_delay']*3)
-        
-        self._click_element_id(entry_id + "img")
+        for delay in range(60):
+            try:
+                self._click_element_id(entry_id + "img")              
+                break
+            except:
+                if delay == 59:
+                    return {'content':None}
+                time.sleep(self.parameters['general_delay'])
         
         time.sleep(self.parameters['general_delay'])
         
@@ -654,15 +659,16 @@ class SABIO_scraping():
                 # only entries that possess calculable units will be processed and accepted
                 self.variables['is_scraped_entryids'][entryid] = "erroneous"
                 parameters = self._scrape_entry_id(entryid)
-                for param in parameters:
-                    if not 'unit' in parameters[param]:
-                        self.variables['is_scraped_entryids'][entryid] = "missing_unit"
-                    elif parameters[param]['unit'] == '-':
-                        self.variables['is_scraped_entryids'][entryid] = "missing_unit"
-                    elif parameters[param]['start val.'] == '-' and parameters[param]['end val.'] == '-':
-                        self.variables['is_scraped_entryids'][entryid] = "missing_values"   
-                    else:
-                        self.variables['is_scraped_entryids'][entryid] = "acceptable"
+                if parameters is not None:
+                    for param in parameters:
+                        if not 'unit' in parameters[param]:
+                            self.variables['is_scraped_entryids'][entryid] = "missing_unit"
+                        elif parameters[param]['unit'] == '-':
+                            self.variables['is_scraped_entryids'][entryid] = "missing_unit"
+                        elif parameters[param]['start val.'] == '-' and parameters[param]['end val.'] == '-':
+                            self.variables['is_scraped_entryids'][entryid] = "missing_values"   
+                        else:
+                            self.variables['is_scraped_entryids'][entryid] = "acceptable"
                         
                 if self.variables['is_scraped_entryids'][entryid] == 'acceptable':
                     self.variables['entryids'][entryid] = parameters
@@ -676,7 +682,7 @@ class SABIO_scraping():
                 else:
                     if self.verbose:
                         print(entryid, self.variables['is_scraped_entryids'][entryid])
-                        pprint(parameters[param])
+                        pprint(parameters)
                         
                 print(f'\rScraped entryID {entryids.index(int(entryid))}/{len(entryids)}\t{datetime.datetime.now()}', end='')
         
