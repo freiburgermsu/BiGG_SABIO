@@ -19,17 +19,20 @@ import warnings, json, time, re, os
 
 def isnumber(string):
     try:
-        string = str(string)
-        string = string.strip()
-        if re.sub('([0-9\.])', '',string) == '':
-            return True
+        num = float(string)
+        return num
     except:
-        return False
+        try:
+            num = int(string)
+            return num
+        except:
+            return False
+        
     
 def average(num_1, num_2 = None):
     if isnumber(num_1): 
         if isnumber(num_2):
-            numbers = [num_1, num_2]
+            numbers = [isnumber(num_1), isnumber(num_2)]
             return sum(numbers) / len(numbers)
         else:
             return num_1
@@ -41,11 +44,11 @@ def average(num_1, num_2 = None):
                 total += 1
         if total > 0:
             return summation/total
-        raise None # ValueError('The arguments must be numbers or a list of numbers')
+        return None # raise ValueError(f'The arguments {num_1} & {num_2} must be numbers or a list of numbers')
     elif isnumber(num_2):
         return num_2
     else:
-        raise None # ValueError('The arguments must be numbers or a list of numbers')
+        return None # raise ValueError(f'The arguments {num_1} & {num_2} must be numbers or a list of numbers')
     
     
     
@@ -181,7 +184,7 @@ class SABIO_scraping():
         
         # define file paths
         self.paths['progress_path'] = os.path.join(self.paths['output_directory'], "current_progress.txt")
-        self.paths['scraped_model_path'] = os.path.join(self.paths['output_directory'], "scraped_model.json")
+        self.paths['scraped_model_path'] = os.path.join(self.paths['processed_data'], "scraped_model.json")
         self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "concatenated_data.csv")
         self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
         self.paths['is_scraped_entryids'] = os.path.join(self.paths['raw_data'], "is_scraped_entryids.json")
@@ -433,6 +436,14 @@ class SABIO_scraping():
                 met_name = re.sub(' ', '_', met_name)
             return met_name
         
+        def name_refinement(met_name):
+            if met_name == 'NAD\+':
+                met_name = 'Nicotinamide adenine dinucleotide'
+            elif met_name == 'NADH':
+                met_name = 'Nicotinamide adenine dinucleotide - reduced'
+                
+            return met_name
+        
         def parsing_chemical_list(chemical_list):
             bigg_chemicals = []
             sabio_chemicals = []
@@ -440,6 +451,7 @@ class SABIO_scraping():
                 if not re.search('[A-Za-z]', met):
                     continue
                 met, coefficient = met_parsing(met)
+                met = name_refinement(met)
                 
                 # assign the proper chemical names
                 if not sabio:
@@ -449,7 +461,7 @@ class SABIO_scraping():
                     else:
                         bigg_chemicals.append(coefficient + reformat_met_name(self.bigg_to_sabio_metabolites[met]['name']))
                 elif sabio:
-                    sabio_chemicals.append(coefficient + reformat_met_name(met, True))               
+                    sabio_chemicals.append(coefficient + reformat_met_name(met, True))    
                     if met in self.sabio_insensitive:
                         if 'bigg_name' in self.sabio_insensitive.get(met):
                             bigg_chemicals.append(coefficient + reformat_met_name(self.sabio_insensitive.get(met)['bigg_name']))
@@ -461,7 +473,7 @@ class SABIO_scraping():
                         else:
                             bigg_chemicals.append(coefficient + reformat_met_name(met))
                     else:
-                        print(f'-->ERROR: The metabolite in {chemical_list} at index {chemical_list.index(met)} is not recognized')
+                        print(f'-->ERROR: The {met} metabolite in {chemical_list} is not recognized by BiGG.')
             
             return bigg_chemicals, sabio_chemicals
         
@@ -595,6 +607,7 @@ class SABIO_scraping():
         
         self._click_element_id("addsearch")
         
+        # wait for the information expansion to open 
         for delay in range(60):
             try:
                 self._click_element_id(entry_id + "img")              
@@ -606,6 +619,7 @@ class SABIO_scraping():
         
         time.sleep(self.parameters['general_delay'])
         
+        # wait for the table to load
         self.driver.switch_to.frame(self.driver.find_element_by_xpath("//iframe[@name='iframe_" + entry_id + "']"))
         for delay in range(60):
             try:
@@ -646,45 +660,45 @@ class SABIO_scraping():
         self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
         self._previous_scrape()
         entryids = self.sabio_df["EntryID"].unique().tolist()
+        remaining_entryids = set(entryids) - set(self.variables['is_scraped_entryids'])
         
         # estimate the time to scrape the the entryids
-        minutes_per_enzyme = 0.5*minute
-        scraping_time = minutes_per_enzyme * len(entryids)
+        seconds_per_enzyme = 1*minute
+        scraping_time = seconds_per_enzyme * len(remaining_entryids)
         estimated_completion = datetime.datetime.now() + datetime.timedelta(seconds = scraping_time)          # approximately 1 minute per enzyme for Step 1
         print(f'Estimated completion of scraping the XLS data for {self.bigg_model_name}: {estimated_completion}, in {scraping_time/hour} hours')
         
-        for entryid in entryids:
+        for entryid in remaining_entryids:
             entryid = str(entryid)
-            if not entryid in self.variables['is_scraped_entryids']:
-                # only entries that possess calculable units will be processed and accepted
-                self.variables['is_scraped_entryids'][entryid] = "erroneous"
-                parameters = self._scrape_entry_id(entryid)
-                if parameters is not None:
-                    for param in parameters:
-                        if not 'unit' in parameters[param]:
-                            self.variables['is_scraped_entryids'][entryid] = "missing_unit"
-                        elif parameters[param]['unit'] == '-':
-                            self.variables['is_scraped_entryids'][entryid] = "missing_unit"
-                        elif parameters[param]['start val.'] == '-' and parameters[param]['end val.'] == '-':
-                            self.variables['is_scraped_entryids'][entryid] = "missing_values"   
-                        else:
-                            self.variables['is_scraped_entryids'][entryid] = "acceptable"
-                        
-                if self.variables['is_scraped_entryids'][entryid] == 'acceptable':
-                    self.variables['entryids'][entryid] = parameters
-                                    
-                    with open(self.paths["is_scraped_entryids"], 'w') as outfile:
-                        json.dump(self.variables['is_scraped_entryids'], outfile, indent = 4)   
-                        outfile.close()
-                    with open(self.paths["entryids_path"], 'w') as f:
-                        json.dump(self.variables['entryids'], f, indent = 4)        
-                        f.close()    
-                else:
-                    if self.verbose:
-                        print(entryid, self.variables['is_scraped_entryids'][entryid])
-                        pprint(parameters)
-                        
-                print(f'\rScraped entryID {entryids.index(int(entryid))}/{len(entryids)}\t{datetime.datetime.now()}', end='')
+            # only entries that possess calculable units will be processed and accepted
+            self.variables['is_scraped_entryids'][entryid] = "erroneous"
+            parameters = self._scrape_entry_id(entryid)
+            if parameters is not None:
+                for param in parameters:
+                    if not 'unit' in parameters[param]:
+                        self.variables['is_scraped_entryids'][entryid] = "missing_unit"
+                    elif parameters[param]['unit'] == '-':
+                        self.variables['is_scraped_entryids'][entryid] = "missing_unit"
+                    elif parameters[param]['start val.'] == '-' and parameters[param]['end val.'] == '-':
+                        self.variables['is_scraped_entryids'][entryid] = "missing_values"   
+                    else:
+                        self.variables['is_scraped_entryids'][entryid] = "acceptable"
+                    
+            if self.variables['is_scraped_entryids'][entryid] == 'acceptable':
+                self.variables['entryids'][entryid] = parameters
+                                
+                with open(self.paths["is_scraped_entryids"], 'w') as outfile:
+                    json.dump(self.variables['is_scraped_entryids'], outfile, indent = 4)   
+                    outfile.close()
+                with open(self.paths["entryids_path"], 'w') as f:
+                    json.dump(self.variables['entryids'], f, indent = 4)        
+                    f.close()    
+            else:
+                if self.verbose:
+                    print(entryid, self.variables['is_scraped_entryids'][entryid])
+                    pprint(parameters)
+                    
+            print(f'\rScraped entryID {entryids.index(int(entryid))}/{len(entryids)}\t{datetime.datetime.now()}', end='')
         
         # update the step counter
         print(f'The parameter specifications for each entryid have been scraped.')
@@ -753,11 +767,11 @@ class SABIO_scraping():
 
     """
     --------------------------------------------------------------------
-        STEP 2: COMBINE XLS AND ENTRYID DATA INTO A SINGLE JSON FILE
+        STEP 2: COMBINE XLS AND ENTRYID DATA INTO A dFBA INPUT JSON FILE
     --------------------------------------------------------------------
     """   
     
-    def _determine_parameter_value(unit, original_value):
+    def _determine_parameter_value(self, unit, original_value):
         # parse the unit
         numerator = ''
         denominator = ''
@@ -771,22 +785,20 @@ class SABIO_scraping():
                 
             ch = unit[index]
             term += ch
-            
             # parse the unit characters
-            if len(unit) == 1:
-                numerator += term
-                term = ''
-                break
-            if index+1 == len(unit)-1:
+            if index == len(unit)-1:
                 if next_denominator:
                     denominator += term
-                    denominator += unit[index+1]
                 else:
                     numerator += term
-                    numerator += unit[index+1]
                 term = ''
-                break
-            if unit[index+1] == '^':
+            elif index+1 == len(unit)-1:
+                if next_denominator:
+                    denominator += term
+                else:
+                    numerator += term
+                term = ''
+            elif unit[index+1] == '^':
                 if unit[index+2:index+6] == '(-1)':
                     denominator += term 
                     skips = 5
@@ -796,7 +808,7 @@ class SABIO_scraping():
             elif unit[index+1] == '/':
                 numerator += term
                 term = ''
-                skips = 1
+                skips += 1
                 next_denominator = True
                 
         if term != '':
@@ -807,7 +819,10 @@ class SABIO_scraping():
         }
         
         # determine the mathematically equivalent value in base units
-        value = original_value
+#        print('original_value', original_value)
+        if original_value is None or original_value in ['None']:
+            return original_value, unit_dic
+        value = float(original_value)
         for group in unit_dic:
             term = unit_dic[group]
             if re.search('min', unit_dic[group]):
@@ -859,7 +874,6 @@ class SABIO_scraping():
         # import previously parsed content
         with open(self.paths['entryids_path']) as json_file: 
             entry_id_data_file = json.load(json_file)
-            
         try:
             if self.sabio_df:
                 pass
@@ -867,6 +881,10 @@ class SABIO_scraping():
                 self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
         except:
             self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
+            
+        for entryid in entry_id_data_file:
+            if 'substituted_parameters' in entry_id_data_file[entryid]:
+                print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', entryid)
 
         # combine the scraped data into a programmable JSON  
         enzyme_dict = {}
@@ -874,38 +892,40 @@ class SABIO_scraping():
         enzymes = self.sabio_df["Enzymename"].unique().tolist()
         incorrect_enzymes = []
         for enzyme in enzymes:
-            bigg_enzyme_name = enzyme.capitalize()
-            if (enzyme and bigg_enzyme_name) not in self.model_contents:
-                
+            bigg_enzyme_name = enzyme #.capitalize()
+#            if (enzyme and bigg_enzyme_name) not in self.model_contents:
+            if enzyme not in self.model_contents:
                 incorrect_enzymes.append(bigg_enzyme_name)
-                
-                print('\n\n{}'.format(self.model_contents[bigg_enzyme_name]['annotations']))
                 print(f'unidentified enzyme name {bigg_enzyme_name}')
                 continue
+            
+            for entryid in entry_id_data_file:
+                if 'substituted_parameters' in entry_id_data_file[entryid]:
+                    print('======================================================================', entryid)
+            
             enzyme_df = self.sabio_df.loc[self.sabio_df["Enzymename"] == enzyme]
             enzyme_dict[bigg_enzyme_name] = {}
             reactions = enzyme_df["Reaction"].unique().tolist()
-            for reaction in reactions:                
+            for reaction_string in reactions:                
                 # ensure that the reaction chemicals match before accepting kinetic data
-                print('reaction:', reaction)
-                enzyme_dict[bigg_enzyme_name][reaction] = {}
-                rxn_string, sabio_chemicals, expected_bigg_chemicals = self._split_reaction(reaction, sabio = True) 
+                print('reaction:', reaction_string)
+                rxn_string, sabio_chemicals, expected_bigg_chemicals = self._split_reaction(reaction_string, sabio = True) 
                 bigg_chemicals = self.model_contents[bigg_enzyme_name]['bigg_chemicals']
-                
                 extra_bigg = set(bigg_chemicals) - set(expected_bigg_chemicals) 
-                extra_bigg = list(set(re.sub('(H\+|H2O)', '', chem) for chem in extra_bigg))         
+                extra_bigg = list(set(re.sub('(H\+|H2O|NAD\+|NADH)', '', chem) for chem in extra_bigg))         
                 if len(extra_bigg) != 1:
                     missed_reaction = f'The || {rxn_string} || reaction with {expected_bigg_chemicals} chemicals does not match the BiGG reaction of {bigg_chemicals} chemicals.'
                     if self.verbose:
                         print(missed_reaction)
-                    continue
+                    continue                
                 
                 # parse and filter each entryid of the matching reaction
-                enzyme_reactions_df = enzyme_df.loc[enzyme_df["Reaction"] == reaction]
+                enzyme_dict[bigg_enzyme_name][self.model_contents[bigg_enzyme_name]['reaction']['original']] = {}
+                enzyme_reactions_df = enzyme_df.loc[enzyme_df["Reaction"] == reaction_string]
                 entryids = enzyme_reactions_df["EntryID"].unique().tolist()
                 for entryid in entryids:
                     entryid = str(entryid)
-                    entry_id_row = enzyme_reactions_df.loc[enzyme_reactions_df["EntryID"] == entryid]
+                    entry_id_row = enzyme_reactions_df.loc[enzyme_reactions_df["EntryID"] == int(entryid)]
                     if len(entry_id_row.index) == 0:
                         print(f'{entryid} has no content')
                         continue
@@ -913,22 +933,28 @@ class SABIO_scraping():
                     # assign the rate law for an entryid
                     head_of_df = entry_id_row.head(1).squeeze()
                     rate_law = head_of_df["Rate Equation"]
-                    print(rate_law)
-                    if rate_law != []:                    
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid_string]["RateLaw"] = rate_law
+                    if rate_law != [] and rate_law not in ['unknown', '-']:      
+                        enzyme_dict[bigg_enzyme_name][reaction_string] = {}
+                        enzyme_dict[bigg_enzyme_name][reaction_string][entryid] = {}
+                        enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["RateLaw"] = rate_law
                     else:
                         continue
                     
                     # define the parameters for extant entryids
-                    enzyme_dict[bigg_enzyme_name][reaction][entryid] = {}
-                    if entryid in entry_id_data_file:                        
+                    if entryid in entry_id_data_file:  
+                        pprint(entry_id_data_file[entryid])
                         # rename "species" -> "chemical"
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid] = entry_id_data_file[entryid]
-                        parameters = []
+                        enzyme_dict[bigg_enzyme_name][reaction_string][entryid] = entry_id_data_file[entryid]
+                        parameters = {}
                         for param in entry_id_data_file[entryid]:
-                            enzyme_dict[bigg_enzyme_name][reaction][entryid]["Parameters"][param]['chemical'] = entry_id_data_file[entryid][param]['species']
-                            enzyme_dict[bigg_enzyme_name][reaction][entryid]["Parameters"][param].pop('species')
-                            parameters.append(param)
+                            try:
+                                enzyme_dict[bigg_enzyme_name][reaction_string][entryid][param]['chemical'] = entry_id_data_file[entryid][param]['species']
+                                enzyme_dict[bigg_enzyme_name][reaction_string][entryid][param].pop('species')
+                                parameters[param] = enzyme_dict[bigg_enzyme_name][reaction_string][entryid][param]
+                            except:
+                                pprint(entry_id_data_file[entryid])
+                                print(self.paths['entryids_path'])
+                                raise ValueError(f'The {param} in the {entryid} entryid has unexpected organization.')
                     else:
                         missing_entry_ids.append(entryid)
                         continue
@@ -937,58 +963,56 @@ class SABIO_scraping():
                     annotations = {}
                     for annotation in ["SabioReactionID", "PubMedID", 'ECNumber', 'KeggReactionID']:
                         annotations[annotation] = head_of_df[annotation]
-                    enzyme_dict[bigg_enzyme_name][reaction][entryid]['annotations'] = annotations
+                    enzyme_dict[bigg_enzyme_name][reaction_string][entryid]['annotations'] = annotations
                     
                     metadata = {}
                     for field in ["Buffer", "Product", "Publication", "pH", "Temperature", "Enzyme Variant", "KineticMechanismType", "Organism", "Pathway", ]:  
                         metadata[field] = head_of_df[field]
-                    enzyme_dict[bigg_enzyme_name][reaction][entryid]['metadata'] = metadata
+                    enzyme_dict[bigg_enzyme_name][reaction_string][entryid]['metadata'] = metadata
                         
                     # substitute quantities into the rate law 
+                    print('rate law', rate_law)
                     stripped_string = re.sub('[0-9]', '', rate_law)
-                    variables = re.split("[^*+-/() ]", stripped_string)   #!!! This logic for determining the set of variables in the rate law must be verified.
-                    variables = ' '.join(variables).split()
+                    variables = set(re.split("[\^\*\+\-\/\(\)]", stripped_string))
+                    print('variables', variables)
                     
                     substituted_parameters = {}
                     variable_molar = {}
                     variable_name = {}
-                    parameter_info = {}
                     parameter_value = True
                     while parameter_value:
                         for var in variables:
                             # the acceptable variables are filtered for those that possess data and those that are substrates
-                            if var in entry_id_data_file[entryid]:
-                                if parameters[var]['type'] == 'concentration':
-                                    variable_name[var] = enzyme_dict[enzyme][reaction][entryid]["Parameters"][var]['chemical']
-                                    parameter_value = self._parameter_value(var, parameter_info)                                                                       
-                                    unit = parameter_info[var]['unit']
-                                    parameter_value, unit_dict = self._determine_parameter_value(unit, parameter_value)
-                                    
-                                    if len(var) == 1 and var != 'E':
-                                        if not parameter_value:
-                                            parameter_value = False
-                                            break
-                                        substituted_rate_law = rate_law.replace(var, parameter_value)
-                                        substituted_parameters[var] = entry_id_data_file[entryid][var]
-                                    else:
-                                        variable_molar[var] = parameter_value
+                            if var in parameters:
+                                variable_name[var] = enzyme_dict[enzyme][reaction_string][entryid][var]['chemical']
+                                parameter_value = self._parameter_value(var, entry_id_data_file[entryid])                                                                       
+                                unit = entry_id_data_file[entryid][var]['unit']
+                                parameter_value, unit_dict = self._determine_parameter_value(unit, str(parameter_value))
+                                parameter_value = str(parameter_value)
+                                if len(var) == 1 and var != 'E':
+                                    if not parameter_value:
+                                        parameter_value = False
+                                        break
+                                    substituted_rate_law = rate_law.replace(var, parameter_value)
+                                    substituted_parameters[var] = entry_id_data_file[entryid][var]
+                                else:
+                                    variable_molar[var] = parameter_value
 
                         # define the final JSON with the desired content and organization
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["substituted_rate_law"] = substituted_rate_law
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["substituted_parameters"] = substituted_parameters
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["variables_molar"] = variable_molar
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid]["variables_name"] = variable_name
-                        
-                        defined_content = variable_molar + substituted_parameters
-                        if defined_content != parameters:
-                            warnings.warn(f'---> ERROR: The rate rate {rate_law} does not reflect all of the defined variables and parameters by the entry: {defined_content}.')
-                        enzyme_dict[bigg_enzyme_name][reaction][entryid].pop('Parameters')
-                        
+                        if parameter_value:
+                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["substituted_rate_law"] = substituted_rate_law
+                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["substituted_parameters"] = substituted_parameters
+                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["variables_molar"] = variable_molar
+                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["variables_name"] = variable_name
+                            
+                            defined_content = variable_molar.update(substituted_parameters)
+                            if defined_content != parameters:
+                                warnings.warn(f'---> ERROR: The rate rate {rate_law} does not reflect {defined_content} in the defined entry variables and parameters.')                            
                         parameter_value = False
                     
                     # remove entryids whose rate laws could not be completely substituted, and thus are not calculable
-                    if not "SubstitutedRateLaw" in enzyme_dict[bigg_enzyme_name][reaction][entryid]:
-                        enzyme_dict[bigg_enzyme_name][reaction].pop(entryid)
+                    if not "SubstitutedRateLaw" in enzyme_dict[bigg_enzyme_name][reaction_string][entryid]:
+                        enzyme_dict[bigg_enzyme_name][reaction_string].pop(entryid)
 
         with open(self.paths["scraped_model_path"], 'w', encoding="utf-8") as f:
             json.dump(enzyme_dict, f, indent=4, sort_keys=True, separators=(', ', ': '), ensure_ascii=False, cls=NumpyEncoder)
