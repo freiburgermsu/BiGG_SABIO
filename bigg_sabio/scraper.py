@@ -126,7 +126,7 @@ class CaseInsensitiveDict(dict):        # sourced from https://stackoverflow.com
 
 
 class SABIO_scraping():
-#     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, is_scraped_entryids_prefix, sel_raw_data, processed_csv, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, is_scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, scraped_model_path, bigg_model, step_number, cwd])
+#     __slots__ = (str(x) for x in [progress_file_prefix, xls_download_prefix, is_scraped_prefix, is_scraped_entryids_prefix, sel_raw_data, processed_csv, entry_json, scraped_model, bigg_model_name_suffix, output_directory, progress_path, raw_data, is_scraped, is_scraped_entryids_path, xls_csv_file_path, entryids_json_file_path, model_kinetics_path, bigg_model, step_number, cwd])
     
     def __init__(self,
                  bigg_model_path: str,        # the JSON version of the BiGG model
@@ -173,18 +173,15 @@ class SABIO_scraping():
         # define folder paths
         self.paths['cwd'] = os.path.dirname(os.path.realpath(self.paths['bigg_model_path']))  
         self.paths['output_directory'] = os.path.join(self.paths['cwd'],f"scraping-{self.bigg_model_name}")    
-        self.paths['processed_data'] = os.path.join(self.paths['output_directory'], 'processed_data') 
         self.paths['raw_data'] = os.path.join(self.paths['output_directory'], 'downloaded')    
         if not os.path.isdir(self.paths['output_directory']):        
             os.mkdir(self.paths['output_directory'])
         if not os.path.isdir(self.paths['raw_data']):
             os.mkdir(self.paths['raw_data'])
-        if not os.path.isdir(self.paths['processed_data']):
-            os.mkdir(self.paths['processed_data'])
         
         # define file paths
         self.paths['progress_path'] = os.path.join(self.paths['output_directory'], "current_progress.txt")
-        self.paths['scraped_model_path'] = os.path.join(self.paths['processed_data'], "scraped_model.json")
+        self.paths['model_kinetics_path'] = os.path.join(self.paths['output_directory'], "model_kinetics.json")
         self.paths['concatenated_data'] = os.path.join(self.paths['raw_data'], "concatenated_data.csv")
         self.paths['is_scraped'] = os.path.join(self.paths['raw_data'], "is_scraped.json")
         self.paths['is_scraped_entryids'] = os.path.join(self.paths['raw_data'], "is_scraped_entryids.json")
@@ -391,7 +388,7 @@ class SABIO_scraping():
 
         return True
     
-#    def _expand_shadow_element(self, element):
+#    def _expand_shadow_element(self, element):      
 #        shadow_root = self.driver.execute_script('return arguments[0].shadowRoot', element)
 #        return shadow_root
     
@@ -399,7 +396,7 @@ class SABIO_scraping():
                         reaction_string, # the sabio or bigg reaction string
                         sabio = False   # specifies how the reaction string will be split
                         ):
-        def _parse_stoich(met):
+        def __parse_stoich(met):
             stoich = ''
             ch_number = 0
             denom = False
@@ -417,12 +414,12 @@ class SABIO_scraping():
                 stoich = f'{numerator}/{denominator}'
             return stoich
         
-        def met_parsing(met):
+        def __met_parsing(met):
     #         print(met)
             met = met.strip()
             met = re.sub('_\w$', '', met)
             if re.search('(\d\s\w|\d\.\d\s|\d/\d\s)', met):
-                coefficient = _parse_stoich(met)
+                coefficient = __parse_stoich(met)
                 coefficient = '{} '.format(coefficient)
             else:
                 coefficient = ''
@@ -430,13 +427,13 @@ class SABIO_scraping():
     #         print(met, coefficient)
             return met, coefficient   
     
-        def reformat_met_name(met_name, sabio = False):
+        def __reformat_met_name(met_name, sabio = False):
             met_name = re.sub(' - ', '-', met_name)
             if not sabio:
                 met_name = re.sub(' ', '_', met_name)
             return met_name
         
-        def name_refinement(met_name):
+        def __name_refinement(met_name):
             if met_name == 'NAD\+':
                 met_name = 'Nicotinamide adenine dinucleotide'
             elif met_name == 'NADH':
@@ -444,36 +441,68 @@ class SABIO_scraping():
                 
             return met_name
         
-        def parsing_chemical_list(chemical_list):
+        def __check_existence(met, coefficient, bigg_chemicals, sabio = False):
+            original_length = len(bigg_chemicals)
+            if sabio:
+                if met in self.sabio_insensitive:
+                    if 'bigg_name' in self.sabio_insensitive.get(met):
+                        bigg_chemicals.append(coefficient + __reformat_met_name(self.sabio_insensitive.get(met)['bigg_name']))
+                    else:
+                        bigg_chemicals.append(coefficient + __reformat_met_name(met))
+                elif met in self.bigg_insensitive:
+                    if 'bigg_name' in self.bigg_insensitive.get(met):
+                        bigg_chemicals.append(coefficient + __reformat_met_name(self.bigg_insensitive.get(met)['bigg_name']))
+                    else:
+                        bigg_chemicals.append(coefficient + __reformat_met_name(met))
+            else:
+                if met in self.sabio_insensitive:
+                    if 'bigg_name' in self.sabio_insensitive.get(met):
+                        bigg_chemicals.append(coefficient + __reformat_met_name(self.sabio_insensitive.get(met)['bigg_name']))
+                    else:
+                        bigg_chemicals.append(coefficient + __reformat_met_name(met))
+                elif met in self.bigg_insensitive:
+                    if 'bigg_name' in self.bigg_insensitive.get(met):
+                        bigg_chemicals.append(coefficient + __reformat_met_name(self.bigg_insensitive.get(met)['bigg_name']))
+                    else:
+                        bigg_chemicals.append(coefficient + __reformat_met_name(met))
+                
+            final_length = len(bigg_chemicals)
+            if original_length == final_length:
+                return False
+            else:
+                return True
+        
+        def parsing_chemical_list(chemical_list):            
             bigg_chemicals = []
             sabio_chemicals = []
             for met in chemical_list:
                 if not re.search('[A-Za-z]', met):
                     continue
-                met, coefficient = met_parsing(met)
-                met = name_refinement(met)
+                met, coefficient = __met_parsing(met)
+                met = __name_refinement(met)
                 
                 # assign the proper chemical names
                 if not sabio:
-                    sabio_chemicals.append(coefficient + reformat_met_name(self.bigg_to_sabio_metabolites[met]['name'], True))     
+                    sabio_chemicals.append(coefficient + __reformat_met_name(self.bigg_to_sabio_metabolites[met]['name'], True))     
                     if 'bigg_name' in self.bigg_to_sabio_metabolites[met]:
-                        bigg_chemicals.append(coefficient + reformat_met_name(self.bigg_to_sabio_metabolites[met]['bigg_name']))
+                        bigg_chemicals.append(coefficient + __reformat_met_name(self.bigg_to_sabio_metabolites[met]['bigg_name']))
                     else:
-                        bigg_chemicals.append(coefficient + reformat_met_name(self.bigg_to_sabio_metabolites[met]['name']))
+                        bigg_chemicals.append(coefficient + __reformat_met_name(self.bigg_to_sabio_metabolites[met]['name']))
                 elif sabio:
-                    sabio_chemicals.append(coefficient + reformat_met_name(met, True))    
-                    if met in self.sabio_insensitive:
-                        if 'bigg_name' in self.sabio_insensitive.get(met):
-                            bigg_chemicals.append(coefficient + reformat_met_name(self.sabio_insensitive.get(met)['bigg_name']))
-                        else:
-                            bigg_chemicals.append(coefficient + reformat_met_name(met))
-                    elif met in self.bigg_insensitive:
-                        if 'bigg_name' in self.bigg_insensitive.get(met):
-                            bigg_chemicals.append(coefficient + reformat_met_name(self.bigg_insensitive.get(met)['bigg_name']))
-                        else:
-                            bigg_chemicals.append(coefficient + reformat_met_name(met))
-                    else:
-                        print(f'-->ERROR: The {met} metabolite in {chemical_list} is not recognized by BiGG.')
+                    sabio_chemicals.append(coefficient + __reformat_met_name(met, True))    
+                    match = __check_existence(met, coefficient, bigg_chemicals, True)
+                    if not match:
+                        if re.search('D-', met):
+                            met = re.sub('D-', '', met)
+                            match = __check_existence(met, coefficient, bigg_chemicals, True)
+                        elif not re.search('D-', met) and not match:
+                            met = 'D-' + met
+                            match = __check_existence(met, coefficient, bigg_chemicals, True)
+#                        elif not re.search('D-', met) and not match:
+#                            met = 'D-' + met
+                        
+                else:
+                    print(f'-->ERROR: The {met} metabolite in {chemical_list} is not recognized by BiGG.')
             
             return bigg_chemicals, sabio_chemicals
         
@@ -728,16 +757,17 @@ class SABIO_scraping():
 #            enzyme_name = enzyme['name'].replace("\"", "")
             enzyme_name = enzyme['name']
             if not enzyme_name in self.variables['is_scraped']:
-                self.variables['is_scraped'][enzyme_name] = False
+                self.variables['is_scraped'][enzyme_name] = {}
                 annotation_search_pairs.update({
                         enzyme_name:"Enzymename"
                         })
                 for database in annotation_search_pairs:
                     if database in self.model_contents[enzyme_name]['annotations']:
                         for ID in self.model_contents[enzyme_name]['annotations'][database]:
+                            self.variables['is_scraped'][enzyme_name][ID] = False
                             scraped = self._scrape_csv(ID, annotation_search_pairs[database])
                             if scraped:
-                                self.variables['is_scraped'][enzyme_name] = True
+                                self.variables['is_scraped'][enzyme_name][ID] = True
                                 try:                               
                                     self._refine_scraped_file(enzyme_name, ID)
                                 except:
@@ -871,56 +901,59 @@ class SABIO_scraping():
         return average(start_value, end_value)
 
     def to_fba(self,):
-        # import previously parsed content
+        # import previously content
+        self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
         with open(self.paths['entryids_path']) as json_file: 
             entry_id_data_file = json.load(json_file)
-        try:
-            if self.sabio_df:
-                pass
-            else:
-                self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
-        except:
-            self.sabio_df = pandas.read_csv(self.paths['concatenated_data'])
             
-        for entryid in entry_id_data_file:
-            if 'substituted_parameters' in entry_id_data_file[entryid]:
-                print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', entryid)
+#        for entryid in entry_id_data_file:
+#            if 'substituted_parameters' in entry_id_data_file[entryid]:
+#                print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', entryid)
 
         # combine the scraped data into a programmable JSON  
         enzyme_dict = {}
         missing_entry_ids = []
         enzymes = self.sabio_df["Enzymename"].unique().tolist()
         incorrect_enzymes = []
+        undefined_names = set()
         for enzyme in enzymes:
-            bigg_enzyme_name = enzyme #.capitalize()
-#            if (enzyme and bigg_enzyme_name) not in self.model_contents:
             if enzyme not in self.model_contents:
-                incorrect_enzymes.append(bigg_enzyme_name)
-                print(f'unidentified enzyme name {bigg_enzyme_name}')
+                incorrect_enzymes.append(enzyme)
+                undefined_names.add(enzyme)
                 continue
             
-            for entryid in entry_id_data_file:
-                if 'substituted_parameters' in entry_id_data_file[entryid]:
-                    print('======================================================================', entryid)
+#            for entryid in entry_id_data_file:
+#                if 'substituted_parameters' in entry_id_data_file[entryid]:
+#                    pprint(entry_id_data_file[entryid])
+#                    print('======================================================================', entryid)
             
             enzyme_df = self.sabio_df.loc[self.sabio_df["Enzymename"] == enzyme]
-            enzyme_dict[bigg_enzyme_name] = {}
             reactions = enzyme_df["Reaction"].unique().tolist()
+            bigg_reaction_string = self.model_contents[enzyme]['reaction']['original']
             for reaction_string in reactions:                
                 # ensure that the reaction chemicals match before accepting kinetic data
-                print('reaction:', reaction_string)
+                print('\n\nSABIO reaction:', reaction_string)
                 rxn_string, sabio_chemicals, expected_bigg_chemicals = self._split_reaction(reaction_string, sabio = True) 
-                bigg_chemicals = self.model_contents[bigg_enzyme_name]['bigg_chemicals']
+                bigg_chemicals = self.model_contents[enzyme]['bigg_chemicals']
                 extra_bigg = set(bigg_chemicals) - set(expected_bigg_chemicals) 
-                extra_bigg = list(set(re.sub('(H\+|H2O|NAD\+|NADH)', '', chem) for chem in extra_bigg))         
-                if len(extra_bigg) != 1:
-                    missed_reaction = f'The || {rxn_string} || reaction with {expected_bigg_chemicals} chemicals does not match the BiGG reaction of {bigg_chemicals} chemicals.'
-                    if self.verbose:
-                        print(missed_reaction)
-                    continue                
+                extra_bigg = list(set(re.sub('(H\+|H2O|NAD\+|NADH)', '', chem) for chem in extra_bigg))   
                 
+                loop = 0
+                missed_reaction = None
+                while len(extra_bigg) <= 1:
+                    if re.search('NADP', ' '.join(extra_bigg)) and loop == 0:
+                        extra_bigg = [re.sub('NADP.?', '', chem) for chem in extra_bigg]                        
+                        loop += 1
+                    else:
+                        print(extra_bigg)
+                        missed_reaction = f'The || {rxn_string} || reaction with {expected_bigg_chemicals} chemicals does not match the BiGG reaction of {bigg_chemicals} chemicals.'
+                        if self.verbose:
+                            print(missed_reaction)
+                        break                
+                if missed_reaction:
+                    continue 
+                    
                 # parse and filter each entryid of the matching reaction
-                enzyme_dict[bigg_enzyme_name][self.model_contents[bigg_enzyme_name]['reaction']['original']] = {}
                 enzyme_reactions_df = enzyme_df.loc[enzyme_df["Reaction"] == reaction_string]
                 entryids = enzyme_reactions_df["EntryID"].unique().tolist()
                 for entryid in entryids:
@@ -933,90 +966,104 @@ class SABIO_scraping():
                     # assign the rate law for an entryid
                     head_of_df = entry_id_row.head(1).squeeze()
                     rate_law = head_of_df["Rate Equation"]
-                    if rate_law != [] and rate_law not in ['unknown', '-']:      
-                        enzyme_dict[bigg_enzyme_name][reaction_string] = {}
-                        enzyme_dict[bigg_enzyme_name][reaction_string][entryid] = {}
-                        enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["RateLaw"] = rate_law
-                    else:
+                    if rate_law == [] or rate_law in ['unknown', '-']:
+                        print(f'The {entryid} entryid has an unexpected rate_law {rate_law}.')
                         continue
                     
                     # define the parameters for extant entryids
-                    if entryid in entry_id_data_file:  
-                        pprint(entry_id_data_file[entryid])
-                        # rename "species" -> "chemical"
-                        enzyme_dict[bigg_enzyme_name][reaction_string][entryid] = entry_id_data_file[entryid]
-                        parameters = {}
-                        for param in entry_id_data_file[entryid]:
-                            try:
-                                enzyme_dict[bigg_enzyme_name][reaction_string][entryid][param]['chemical'] = entry_id_data_file[entryid][param]['species']
-                                enzyme_dict[bigg_enzyme_name][reaction_string][entryid][param].pop('species')
-                                parameters[param] = enzyme_dict[bigg_enzyme_name][reaction_string][entryid][param]
-                            except:
-                                pprint(entry_id_data_file[entryid])
-                                print(self.paths['entryids_path'])
-                                raise ValueError(f'The {param} in the {entryid} entryid has unexpected organization.')
-                    else:
+                    if entryid not in entry_id_data_file:  
+                        print(f'The {entryid} entryid is missing from the datafile.')
                         missing_entry_ids.append(entryid)
                         continue
+                    
+                    corrupted_entries = {}
+                    enzyme_dict[enzyme] = {}
+                    enzyme_dict[enzyme][entryid] = {}
+                    enzyme_dict[enzyme][entryid]["RateLaw"] = rate_law
+#                    parameters = {}
+#                    for param in entry_id_data_file[entryid]:
+#                        if param not in ['substituted_parameters', 'annotations', 'metadata', 'substituted_rate_law', 'variables_molar', 'variables_name']:
+#                            if 'species' in entry_id_data_file[entryid][param]:
+#                                enzyme_dict[enzyme][entryid][param]['chemical'] = entry_id_data_file[entryid][param]['species']
+#                                enzyme_dict[enzyme][entryid][param].pop('species')
+#                            else:
+#                                corrupted_entries[entryid] = entry_id_data_file[entryid]
+#                            parameters[param] = enzyme_dict[enzyme][entryid][param]
+
+#                                except:
+#                                pprint(entry_id_data_file[entryid])
+#                                print(self.paths['entryids_path'])
+#                                    raise ValueError(f'The {param} in the {entryid} entryid has unexpected organization.')
 
                     # add annotations and metadata to the assembled dictionary
                     annotations = {}
+                    metadata = {}
                     for annotation in ["SabioReactionID", "PubMedID", 'ECNumber', 'KeggReactionID']:
                         annotations[annotation] = head_of_df[annotation]
-                    enzyme_dict[bigg_enzyme_name][reaction_string][entryid]['annotations'] = annotations
-                    
-                    metadata = {}
                     for field in ["Buffer", "Product", "Publication", "pH", "Temperature", "Enzyme Variant", "KineticMechanismType", "Organism", "Pathway", ]:  
                         metadata[field] = head_of_df[field]
-                    enzyme_dict[bigg_enzyme_name][reaction_string][entryid]['metadata'] = metadata
+                    metadata.update({'annotations':annotations})
+                    enzyme_dict[enzyme][entryid]['metadata'] = metadata
                         
                     # substitute quantities into the rate law 
-                    print('rate law', rate_law)
                     stripped_string = re.sub('[0-9]', '', rate_law)
                     variables = set(re.split("[\^\*\+\-\/\(\)]", stripped_string))
-                    print('variables', variables)
                     
                     substituted_parameters = {}
                     variable_molar = {}
                     variable_name = {}
+                    initial_concentrations = {}
                     parameter_value = True
+                    substituted_rate_law = rate_law
                     while parameter_value:
                         for var in variables:
                             # the acceptable variables are filtered for those that possess data and those that are substrates
-                            if var in parameters:
-                                variable_name[var] = enzyme_dict[enzyme][reaction_string][entryid][var]['chemical']
+                            if var in entry_id_data_file[entryid]:
+                                variable_name[var] = entry_id_data_file[entryid][var]['species']
                                 parameter_value = self._parameter_value(var, entry_id_data_file[entryid])                                                                       
                                 unit = entry_id_data_file[entryid][var]['unit']
                                 parameter_value, unit_dict = self._determine_parameter_value(unit, str(parameter_value))
                                 parameter_value = str(parameter_value)
-                                if len(var) == 1 and var != 'E':
-                                    if not parameter_value:
+                                if len(var) != 1 or var in ['h', 'n']:
+                                    if not parameter_value or parameter_value in ['unknown', '-', 'None', None]:
+                                        print(f'The {var} parameter has an unaccepted value {parameter_value}.')
                                         parameter_value = False
                                         break
-                                    substituted_rate_law = rate_law.replace(var, parameter_value)
+                                    
+                                    variable_molar[var] = parameter_value
+                                    substituted_rate_law = substituted_rate_law.replace(var, parameter_value)
                                     substituted_parameters[var] = entry_id_data_file[entryid][var]
                                 else:
-                                    variable_molar[var] = parameter_value
+                                    if isnumber(parameter_value):
+                                        initial_concentrations[var] = float(parameter_value)
 
                         # define the final JSON with the desired content and organization
                         if parameter_value:
-                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["substituted_rate_law"] = substituted_rate_law
-                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["substituted_parameters"] = substituted_parameters
-                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["variables_molar"] = variable_molar
-                            enzyme_dict[bigg_enzyme_name][reaction_string][entryid]["variables_name"] = variable_name
+                            enzyme_dict[enzyme][entryid]["substituted_rate_law"] = substituted_rate_law
+                            enzyme_dict[enzyme][entryid]["substituted_parameters"] = substituted_parameters
+                            enzyme_dict[enzyme][entryid]["variables_molar"] = variable_molar
+                            enzyme_dict[enzyme][entryid]["variables_name"] = variable_name
+                            enzyme_dict[enzyme][entryid]['initial_concentrations_M'] = initial_concentrations
                             
-                            defined_content = variable_molar.update(substituted_parameters)
-                            if defined_content != parameters:
-                                warnings.warn(f'---> ERROR: The rate rate {rate_law} does not reflect {defined_content} in the defined entry variables and parameters.')                            
+                            if substituted_parameters != entry_id_data_file[entryid]:
+                                warnings.warn(f'---> ERROR: The rate rate {rate_law} does not reflect {substituted_parameters} in the defined entry variables and parameters.')                            
                         parameter_value = False
                     
                     # remove entryids whose rate laws could not be completely substituted, and thus are not calculable
-                    if not "SubstitutedRateLaw" in enzyme_dict[bigg_enzyme_name][reaction_string][entryid]:
-                        enzyme_dict[bigg_enzyme_name][reaction_string].pop(entryid)
+                    if not "substituted_rate_law" in enzyme_dict[enzyme][entryid]:
+                        enzyme_dict[enzyme].pop(entryid)
+                        
+            if enzyme in enzyme_dict:
+                if bigg_reaction_string in enzyme_dict[enzyme]:
+                    if enzyme_dict[enzyme] == {}:
+                        enzyme_dict.pop(enzyme)
 
-        with open(self.paths["scraped_model_path"], 'w', encoding="utf-8") as f:
-            json.dump(enzyme_dict, f, indent=4, sort_keys=True, separators=(', ', ': '), ensure_ascii=False, cls=NumpyEncoder)
+        with open(self.paths["model_kinetics_path"], 'w', encoding="utf-8") as f:
+            json.dump(enzyme_dict, f, indent=4, sort_keys=True, cls=NumpyEncoder)
             
         # update the step counter
+        print('\n\n\n', 'undescribed enzymes', set(list(self.model_contents.keys())) - set(list(enzyme_dict.keys())))
+        print('\n\n\n', 'un-renamed enzymes', undefined_names)
+        print('\n\n\n', 'content', list(enzyme_dict.keys()))
         print(f'The dFBA data file have been generated.')
         self._progress_update(self.step_number)
