@@ -131,3 +131,7 @@ dmypy.json
 # BiGG databases and scraping brainstorming
 bigg_databases/
 scraping/
+bigg_models/scraping*
+
+# errors
+errors/*
